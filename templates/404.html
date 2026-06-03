@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% comment %} page title {% endcomment %}
+{% block title %}404 Not Found | NOVA{% endblock %}
+
+{% block content %}
+<style>
+html,body{overflow:hidden;}
+
+{% comment %} 404:black {% endcomment %}
+.num-l{
+    position:absolute;
+    right:-150px;
+    top:50%;
+    transform:translate(170px,-50%);
+    font-size:340px;
+    font-weight:900;
+    color:#000;
+    clip-path:inset(0 50% 0 0);
+}
+
+{% comment %} 404:black {% endcomment %}
+.num-r{
+    position:absolute;
+    left:-150px;
+    top:50%;
+    transform:translate(-170px,-50%);
+    font-size:340px;
+    font-weight:900;
+    color:#fff;
+    clip-path:inset(0 0 0 50%);
+}
+
+.text-box{
+    position:relative;
+    z-index:9999;
+}
+</style>
+
+<div class="container-fluid px-0">
+    <div class="row no-gutters min-vh-100">
+        <!-- left side bg -->
+        <div class="col-md-6 col-12 position-relative d-flex flex-column justify-content-between py-5 px-5" style="background:#222;">
+            <div class="h1 font-weight-bold text-white mb-0">
+                <span class="text-warning">N</span>OVA
+            </div>
+            <div class="num-l">404</div>
+        </div>
+        <!-- right side bg -->
+        <div class="col-md-6 col-12 position-relative d-flex flex-column justify-content-center py-5 px-5" style="background:#f8f5ec;">
+            <div class="num-r">404</div>
+            <div class="text-box">
+                <h2 class="display-1 font-weight-bold mb-3">OOPS!</h2>
+                <p class="h3 text-secondary mb-5">Oh, no! This page does not exist.</p>
+                <a href="/" class="btn btn-dark btn-lg px-5 py-3 rounded-lg">GO TO MAIN PAGE</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

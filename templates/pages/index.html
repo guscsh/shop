@@ -2,197 +2,141 @@
 {% load static %}
         
 {% block content %}
-    <div class="page-content bg-light">
+<div class="page-content bg-light">
+    <div class="main-slider style-1">
+        <div class="container-fluid">
+            <div class="banner-content">
+                <div class="row" style="height: 100vh; margin:0;">
 
-                <div class="main-slider style-1">
-            <div class="container-fluid">
-                <div class="banner-content">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
-                            <div class="swiper-container main-swiper h-100">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Beautiful Woman Purple Sweater.</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;80.00</span>
-                                                    </div>
+                    <!-- left side template loop-->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="swiper main-swiper h-100">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Product nameA</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    {% comment %} price {% endcomment %}
+                                                    <span class="price-name">Price</span>
+                                                    <span class="price-num d-inline-block">$00.00</span>
                                                 </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
-                                                </div>
+                                            </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Shot Slad Curly Woman.</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;30.00</span>
-                                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Name B</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    {% comment %} price {% endcomment %}
+                                                    <span class="price-name">Price</span>
+                                                    <span class="price-num d-inline-block">$00.00</span>
                                                 </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
-                                                </div>
+                                            </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Curly Girl Beautiful Dress</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;30.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Beautiful Woman Purple Sweater.</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;80.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Name C</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    <span class="price-name">Price</span>
+                                                    {% comment %} Price {% endcomment %}
+                                                    <span class="price-num d-inline-block">$00.00</span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Shot Slad Curly Woman.</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;30.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="swiper-content">
-                                            <div class="content-info">
-                                                <h1 class="title  wow fadeInUp" data-wow-delay="0.2s">Curly Girl Beautiful Dress</h1>
-                                                <div class="swiper-meta-items">
-                                                    <div class="meta-content wow fadeInUp" data-wow-delay="0.4s">
-                                                        <span class="price-name">Price</span>
-                                                        <span class="price-num d-inline-block">&#036;30.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="content-btn m-b30 wow fadeInUp" data-wow-delay="0.8s">
-                                                    {% comment %} <a href="{% url 'pixio:shop-wishlist' %}" class="btn btn-secondary me-xl-3 me-2 btnhover20">ADD TO CART</a> {% endcomment %}
-                                                    {% comment %} <a href="{% url 'pixio:product-default' %}" class="btn btn-outline-secondary btnhover20">VIEW DETAIL </a> {% endcomment %}
-                                                </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="swiper-container main-swiper-thumb">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %}top sell img {% endcomment %}
-                                                <img src="https://picsum.photos/780_1050" alt="banner-media">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %} top sell img {% endcomment %}
-                                                <img src="https://picsum.photos/780_1050"  alt="banner-media">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %}top sell img {% endcomment %}
-                                                <img src="https://picsum.photos/780_1050"  alt="banner-media">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %} <img src="{% static 'pixio/images/banner/banner-media.png' %}" alt="banner-media"> {% endcomment %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %} <img src="{% static 'pixio/images/banner/banner-media2.png' %}" alt="banner-media"> {% endcomment %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="banner-media" data-name="Winter">
-                                            <div class="img-preview">
-                                                {% comment %} <img src="{% static 'pixio/images/banner/banner-media3.png' %}" alt="banner-media"> {% endcomment %}
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+
+                    <!-- right side img loop-->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="swiper main-swiper-thumb h-100">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
                                 </div>
-                                <div class="pagination-align style-1">
-                                    <div class="swiper-button-next icon feather icon-arrow-right"></div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
                                 </div>
                             </div>
+
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
-                    <div class="bottom-content align-items-end wow fadeInUp" data-wow-delay="1.0s">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76" fill="none">
-                            <path d="M52.6617 37.6496L58.7381 40.0325L75.0609 49.0874L66.6016 63.7422L49.9214 54.6872L45.1557 50.7554L46.1088 57.1892V75.18H28.952V57.1892L30.0243 50.5171L24.9011 54.6872L8.45924 63.7422L0 49.0874L16.3228 39.7942L22.3991 37.6496L16.3228 35.1475L0 26.2117L8.45924 11.557L25.1394 20.4928L30.0243 24.6629L28.952 18.3482V0H46.1088V18.3482L45.1557 24.4246L49.9214 20.4928L66.6016 11.557L75.0609 26.2117L58.7381 35.3858L52.6617 37.6496Z" fill="black" />
-                        </svg>
-                        <div>
-                            <span class="sub-title">Summer Collection</span>
-                            <h4 class="title">Trendy and Classic  for the New Season</h4>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-            <svg class="star-1" xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94" fill="none">
-                <path d="M47 0L53.8701 30.4141L80.234 13.766L63.5859 40.1299L94 47L63.5859 53.8701L80.234 80.234L53.8701 63.5859L47 94L40.1299 63.5859L13.766 80.234L30.4141 53.8701L0 47L30.4141 40.1299L13.766 13.766L40.1299 30.4141L47 0Z" fill="#FEEB9D" />
-            </svg>
-            <svg class="star-2" xmlns="http://www.w3.org/2000/svg" width="82" height="94" viewBox="0 0 82 94" fill="none">
-                <path d="M41 0L45.277 39.592L81.7032 23.5L49.554 47L81.7032 70.5L45.277 54.408L41 94L36.723 54.408L0.296806 70.5L32.446 47L0.296806 23.5L36.723 39.592L41 0Z" fill="black" />
-            </svg>
-            <a class="animation-btn popup-youtube" href="https://www.youtube.com/watch?v=YwYoyQ1JdpQ">
-                <div class="text-row word-rotate-box c-black">
-                    <span class="word-rotate"> More Collection Explore </span>
-                    <i class="fa-solid fa-play text-dark badge__emoji"></i>
-                </div>
-            </a>
         </div>
-{% endblock %}   
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+    .swiper-slide {
+        opacity: 0 !important;
+        transition: opacity 0.5s ease;
+    }
+    .swiper-slide-active {
+        opacity: 1 !important;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var thumbSwiper = new Swiper(".main-swiper-thumb", {
+        loop: true,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    var mainSwiper = new Swiper(".main-swiper", {
+        loop: true,
+        effect: "fade",
+        speed: 700,
+        autoplay: { 
+            delay: 3500,
+            disableOnInteraction: false
+        },
+        thumbs: { swiper: thumbSwiper }
+    });
+});
+</script>
+{% endblock %}
