@@ -4,16 +4,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Shhop {% block title %} {% endblock title %}</title>
+        <title>NOVA {% block title %} {% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+
+            <!-- Custom -->
+    <link rel="stylesheet" href={% static "css/style.css" %} />
     </head>
+
     <body>
         {% include "partials/_topbar.html" %}
         {% include "partials/_navbar.html" %}
         {% block content %}{% endblock content %}
-        {% include "partials/footer.html" %}
+        {% comment %} {% include "partials/footer.html" %} {% endcomment %}
         
         <script src="" async defer></script>
     </body>
