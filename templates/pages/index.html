@@ -1,1 +1,142 @@
-index page
+{% extends "base.html" %}
+{% load static %}
+        
+{% block content %}
+<div class="page-content bg-light">
+    <div class="main-slider style-1">
+        <div class="container-fluid">
+            <div class="banner-content">
+                <div class="row" style="height: 100vh; margin:0;">
+
+                    <!-- left side template loop-->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="swiper main-swiper h-100">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Product nameA</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    {% comment %} price {% endcomment %}
+                                                    <span class="price-name">Price</span>
+                                                    <span class="price-num d-inline-block">$00.00</span>
+                                                </div>
+                                            </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Name B</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    {% comment %} price {% endcomment %}
+                                                    <span class="price-name">Price</span>
+                                                    <span class="price-num d-inline-block">$00.00</span>
+                                                </div>
+                                            </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="swiper-content d-flex align-items-center h-100">
+                                        <div class="content-info px-5">
+                                            {% comment %} Product name {% endcomment %}
+                                            <h1 class="title mb-3">Name C</h1>
+                                            <div class="swiper-meta-items mb-3">
+                                                <div class="meta-content">
+                                                    <span class="price-name">Price</span>
+                                                    {% comment %} Price {% endcomment %}
+                                                    <span class="price-num d-inline-block">$00.00</span>
+                                                </div>
+                                            </div>
+                                            {% comment %} href cart+product-details button {% endcomment %}
+                                            <div class="content-btn mt-4">
+                                                <a href="#" class="btn btn-secondary me-2">ADD TO CART</a>
+                                                <a href="#" class="btn btn-outline-secondary">VIEW DETAIL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- right side img loop-->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="swiper main-swiper-thumb h-100">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="https://picsum.photos/780/1050" class="w-100 h-100 object-fit-cover">
+                                </div>
+                            </div>
+
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+    .swiper-slide {
+        opacity: 0 !important;
+        transition: opacity 0.5s ease;
+    }
+    .swiper-slide-active {
+        opacity: 1 !important;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var thumbSwiper = new Swiper(".main-swiper-thumb", {
+        loop: true,
+        slidesPerView: 1,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    var mainSwiper = new Swiper(".main-swiper", {
+        loop: true,
+        effect: "fade",
+        speed: 700,
+        autoplay: { 
+            delay: 3500,
+            disableOnInteraction: false
+        },
+        thumbs: { swiper: thumbSwiper }
+    });
+});
+</script>
+{% endblock %}

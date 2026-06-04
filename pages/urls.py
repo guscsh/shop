@@ -7,3 +7,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
 ]
+
+handler404 = 'pages.views.custom_404'
