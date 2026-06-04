@@ -1,9 +1,191 @@
-<nav class="navbar navbar-expand-lg bg-light shadow">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA</title>
+
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+        }
+        .main-nav .nav-link {
+            font-size: 16px;
+            font-weight: 500;
+            color: #222;
+            padding: 0 10px;
+        }
+
+        .star-divider {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            opacity: 0.4;
+            margin: 0 8px;
+        }
+        .dropdown-menu {
+            padding: 10px 0;
+            border-radius: 0;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .dropdown-item {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            border-radius: 50%;
+            background: #dc3545;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width:991px) {
+            .star-divider {
+                display: none;
+            }
+            .main-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            .main-nav .nav-item {
+                width: 100%;
+                padding: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="/">NOVA</a>
-        <div>
-            <a href="/" class="me-3">HOME</a>
-            <a href="#">PRODUCTS</a>
+
+        <!-- Logo -->
+        <a class="navbar-brand font-weight-bold text-dark" href="/">NOVA</a>
+
+        <!-- Bootstrap4 hamburger -->
+        <button class="navbar-toggler" type="button" 
+                data-toggle="collapse" 
+                data-target="#mainNavbar" 
+                aria-controls="mainNavbar" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- menu -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <!-- main menu-->
+            <ul class="navbar-nav main-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
+                </li>
+
+                <!-- Shop -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">
+                        Shop
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="shop">
+                        <a class="nav-link dropdown-toggle" href="#" id="shopCategory" data-toggle="dropdown">
+                            Category
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="shopCategory">
+                            <a class="dropdown-item" href="#">Shirt</a>
+                            <a class="dropdown-item" href="#">T-shirt</a>
+                            <a class="dropdown-item" href="#">short</a>
+                            <a class="dropdown-item" href="#">Jeans</a>
+                            <a class="dropdown-item" href="#">Jacket</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
+                </li>
+
+                <!-- Blog -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">blog</a>
+                </li>
+
+                {% comment %} {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0dD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
+                </li>
+
+                <!-- My Account (ONLY SHOW WHEN LOGGED IN) -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="account" data-toggle="dropdown">
+                        My Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="account">
+                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Orders History</a>
+                        <a class="dropdown-item" href="#">Favourties</a>
+                    </div>
+                </li>
+                {% endif %} {% endcomment %}
+
+            </ul>
+
+            <!-- Right side：search / favourite / cart / login -->
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-search"></i></a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-dark" href="#"><i class="far fa-heart"></i></a>
+                </li>
+                <li class="nav-item mx-2 position-relative">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-shopping-bag"></i></a>
+                    <span class="cart-badge">0</span>
+                </li>
+
+                {% if not user.is_authenticated %}
+                <li class="nav-item ml-3">
+                    <a href="#" class="btn btn-sm btn-outline-dark">login / Register</a>
+                </li>
+                {% endif %}
+            </ul>
+
         </div>
     </div>
 </nav>
+
+{% block content %}{% endblock %}
+
+<!-- Bootstrap4  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
