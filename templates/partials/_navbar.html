@@ -99,9 +99,19 @@
 
             <!-- main menu-->
             <ul class="navbar-nav main-nav mx-auto">
+                <li {% if '/index' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'pages:index' %}">Home</a>
                 </li>
+
+                <li class="nav-item">
+                    <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
+                </li>
+
+                <!-- About -->
+                <li {% if '/about' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
+                <a class="nav-link" href="{% url 'pages:about' %}">About</a>
+            </li>
 
                 <li class="nav-item">
                     <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
@@ -109,6 +119,7 @@
 
                 <!-- Shop -->
                 <li class="nav-item dropdown">
+                    <li {% if '#' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
                     <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">
                         Shop
                     </a>
@@ -132,6 +143,7 @@
 
                 <!-- Blog -->
                 <li class="nav-item">
+                    <li {% if '#' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
                     <a class="nav-link" href="#">blog</a>
                 </li>
 

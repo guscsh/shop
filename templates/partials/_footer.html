@@ -1,5 +1,94 @@
-<footer class="bg-dark text-white py-4 mt-5">
-    <div class="container">
-        <p class="mb-0">© 2026 NOVA Fashion All Right Reserved</p>
+{% load static %}
+<footer class="site-footer style-1" style="background:#fff9e3;">
+    <!-- Footer Top -->
+    <div class="footer-top py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Left Column: Contact Info -->
+                <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="widget widget_about">
+                        <div class="footer-logo logo-dark mb-4">
+                            <a href="{% url 'pages:index' %}">
+                                <img src="{% static '/images/logo.png' %}" alt="Nova Logo">
+                            </a>
+                        </div>
+                        <ul class="widget-address list-unstyled ps-0">
+                            <li class="mb-3">
+                                <span class="fw-medium">Address :</span> HKCT Learing Centre, Kwun Tong, Hong Kong
+                            </li>
+                            <li class="mb-3">
+                                <span class="fw-medium">E-mail :</span> nova@info.com
+                            </li>
+                            <li>
+                                <span class="fw-medium">Phone :</span> (852) 1234-5678
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column: Useful Links + Newsletter -->
+                <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="row">
+                        <!-- Useful Links -->
+                        <div class="col-xl-5 col-lg-5">
+                            <div class="widget widget_services">
+                                <h5 class="footer-title mb-4">Useful Links</h5>
+                                <ul class="list-unstyled ps-0 footer-link-list">
+                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">FAQ</a></li>
+                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">Payment Policy</a></li>
+                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">Shipping Policy</a></li>
+                                    <li><a href="javascript:void(0);" class="text-dark text-decoration-none">Returns Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Newsletter Right Side -->
+                        <div class="col-xl-7 col-lg-7 mt-4 mt-xl-0">
+                            <div class="subscribe_widget">
+                                <h6 class="title fw-medium mb-3">Subscribe To Our Newsletter</h6>
+                                <form class="dzSubscribe style-1" action="#" method="">
+                                    <div class="dzSubscribeMsg"></div>
+                                    <div class="form-group mb-0">
+                                        <div class="input-group rounded overflow-hidden">
+                                            <input name="dzEmail" required="required" type="email" class="form-control border-0 bg-warning-subtle py-3" placeholder="Your Email Address">
+                                            <div class="input-group-addon">
+                                                <button type="submit" class="btn bg-warning border-0 px-4">
+                                                    <i class="fas fa-arrow-right text-dark"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Footer Bottom -->
+    <div class="footer-bottom border-top py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0 text-dark">© 2026 NOVA Fashion All Right Reserved</p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
+
+<style>
+.footer-link-list a:hover{
+    color:#f7b938 !important;
+    padding-left:5px;
+    transition: all 0.3s ease;
+}
+.widget-address span {
+    color:#222;
+}
+.footer-title{
+    font-weight:700;
+    font-size:28px;
+}
+</style>

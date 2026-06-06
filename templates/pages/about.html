@@ -1,1 +1,40 @@
-about page
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="about-page py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="about-content text-center mb-5">
+                    <h2 class="font-weight-bold text-dark mb-3">About Nova</h2>
+                    <p class="text-muted mb-4">Your Style, Quality, Individuality - Redefining Fashion Together.</p>
+                    <div class="divider mx-auto" style="width:60px;height:3px;background:#222;margin:10px auto;"></div>
+                </div>
+
+                <div class="about-text text-left text-dark" style="font-size:16px;line-height:1.8;">
+                    <p class="mb-4">
+                        At Nova, we are on a mission to redefine fashion by blending <strong>style, quality, and individuality</strong> into every garment we offer. We believe that fashion is more than just clothing – it is a way to express who you are.
+                    </p>
+
+                    <p class="mb-4">
+                        We understand that what you wear is an extension of your unique personality. Every design, every fabric, and every detail is crafted to help you stand out, feel confident, and embrace your true self.
+                    </p>
+
+                    <p class="mb-4">
+                        Our commitment goes beyond trends. We focus on durable, premium quality materials and timeless designs that align with your values and aspirations. Whether you prefer casual comfort, modern elegance, or bold individuality, Nova brings you pieces that fit your lifestyle and identity.
+                    </p>
+
+                    <p class="mb-4">
+                        We don’t just sell fashion – we celebrate <strong>you</strong>.
+                    </p>
+
+                    <p class="font-weight-bold mt-4 text-center text-uppercase text-dark">
+                        NOVA – STYLE • QUALITY • INDIVIDUALITY
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
