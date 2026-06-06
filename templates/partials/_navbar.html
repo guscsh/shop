@@ -94,7 +94,7 @@
             <!-- Main Menu -->
             <ul class="navbar-nav main-nav mx-auto">
                 <li class="nav-item {% if '/' == request.path %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'pages:index' %}">Home</a>
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -102,7 +102,7 @@
                 </li>
 
                 <li class="nav-item {% if 'about' in request.path %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'pages:about' %}">About</a>
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
 
                 <li class="nav-item">
@@ -113,7 +113,7 @@
                 <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="shop">
-                        <a class="dropdown-item" href="{% url 'pages:shop_list' %}">All Products</a>
+                        <a class="dropdown-item" href="{% url 'shop_list' %}">All Products</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Shirt</a>
                         <a class="dropdown-item" href="#">T-shirt</a>
@@ -129,7 +129,7 @@
 
                 <!-- Blog -->
                 <li class="nav-item {% if 'blog' in request.path %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'pages:blog' %}">Blog</a>
+                    <a class="nav-link" href="{% url 'blog' %}">Blog</a>
                 </li>
             </ul>
 

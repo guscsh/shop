@@ -17,7 +17,7 @@
             <!-- Left Filter Sidebar -->
             <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
 
-                <form action="{% url 'pages:shop_list' %}" method="get">
+                <form action="{% url 'shop_list' %}" method="get">
                     <!-- Category -->
                     <div class="sidebar-widget mb-5">
                         <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Category</h5>
@@ -76,7 +76,7 @@
                         </div>
 
                         {% if selected_color %}
-                            <a href="{% url 'pages:shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Clear Filter</a>
+                            <a href="{% url 'shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Clear Filter</a>
                         {% endif %}
                     </div>
 
@@ -90,7 +90,7 @@
                         </div>
                         <button class="btn btn-sm btn-warning w-100">Apply Filter</button>
 
-                        <a href="{% url 'pages:shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Reset All</a>
+                        <a href="{% url 'shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Reset All</a>
                     </div>
                 </form>
 

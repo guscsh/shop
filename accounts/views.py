@@ -16,6 +16,3 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect("shop_list")
-
-def profile(request):
-    return render(request,"accounts/profile.html")
