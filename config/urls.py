@@ -19,6 +19,8 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from pages import views
+from django.contrib.auth.views import LoginView
+from accounts.views import register_view,logout_view
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -27,4 +29,8 @@ urlpatterns = [
     path('blog/post/', views.blog_post, name='blog_post'),
     path('shop/', views.shop_list, name='shop_list'), 
     path('admin/', admin.site.urls),
+    # Auth Routes
+    path('register/', register_view, name="register"),
+    path('login/', LoginView.as_view(template_name="accounts/login.html"), name="login"),
+    path('logout/', logout_view, name="logout"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
