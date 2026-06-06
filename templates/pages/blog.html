@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Blog Detail Banner -->
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h1 class="fw-bold mb-2">Latest Fashion Trends 2026</h1>
+        <p class="text-muted">By Admin | June 06, 2026 | Fashion, Style</p>
+    </div>
+</div>
+
+<!-- Blog Content Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+
+            <!-- Left Content -->
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-detail-card bg-white p-4 shadow-sm rounded">
+
+                    <!-- Blog Image -->
+                    <img src="https://picsum.photos/780/1050" class=" object-fit-cover" alt="Blog Image" class="img-fluid rounded mb-4">
+
+                    <!-- Blog Content -->
+                    <div class="blog-details">
+                        <p class="mb-3" style="line-height:1.8;">
+                            Fashion is not just about clothing. It is a way to express yourself, show your personality,
+                            and feel confident every single day. At Nova, we believe that every outfit tells a story,
+                            and you deserve to wear something that truly represents you.
+                        </p>
+
+                        <p class="mb-3" style="line-height:1.8;">
+                            This year, the fashion world is focusing on individuality, comfort, and high-quality materials.
+                            From casual daily wear to elegant formal outfits, you can find everything you need at Nova.
+                        </p>
+
+                        <h4 class="fw-bold mb-3 mt-4">How to Find Your Perfect Style</h4>
+
+                        <p class="mb-3" style="line-height:1.8;">
+                            Finding your personal style can be easy. Just choose clothes that make you feel comfortable,
+                            match your lifestyle, and reflect who you are. Don’t just follow trends — create your own.
+                        </p>
+
+                        <ul class="ps-4 mb-4" style="line-height:1.9;">
+                            <li>Choose high-quality fabrics</li>
+                            <li>Wear colors that suit you</li>
+                            <li>Keep your outfits simple but stylish</li>
+                            <li>Express your true personality</li>
+                            <li>Always feel confident</li>
+                        </ul>
+
+                        <p style="line-height:1.8;">
+                            At Nova, we are here to help you redefine fashion with style, quality, and individuality.
+                            Wear what defines you.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="col-lg-4 col-md-12">
+                <!-- Search -->
+                <div class="bg-white p-4 shadow-sm rounded mb-4">
+                    <h5 class="fw-bold mb-3">Search</h5>
+                    <input type="text" class="form-control" placeholder="Search...">
+                </div>
+
+                <!-- Categories -->
+                <div class="bg-white p-4 shadow-sm rounded mb-4">
+                    <h5 class="fw-bold mb-3">Categories</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Fashion</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Style</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Lifestyle</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Trends</a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent Posts -->
+                <div class="bg-white p-4 shadow-sm rounded">
+                    <h5 class="fw-bold mb-3">Recent Posts</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">How to Choose Perfect Outfit</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Top 10 Style Tips 2026</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark text-decoration-none">Sustainable Fashion Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

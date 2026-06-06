@@ -78,7 +78,7 @@
 <body>
 
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light py-3 shadow-sm sticky-top" style="background:#fff9e3">
     <div class="container">
 
         <!-- Logo -->
@@ -99,9 +99,9 @@
 
             <!-- main menu-->
             <ul class="navbar-nav main-nav mx-auto">
-                <li {% if '/index' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
+                <li {% if '/' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'pages:index' %}">Home</a>
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -109,8 +109,8 @@
                 </li>
 
                 <!-- About -->
-                <li {% if '/about' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
-                <a class="nav-link" href="{% url 'pages:about' %}">About</a>
+                <li {% if 'about' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
+                <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
 
                 <li class="nav-item">
@@ -143,8 +143,8 @@
 
                 <!-- Blog -->
                 <li class="nav-item">
-                    <li {% if '#' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
-                    <a class="nav-link" href="#">blog</a>
+                    <li {% if 'blog' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
+                    <a class="nav-link" href="/blog">blog</a>
                 </li>
 
                 {% comment %} {% if user.is_authenticated %}

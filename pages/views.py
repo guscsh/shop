@@ -8,5 +8,11 @@ def index(request):
 def about(request):
     return render(request, 'pages/about.html')
 
+def blog(request):
+    return render(request, 'pages/blog.html')
+
+def blog_post(request):
+    return render(request, 'pages/post-standard.html')
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
