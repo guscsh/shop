@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold">Shop List</h2>
+        <p class="text-muted">Showing {{ products|length }} Of {{ total_products }} Results</p>
+    </div>
+</section>
+
+<!-- Main Shop Content + Left Sidebar Filter -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Left Filter Sidebar -->
+            <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+
+                <form action="{% url 'shop_list' %}" method="get">
+                    <!-- Category -->
+                    <div class="sidebar-widget mb-5">
+                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Category</h5>
+                        <ul class="list-unstyled footer-link-list">
+                            <li class="mb-2">
+                                <button name="category" value="Dresses" class="bg-transparent border-0 text-dark text-decoration-none p-0">
+                                    Dresses <span class="text-muted">(#)</span>
+                                </button>
+                            </li>
+                            <li class="mb-2">
+                                <button name="category" value="T-shirt" class="bg-transparent border-0 text-dark text-decoration-none p-0">
+                                    T-shirt <span class="text-muted">(#)</span>
+                                </button>
+                            </li>
+                            <li class="mb-2">
+                                <button name="category" value="Jeans" class="bg-transparent border-0 text-dark text-decoration-none p-0">
+                                    Jeans <span class="text-muted">(#)</span>
+                                </button>
+                            </li>
+                            <li class="mb-2">
+                                <button name="category" value="Jacket" class="bg-transparent border-0 text-dark text-decoration-none p-0">
+                                    Jacket <span class="text-muted">(#)</span>
+                                </button>
+                            </li>
+                            <li>
+                                <button name="category" value="Accessories" class="bg-transparent border-0 text-dark text-decoration-none p-0">
+                                    Accessories <span class="text-muted">(#)</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- COLOR FILTER -->
+                    <div class="sidebar-widget mb-5">
+                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Color</h5>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <button type="submit" name="color" value="black"
+                                class="border rounded border-2 {% if selected_color == 'black' %}border-dark{% endif %}"
+                                style="width:42px;height:42px;background:#000;"></button>
+
+                            <button type="submit" name="color" value="red"
+                                class="border rounded border-2 {% if selected_color == 'red' %}border-dark{% endif %}"
+                                style="width:42px;height:42px;background:#ef4444;"></button>
+
+                            <button type="submit" name="color" value="blue"
+                                class="border rounded border-2 {% if selected_color == 'blue' %}border-dark{% endif %}"
+                                style="width:42px;height:42px;background:#3b82f6;"></button>
+
+                            <button type="submit" name="color" value="yellow"
+                                class="border rounded border-2 {% if selected_color == 'yellow' %}border-dark{% endif %}"
+                                style="width:42px;height:42px;background:#f7c248;"></button>
+
+                            <button type="submit" name="color" value="green"
+                                class="border rounded border-2 {% if selected_color == 'green' %}border-dark{% endif %}"
+                                style="width:42px;height:42px;background:#58b957;"></button>
+                        </div>
+
+                        {% if selected_color %}
+                            <a href="{% url 'shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Clear Filter</a>
+                        {% endif %}
+                    </div>
+
+                    <!-- PRICE RANGE SLIDER FILTER -->
+                    <div class="sidebar-widget">
+                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Price Range</h5>
+                        <div class="mb-3">
+                            <input type="range" min="0" max="300" name="max" id="priceSlider" value="{{ max_p|default:300 }}" class="form-range">
+                            <input type="hidden" name="min" value="0">
+                            <p class="mt-2 text-dark">Price: $0 - $<span id="priceVal">{{ max_p|default:300 }}</span></p>
+                        </div>
+                        <button class="btn btn-sm btn-warning w-100">Apply Filter</button>
+
+                        <a href="{% url 'shop_list' %}" class="mt-2 d-inline-block text-warning text-sm">Reset All</a>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Right Product List Area -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row g-4">
+
+                    <!-- Product loop from data base-->
+                    {% for product in products %}
+                    <div class="col-xl-4 col-lg-6 col-sm-6">
+                        <div class="product-card border shadow-sm rounded overflow-hidden">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid w-100">
+                            <div class="p-3">
+                                <h6 class="fw-bold mb-1">{{ product.name }}</h6>
+                                <span class="text-muted small">{{ product.category }}</span>
+                                <p class="fw-bold mt-2 text-dark">${{ product.price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No products yet.</p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-5 d-flex justify-content-center">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Sync price slider value
+    const slider = document.getElementById('priceSlider');
+    const valText = document.getElementById('priceVal');
+    if (slider && valText) {
+        slider.oninput = function() {
+            valText.innerText = this.value;
+        }
+    }
+</script>
+
+<style>
+.product-card:hover{
+    box-shadow: 0 4px 12px #ddd !important;
+    transition: all 0.25s ease;
+}
+.footer-link-list a:hover, .footer-link-list button:hover{
+    color:#f7c248 !important;
+    padding-left:4px;
+    transition: all 0.2s ease;
+}
+</style>
+{% endblock %}

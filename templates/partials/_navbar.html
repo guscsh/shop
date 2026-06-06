@@ -118,24 +118,18 @@
                 </li>
 
                 <!-- Shop -->
-                <li class="nav-item dropdown">
-                    <li {% if '#' == request.path %} class="nav-item active mr-3" {% else %} class="nav-item mr-3" {% endif %} > 
-                    <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">
-                        Shop
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="shop">
-                        <a class="nav-link dropdown-toggle" href="#" id="shopCategory" data-toggle="dropdown">
-                            Category
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="shopCategory">
-                            <a class="dropdown-item" href="#">Shirt</a>
-                            <a class="dropdown-item" href="#">T-shirt</a>
-                            <a class="dropdown-item" href="#">short</a>
-                            <a class="dropdown-item" href="#">Jeans</a>
-                            <a class="dropdown-item" href="#">Jacket</a>
-                        </div>
-                    </div>
-                </li>
+                <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
+                <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">Shop</a>
+                <div class="dropdown-menu" aria-labelledby="shop">
+                    <a class="dropdown-item" href="{% url 'shop_list' %}">All Products</a>
+                    <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Shirt</a>
+                        <a class="dropdown-item" href="#">T-shirt</a>
+                        <a class="dropdown-item" href="#">Short</a>
+                        <a class="dropdown-item" href="#">Jeans</a>
+                        <a class="dropdown-item" href="#">Jacket</a>
+    </div>
+</li>
 
                 <li class="nav-item">
                     <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
