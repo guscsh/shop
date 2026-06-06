@@ -18,17 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from pages import views
 from django.contrib.auth.views import LoginView
 from accounts.views import register_view,logout_view
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
-    path('blog/', views.blog, name='blog'), 
-    path('blog/post/', views.blog_post, name='blog_post'),
-    path('shop/', views.shop_list, name='shop_list'), 
-    path('Products/', include('products.urls')), 
+    path('', include('pages.urls', namespace='pages')),
+    path('Products/', include('products.urls', namespace='products')), 
     path('admin/', admin.site.urls),
     # Auth Routes
     path('register/', register_view, name="register"),
