@@ -28,6 +28,7 @@ urlpatterns = [
     path('blog/', views.blog, name='blog'), 
     path('blog/post/', views.blog_post, name='blog_post'),
     path('shop/', views.shop_list, name='shop_list'), 
+    path('Products/', include('products.urls')), 
     path('admin/', admin.site.urls),
     # Auth Routes
     path('register/', register_view, name="register"),
