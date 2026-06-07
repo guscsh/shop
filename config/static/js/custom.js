@@ -1,9 +1,5 @@
 /**
-	Template Name 	 : Pixio
-	Author			 : DexignZone
-	Version			 : 1.2
-	File Name	     : custom.js
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
+	Author			 : Nova
 	
 	Core script to handle the entire theme and core functions
 **/
@@ -81,6 +77,7 @@ var Pixio = function () {
 
 	/* One Page Layout ============ */
 	var onePageLayout = function () {
+		// if ($('.onepage').length === 0) return; // Uncomment this in case errors occur due to one page layout
 		var headerHeight = parseInt($('.onepage').css('height'), 10);
 
 		$(".scroll").unbind().on('click', function (event) {
@@ -209,6 +206,7 @@ var Pixio = function () {
 	var handleLightgallery = function () {
 		if (jQuery('#lightgallery').length > 0) {
 			lightGallery(document.getElementById('lightgallery'), {
+				licenseKey: '0000-0000-0000-0000',
 				plugins: [lgThumbnail, lgZoom],
 				selector: '.lg-item',
 				thumbnail: true,
@@ -838,7 +836,7 @@ var Pixio = function () {
 		var modalBox = `<div class="modal fade inquiry-modal style-1" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="inquiry-adv">
-					<img src="/static/pixio/images/adv-2.png" alt=""/>
+					<img src="/static/images/adv-2.png" alt=""/>
 				</div>
 				<div class="modal-content">
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -1152,7 +1150,7 @@ var Pixio = function () {
 			handleShopPannel();
 			handleHeaderMenuItem();
 			cartButton();
-			handlePointerEffect();
+			// handlePointerEffect();
 			handleColorFilter();
 			handleLightgallery();
 			handleOpenModal();

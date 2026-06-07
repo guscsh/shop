@@ -1,9 +1,5 @@
 /**
-	Template Name 	 : Pixio
-	Author			 : DexignZone
-	Version			 : 1.2
-	File Name	     : custom.js
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
+	Template Name 	 : Nova
 	
 	Core script to handle the entire theme and core functions
 **/

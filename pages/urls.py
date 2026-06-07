@@ -11,6 +11,7 @@ urlpatterns = [
     path('blog/post/', views.blog_post, name='blog_post'),
     path('shop/', views.shop_list, name='shop_list'), 
     path('subscribe/', subscribe_newsletter, name='subscribe'),
+    path('test/', views.test, name='test'),
 ]
 
 handler404 = 'pages.views.custom_404'

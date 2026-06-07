@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Nova">
+	<meta name="robots" content="">
+	<meta name="keywords" content="{{ dz_array.public.keywords }}" />
+	<meta name="description" content="{{ dz_array.public.description }}" />
+	<meta property="og:title" content="{{ dz_array.public.og_title }}" />
+	<meta property="og:description" content="{{ dz_array.public.og_description }}" />
+	<meta property="og:image" content="{{ dz_array.public.og_image }}" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>{{ dz_array.public.title }}</title>
+    
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="{% static dz_array.public.favicon  %}" />
+
+    {% for cssurl in current_page_css %}
+    <link rel="stylesheet" href="{% static cssurl %}" >
+	{% endfor %}
+	
+	<!-- Custom Stylesheet -->
+    {% for cssurl in dz_array.global.css %}
+    <link rel="stylesheet" href="{% static cssurl %}">
+	{% endfor %}
+
+	<link class="skin" type="text/css" rel="stylesheet" href="{% static 'css/skin/skin-1.css' %}">
+
+	<!-- GOOGLE FONTS-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="page-wraper">
+<!--*******************
+	Preloader start
+********************-->
+{% include 'partials/'|add:preloader|add:'.html' %}
+<!--*******************
+	Preloader end
+********************-->
+	<!-- Header Start -->
+	{% include 'partials/'|add:header|add:'.html' %}
+	<!-- Header End -->
+		{% block content %}
+		{% endblock %}
+	<!-- Footer Start -->
+	{% include 'partials/'|add:footer|add:'.html' %}
+	<!-- Footer End -->	
+	<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
+</div>
+<!-- JAVASCRIPT FILES ========================================= -->
+{% for jsurl in dz_array.global.js.top %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in current_page_js %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in dz_array.global.js.bottom %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% block additional_js %}
+{% endblock %}
+
+</body>
+</html>
