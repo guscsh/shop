@@ -41,3 +41,6 @@ def shop_list(request):
 
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
+
+def test(request):
+    return render(request, 'pages/test.html')

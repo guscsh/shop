@@ -1,0 +1,902 @@
+{% load static %}
+
+<header class="site-header mo-left header style-1 header-transparent">		
+    <!-- Main Header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix">
+            <div class="container-fluid clearfix d-lg-flex d-block">
+                <!-- Website Logo -->
+                <div class="logo-header logo-dark me-md-5">
+                    <a href="{% url 'pages:index' %}"><img src="{% static 'images/logo.svg' %}" alt="logo"></a>
+                </div>
+                
+                <!-- Nav Toggle Button -->
+            
+                <button class="navbar-toggler collapsed navicon justify-content-end" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+                
+            <!-- Main Nav -->
+            <div class="header-nav w3menu navbar-collapse collapse justify-content-start w3menu" id="navbarNavDropdown">
+                <div class="logo-header logo-dark">
+                    <a href="{% url 'pages:index' %}"><img src="{% static 'images/logo.svg' %}" alt=""></a>
+                </div>
+                <ul class=" nav navbar-nav">
+                    <li class="has-mega-menu sub-menu-down auto-width menu-left">
+                        <a href="javascript:void(0);"><span>Home</span><i class="fas fa-chevron-down tabindex" ></i></a>
+                        <div class="mega-menu ">
+                            <ul class="demo-menu mb-0">
+                                <li>
+                                    <a href="{% url 'pages:index' %}">
+                                        <img src="{% static 'images/demo/demo-1.png' %}" alt="/">
+                                        <span class="menu-title">01 Home Page</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu sub-menu-down">
+                        <a href="javascript:void(0);"><span>Shop</span><i class="fas fa-chevron-down tabindex" ></i></a>
+                        <div class="mega-menu shop-menu">
+                            <ul>
+                                <li class="side-left">
+                                    <ul>
+                                        <li><a href="javascript:void(0);" class="menu-title">Shop Structure</a>
+                                            <ul>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-standard' %} {% endcomment %}>Shop Standard</a></li>
+                                                <li><a href="{% url 'products:list' %}">Shop List</a></li>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-with-category' %} {% endcomment %}>Shop With Category</a></li>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-with-category' %} {% endcomment %}>Shop Filters Top Bar</a></li>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-sidebar' %} {% endcomment %}>Shop Sidebar</a></li>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-style-1' %} {% endcomment %}>Shop Style 1</a></li>
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-style-2' %} {% endcomment %}>Shop Style 2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0);" class="menu-title">Product Structure</a>
+                                            <ul>
+                                                <li><a href="{% url 'products:list' %}">Default</a></li>
+                                                <li><a href="{% url 'products:list' %}">Thumbnail</a></li>
+                                                <li><a href="{% url 'products:list' %}">Grid Media</a></li>
+                                                <li><a href="{% url 'products:list' %}">Carousel</a></li>
+                                                <li><a href="{% url 'products:list' %}">Full Width</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="javascript:void(0);" class="menu-title">Shop Pages</a>
+                                            <ul>						
+                                                <li><a href="#" {% comment %} {% url 'pixio:shop-wishlist' %} {% endcomment %}}">Wishlist</a></li>
+                                                {% comment %} <li><a href="{% url 'pixio:shop-cart' %}">Cart</a></li>
+                                                <li><a href="{% url 'pixio:shop-checkout' %}">Checkout</a></li>
+                                                <li><a href="{% url 'pixio:shop-compare' %}">Compare</a></li>
+                                                <li><a href="{% url 'pixio:shop-order-tracking' %}">Order Tracking</a></li>
+                                                <li><a href="{% url 'pixio:shop-my-account' %}">My Account</a></li>
+                                                <li><a href="{% url 'pixio:shop-registration' %}">Registration</a></li> {% endcomment %}
+                                            </ul>
+                                        </li>
+                                        <li class="month-deal">
+                                            <div class="clearfix me-3">
+                                                <h3>Deal of the month</h3>
+                                                <p class="mb-0">Yes! Send me exclusive offers, personalised, and unique gift ideas, tips for shopping on Nova <a href="#" {% comment %} {% url 'pixio:shop-standard' %} {% endcomment %} class="dz-link-2">View All Products</a></p>
+                                            </div>
+                                            <div class="sale-countdown">
+                                                <div class="countdown text-center">
+                                                    <div class="date">
+                                                        <span class="time days text-primary"></span>
+                                                        <span class="work-time">Days</span>
+                                                    </div>
+                                                    <div class="date">
+                                                        <span class="time hours text-primary"></span>
+                                                        <span class="work-time">Hours</span>
+                                                    </div>
+                                                    <div class="date">
+                                                        <span class="time mins text-primary"></span>
+                                                        <span class="work-time">Minutess</span>
+                                                    </div>
+                                                    <div class="date">
+                                                        <span class="time secs text-primary"></span>
+                                                        <span class="work-time">Second</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="side-right">
+                                    <div class="adv-media">
+                                        <img src="{% static 'images/adv-1.png' %}" alt="/">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu sub-menu-down auto-width">
+                        <a href="javascript:void(0);"><span>Blog</span><i class="fas fa-chevron-down tabindex"></i></a>
+                        <div class="mega-menu">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Blog Dark Style</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:blog-dark-2-column' %} {% endcomment %}>Blog 2 Column</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:blog-dark-2-column-sidebar' %}">Blog 2 Column Sidebar</a></li>
+                                        <li><a href="{% url 'pixio:blog-dark-3-column' %}">Blog 3 Column</a></li>
+                                        <li><a href="{% url 'pixio:blog-dark-half-image' %}">Blog Half Image</a></li> {% endcomment %}
+                                    </ul>
+                                    <a href="javascript:void(0);" class="menu-title">Blog Light Style</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:blog-light-2-column' %} {% endcomment %}>Blog 2 Column</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:blog-light-2-column-sidebar' %}">Blog 2 Column Sidebar</a></li>
+                                        <li><a href="{% url 'pixio:blog-light-half-image' %}">Blog Half Image</a></li>
+                                        <li><a href="{% url 'pixio:blog-exclusive' %}">Blog Exclusive</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Blog Sidebar</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:blog-left-sidebar' %} {% endcomment %}>Blog left Sidebar</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:blog-right-sidebar' %}">Blog Right Sidebar</a></li>
+                                        <li><a href="{% url 'pixio:blog-both-sidebar' %}">Blog Both Sidebar</a></li>
+                                        <li><a href="{% url 'pixio:blog-wide-sidebar' %}">Blog Wide Sidebar</a></li> {% endcomment %}
+                                    </ul>
+                                    <a href="javascript:void(0);" class="menu-title">Blog Page</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:blog-archive' %} {% endcomment %}>Blog Archive</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:blog-author' %}">Author</a></li>
+                                        <li><a href="{% url 'pixio:blog-category' %}">Blog Category</a></li>
+                                        <li><a href="{% url 'pixio:blog-tag' %}">Blog Tag</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Blog Details</a>
+                                    <ul>	
+                                        <li><a href="#" {% comment %} {% url 'pixio:post-standard' %} {% endcomment %}>Post Standard</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:post-left-sidebar' %}">Post Left Sidebar</a></li>
+                                        <li><a href="{% url 'pixio:post-header-image' %}">Post Header Image</a></li>
+                                        <li><a href="{% url 'pixio:post-slide-show' %}">Post Slide Show</a></li>
+                                        <li><a href="{% url 'pixio:post-side-image' %}">Post Side Image</a></li>
+                                        <li><a href="{% url 'pixio:post-gallery' %}">Post Gallery</a></li>
+                                        <li><a href="{% url 'pixio:post-gallery-alternative' %}">Post Gallery Alternative</a></li>
+                                        <li><a href="{% url 'pixio:post-open-gutenberg' %}">Post Open Gutenberg</a></li>
+                                        <li><a href="{% url 'pixio:post-link' %}">Post Link</a></li>
+                                        <li><a href="{% url 'pixio:post-audio' %}">Post Audio</a></li>
+                                        <li><a href="{% url 'pixio:post-video' %}">Post Video</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Recent Posts</a>
+                                    <div class="widget widget_post pt-2">
+                                        <ul>
+                                            <li>
+                                                <div class="dz-media">
+                                                    <img src="{% static 'images/shop/product/small/1.png' %}" alt="">
+                                                </div>
+                                                <div class="dz-content">
+                                                    <h6 class="name"><a href="#" {% comment %} {% url 'pixio:post-standard' %} {% endcomment %}>Cozy Knit Cardigan Sweater</a></h6>
+                                                    <span class="time">July 23, 2023</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dz-media">
+                                                    <img src="{% static 'images/shop/product/small/2.png' %}" alt="">
+                                                </div>
+                                                <div class="dz-content">
+                                                    <h6 class="name"><a href="#" {% comment %} {% url 'pixio:post-standard' %} {% endcomment %}>Sophisticated Swagger Suit</a></h6>
+                                                    <span class="time">July 23, 2023</span>
+                                                </div>
+                                            </li>
+                                            {% comment %} <li>
+                                                <div class="dz-media">
+                                                    <img src="{% static 'images/shop/product/small/3.png' %}" alt="">
+                                                </div>
+                                                <div class="dz-content">
+                                                    <h6 class="name"><a href="{% url 'pixio:post-standard' %}">Athletic Mesh Sports Leggings</a></h6>
+                                                    <span class="time">July 23, 2023</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="dz-media">
+                                                    <img src="{% static 'images/shop/product/small/4.png' %}" alt="">
+                                                </div>
+                                                <div class="dz-content">
+                                                    <h6 class="name"><a href="{% url 'pixio:post-standard' %}">Satin Wrap Party Blouse</a></h6>
+                                                    <span class="time">July 23, 2023</span>
+                                                </div>
+                                            </li> {% endcomment %}
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu sub-menu-down">
+                        <a href="javascript:void(0);"><span>Portfolio</span><i class="fas fa-chevron-down tabindex"></i></a>
+                        <div class="mega-menu portfolio-menu">
+                            <ul>
+                                <li class="side-left">
+                                    <ul class="portfolio-nav-link">
+                                        <li>
+                                            <a href="#" {% comment %} {% url 'pixio:portfolio-tiles' %} {% endcomment %}>
+                                                <img src="{% static 'images/portfolio/icons/portfolio-tiles.svg' %}" alt="/">
+                                                <span>Portfolio Tiles</span>
+                                            </a>
+                                        </li>
+                                        {% comment %} <li>
+                                            <a href="{% url 'pixio:collage-style-1' %}">
+                                                <img src="{% static 'images/portfolio/icons/collage-style-1.svg' %}" alt="/">
+                                                <span>Collage Style 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:collage-style-2' %}">
+                                                <img src="{% static 'images/portfolio/icons/collage-style-2.svg' %}" alt="/">
+                                                <span>Collage Style 2</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:masonry-grid' %}">
+                                                <img src="{% static 'images/portfolio/icons/masonry-grid.svg' %}" alt="/">
+                                                <span>Masonry Grid</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:cobble-style-1' %}">
+                                                <img src="{% static 'images/portfolio/icons/cobble-style-1.svg' %}" alt="/">
+                                                <span>Cobble Style 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:cobble-style-2' %}">
+                                                <img src="{% static 'images/portfolio/icons/cobble-style-2.svg' %}" alt="/">
+                                                <span>Cobble Style 2</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:portfolio-thumbs-slider' %}">
+                                                <img src="{% static 'images/portfolio/icons/portfolio-thumbs-slider.svg' %}" alt="/">
+                                                <span>Portfolio Thumbs Slider</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:portfolio-film-strip' %}">
+                                                <img src="{% static 'images/portfolio/icons/portfolio-film-strip.svg' %}" alt="/">
+                                                <span>Portfolio Film Strip</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:carousel-showcase' %}">
+                                                <img src="{% static 'images/portfolio/icons/carousel-showcase.svg' %}" alt="/">
+                                                <span>Carousel Showcase</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'pixio:portfolio-split-slider' %}">
+                                                <img src="{% static 'images/portfolio/icons/portfolio-split-slider.svg' %}" alt="/">
+                                                <span>Portfolio Split Slider</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li> {% endcomment %}
+                                <li class="side-right line-left">
+                                    <a href="javascript:void(0);" class="menu-title">Portfolio Details</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:portfolio-details-1' %} {% endcomment %}>Portfolio Details 1</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:portfolio-details-2' %}">Portfolio Details 2</a></li>
+                                        <li><a href="{% url 'pixio:portfolio-details-3' %}">Portfolio Details 3</a></li>
+                                        <li><a href="{% url 'pixio:portfolio-details-4' %}">Portfolio Details 4</a></li>
+                                        <li><a href="{% url 'pixio:portfolio-details-5' %}">Portfolio Details 5</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="has-mega-menu sub-menu-down wide-width">
+                        <a href="javascript:void(0);"><span>Pages</span><i class="fas fa-chevron-down tabindex"></i></a>
+                        <div class="mega-menu">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Pages</a>
+                                    <ul>
+                                        <li><a href="{% url 'pages:about' %}">About Us</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:about-me' %}">About Me</a></li>
+                                        <li><a href="{% url 'pixio:pricing-table' %}">Pricing Table</a></li>
+                                        <li><a href="{% url 'pixio:our-gift-vouchers' %}">Our Gift Vouchers</a></li>
+                                        <li><a href="{% url 'pixio:what-we-do' %}">What We Do</a></li>
+                                        <li><a href="{% url 'pixio:faqs-1' %}">Faqs 1</a></li>
+                                        <li><a href="{% url 'pixio:faqs-2' %}">Faqs 2</a></li>
+                                        <li><a href="{% url 'pixio:our-team' %}">Our Team</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Contact Us</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:contact-us-1' %} {% endcomment %}>Contact Us 1</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:contact-us-2' %}">Contact Us 2</a></li>
+                                        <li><a href="{% url 'pixio:contact-us-3' %}">Contact Us 3</a></li> {% endcomment %}
+                                    </ul>
+                                    <a href="javascript:void(0);" class="menu-title">Web Pages</a>
+                                    <ul>
+                                        <li><a href="#" {% comment %} {% url 'pixio:error-404' %} {% endcomment %}>Error 404 1</a></li>
+                                        {% comment %} <li><a href="{% url 'pixio:error-2' %}">Error 404 2</a></li>
+                                        <li><a href="{% url 'pixio:coming-soon' %}">Coming Soon</a></li>
+                                        <li><a href="{% url 'pixio:under-construction' %}">Under Construction</a></li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                {% comment %} <li>
+                                    <a href="javascript:void(0);" class="menu-title">Banner Style</a>
+                                    <ul>						
+                                        <li><a href="{% url 'pixio:banner-with-bg-color' %}">Banner with BG Color</a></li>
+                                        <li><a href="{% url 'pixio:banner-with-image' %}">Banner with Image</a></li>
+                                        <li><a href="{% url 'pixio:banner-with-video' %}">Banner with Video</a></li>
+                                        <li><a href="{% url 'pixio:banner-with-kanbern' %}">Banner with Kanbern</a></li>
+                                        <li><a href="{% url 'pixio:banner-small' %}">Banner Small</a></li>
+                                        <li><a href="{% url 'pixio:banner-medium' %}">Banner Medium</a></li>
+                                        <li><a href="{% url 'pixio:banner-large' %}">Banner Large</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Header Style</a>
+                                    <ul>
+                                        <li><a href="{% url 'pixio:header-style-1' %}">Header Style 1</a></li>
+                                        <li><a href="{% url 'pixio:header-style-2' %}">Header Style 2</a></li>
+                                        <li><a href="{% url 'pixio:header-style-3' %}">Header Style 3</a></li>
+                                        <li><a href="{% url 'pixio:header-style-4' %}">Header Style 4</a></li>
+                                        <li><a href="{% url 'pixio:header-style-5' %}">Header Style 5</a></li>
+                                        <li><a href="{% url 'pixio:header-style-6' %}">Header Style 6</a></li>
+                                        <li><a href="{% url 'pixio:header-style-7' %}">Header Style 7</a></li>
+                                        <li class="w3menulink"><a href="{% url 'pixio:w3menu' %}">Menu Styles</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Footer Style</a>
+                                    <ul>
+                                        <li><a href="{% url 'pixio:footer-style-1' %}">Footer Style 1</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-2' %}">Footer Style 2</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-3' %}">Footer Style 3</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-4' %}">Footer Style 4</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-5' %}">Footer Style 5</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-6' %}">Footer Style 6</a></li>
+                                        <li><a href="{% url 'pixio:footer-style-7' %}">Footer Style 7</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="menu-title">Dashboard</a>
+                                    <ul>
+                                        <li><a href="{% url 'pixio:account-dashboard' %}">Dashboard</a></li>
+                                        <li><a href="{% url 'pixio:account-orders' %}">Orders</a></li>
+                                        <li><a href="{% url 'pixio:account-order-details' %}">Orders Details</a></li>
+                                        <li><a href="{% url 'pixio:account-order-confirmation' %}">Orders Confirmation</a></li>
+                                        <li><a href="{% url 'pixio:account-downloads' %}">Downloads</a></li>
+                                        <li><a href="{% url 'pixio:account-return-request' %}">Return Request</a></li>
+                                        <li><a href="{% url 'pixio:account-return-request-detail' %}">Return Request Detail</a></li>
+                                        <li><a href="{% url 'pixio:account-refund-request-confirmed' %}">Return Request Confirmed</a></li>
+                                    </ul>
+                                </li> {% endcomment %}
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="sub-menu-down">
+                        <a href="javascript:void(0);"><span>My Account</span><i class="fas fa-chevron-down tabindex"></i></a>
+                        <ul class="sub-menu">						
+                            <li><a href="{% url 'accounts:profile' %}">Dashboard</a></li>
+                            {% comment %} <li><a href="{% url 'pixio:account-orders' %}">Orders</a></li>
+                            <li><a href="{% url 'pixio:account-order-details' %}">Orders Details</a></li>
+                            <li><a href="{% url 'pixio:account-order-confirmation' %}">Orders Confirmation</a></li>
+                            <li><a href="{% url 'pixio:account-downloads' %}">Downloads</a></li>
+                            <li><a href="{% url 'pixio:account-return-request' %}">Return Request</a></li>
+                            <li><a href="{% url 'pixio:account-return-request-detail' %}">Return Request Detail</a></li>
+                            <li><a href="{% url 'pixio:account-refund-request-confirmed' %}">Return Request Confirmed</a></li>
+                            <li><a href="{% url 'pixio:account-profile' %}">Profile</a></li>
+                            <li><a href="{% url 'pixio:account-address' %}">Address</a></li>
+                            <li><a href="{% url 'pixio:account-shipping-methods' %}">Shipping methods</a></li>
+                            <li><a href="{% url 'pixio:account-payment-methods' %}">Payment Methods</a></li>
+                            <li><a href="{% url 'pixio:account-review' %}">Review</a></li>
+                            <li><a href="{% url 'pixio:account-billing-address' %}">Billing address</a></li>
+                            <li><a href="{% url 'pixio:account-shipping-address' %}">Shipping address</a></li>
+                            <li><a href="{% url 'pixio:account-cancellation-requests' %}">Cancellation Requests</a></li> {% endcomment %}
+                        </ul>
+                    </li>
+                </ul>
+                <div class="dz-social-icon">
+                    <ul>
+                        <li><a class="fab fa-facebook-f" target="_blank" href="#"></a></li>
+                        <li><a class="fab fa-twitter" target="_blank" href="#"></a></li>
+                        <li><a class="fab fa-linkedin-in" target="_blank" href="#"></a></li>
+                        <li><a class="fab fa-instagram" target="_blank" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- EXTRA NAV -->
+            <div class="extra-nav">
+                <div class="extra-cell">						
+                    <ul class="header-right">
+                        <li class="nav-item login-link">
+                            <a class="nav-link" href="{% url 'accounts:login' %}">
+                                Login / Register
+                            </a>
+                        </li>
+                        <li class="nav-item search-link">
+                            <a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                                <i class="iconly-Light-Search"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item wishlist-link">
+                            <a class="nav-link" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <i class="iconly-Light-Heart2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item cart-link">
+                            <a href="javascript:void(0);" class="nav-link cart-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <i class="iconly-Broken-Buy"></i>
+                                <span class="badge badge-circle">5</span>
+                            </a>
+                        </li>
+                        <li class="nav-item filte-link">
+                            <a href="javascript:void(0);" class="nav-link filte-btn"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 13" fill="none">
+                                    <rect y="11" width="30" height="2" fill="black"/>
+                                    <rect width="30" height="2" fill="black"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Header End -->
+    
+    
+    <!-- SearchBar -->
+    <div class="dz-search-area dz-offcanvas offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+            &times;
+        </button>
+        <div class="container">
+            <form class="header-item-search">
+                <div class="input-group search-input">
+                    <select class="default-select">
+                        <option>All Categories</option>
+                        <option>Clothes</option>
+                        <option>UrbanSkirt</option>
+                        <option>VelvetGown</option>
+                        <option>LushShorts</option>
+                        <option>Vintage</option>
+                        <option>Wedding</option>
+                        <option>Cotton</option>
+                        <option>Linen</option>
+                        <option>Navy</option>
+                        <option>Urban</option>
+                        <option>Business Meeting</option>
+                        <option>Formal</option>
+                    </select>
+                    <input type="search" class="form-control" placeholder="Search Product">
+                    <button class="btn" type="button">
+                        <i class="iconly-Light-Search"></i>
+                    </button>
+                </div>
+                <ul class="recent-tag">
+                    <li class="pe-0"><span>Quick Search :</span></li>
+                    <li><a href="{% url 'products:list' %}">Clothes</a></li>
+                    <li><a href="{% url 'products:list' %}">UrbanSkirt</a></li>
+                    <li><a href="{% url 'products:list' %}">VelvetGown</a></li>
+                    <li><a href="{% url 'products:list' %}">LushShorts</a></li>
+                </ul>
+            </form>
+            <div class="row">
+                <div class="col-xl-12">
+                    <h5 class="mb-3">You May Also Like</h5>
+                    <div class="swiper category-swiper2">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/1.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">SilkBliss Dress</a></h6>
+                                        <h6 class="price">$40.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/3.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">GlamPants</a></h6>
+                                        <h6 class="price">$30.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/4.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">ComfyLeggings</a></h6>
+                                        <h6 class="price">$35.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/2.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">ClassicCapri</a></h6>
+                                        <h6 class="price">$20.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/5.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">DapperCoat</a></h6>
+                                        <h6 class="price">$70.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/6.png' %}" alt="image">
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">ComfyLeggings</a></h6>
+                                        <h6 class="price">$45.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/7.png' %}" alt="image">	
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">DenimDream Jeans</a></h6>
+                                        <h6 class="price">$40.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="shop-card">
+                                    <div class="dz-media ">
+                                        <img src="{% static 'images/shop/product/4.png' %}" alt="image">	
+                                    </div>
+                                    <div class="dz-content">
+                                        <h6 class="title"><a href="{% url 'products:list' %}">SilkBliss Dress</a></h6>
+                                        <h6 class="price">$60.00</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SearchBar -->
+    
+    <!-- Sidebar cart -->
+    <div class="offcanvas dz-offcanvas offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+            &times;
+        </button>
+        <div class="offcanvas-body">
+            <div class="product-description">
+                <div class="dz-tabs">
+                    <ul class="nav nav-tabs center" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="shopping-cart" data-bs-toggle="tab" data-bs-target="#shopping-cart-pane" type="button" role="tab" aria-controls="shopping-cart-pane" aria-selected="true">Shopping Cart
+                                <span class="badge badge-light">5</span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="wishlist" data-bs-toggle="tab" data-bs-target="#wishlist-pane" type="button" role="tab" aria-controls="wishlist-pane" aria-selected="false">Wishlist
+                                <span class="badge badge-light">2</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-4" id="dz-shopcart-sidebar">
+                        <div class="tab-pane fade show active" id="shopping-cart-pane" role="tabpanel" aria-labelledby="shopping-cart" tabindex="0">
+                            <div class="shop-sidebar-cart">
+                                <ul class="sidebar-cart-list">
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic1.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                {% comment %} {% url 'products:list' %} {% endcomment %}
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Sophisticated Swagger Suit</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="btn-quantity light quantity-sm me-3">
+                                                        <input type="text" value="1" name="demo_vertical2">
+                                                    </div>
+                                                    <h6 class="dz-price mb-0">$50.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic2.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Cozy Knit Cardigan Sweater</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="btn-quantity light quantity-sm me-3">
+                                                        <input type="text" value="1" name="demo_vertical2">
+                                                    </div>
+                                                    <h6 class="dz-price mb-0">$40.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i> 
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic3.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Athletic Mesh Sports Leggings</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="btn-quantity light quantity-sm me-3">
+                                                        <input type="text" value="1" name="demo_vertical2">
+                                                    </div>
+                                                    <h6 class="dz-price  mb-0">$65.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i>
+                                            </a>
+                                        </div>
+                                    </li>	
+                                </ul>
+                                <div class="cart-total">
+                                    <h5 class="mb-0">Subtotal:</h5>
+                                    <h5 class="mb-0">300.00$</h5>
+                                </div>
+                                <div class="mt-auto">
+                                    <div class="shipping-time">													
+                                        <div class="dz-icon">
+                                            <i class="flaticon flaticon-ship"></i>
+                                        </div>
+                                        <div class="shipping-content">
+                                            <h6 class="title pe-4">Congratulations , you've got free shipping!</h6>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-animated border-0" style="width: 75%;" role="progressbar">
+                                                    <span class="sr-only">75% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#" {% comment %} {% url 'pixio:shop-checkout' %} {% endcomment %} class="btn btn-outline-secondary btn-block m-b20">Checkout</a>	
+                                    <a href="#" {% comment %} {% url 'pixio:shop-cart' %} {% endcomment %} class="btn btn-secondary btn-block">View Cart</a>	
+                                </div>	
+                            </div>	
+                        </div>
+                        <div class="tab-pane fade" id="wishlist-pane" role="tabpanel" aria-labelledby="wishlist" tabindex="0">
+                            <div class="shop-sidebar-cart">
+                                <ul class="sidebar-cart-list">
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic1.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Sophisticated Swagger Suit</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <h6 class="dz-price  mb-0">$50.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic2.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Cozy Knit Cardigan Sweater</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <h6 class="dz-price  mb-0">$40.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i> 
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="cart-widget">
+                                            <div class="dz-media me-3">
+                                                <img src="{% static 'images/shop/shop-cart/pic3.jpg' %}" alt="">
+                                            </div>
+                                            <div class="cart-content">
+                                                <h6 class="title"><a href="{% url 'products:list' %}">Athletic Mesh Sports Leggings</a></h6>
+                                                <div class="d-flex align-items-center">
+                                                    <h6 class="dz-price  mb-0">$65.00</h6>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0);" class="dz-close">
+                                                <i class="ti-close"></i>
+                                            </a>
+                                        </div>
+                                    </li>	
+                                </ul>
+                                <div class="mt-auto">
+                                    <a href="#" {% comment %} {% url 'pixio:shop-wishlist' %} {% endcomment %} class="btn btn-secondary btn-block">Check Your Favourite</a>
+                                </div>	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sidebar cart -->
+
+    <!-- Sidebar finter -->
+    <div class="offcanvas dz-offcanvas offcanvas offcanvas-end " tabindex="-1" id="offcanvasLeft">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+            &times;
+        </button>
+        <div class="offcanvas-body">
+            <div class="product-description">
+                <div class="widget widget_search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="dzSearch" required="required" type="search" class="form-control" placeholder="Search Product">
+                            <div class="input-group-addon">
+                                <button name="submit" value="Submit" type="submit" class="btn">
+                                    <i class="icon feather icon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h6 class="widget-title">Price</h6>
+                    <div class="price-slide range-slider">
+                        <div class="price">
+                            <div class="range-slider style-1">
+                                <div id="slider-tooltips" class="mb-3"></div>
+                                <span class="example-val" id="slider-margin-value-min"></span>
+                                <span class="example-val" id="slider-margin-value-max"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h6 class="widget-title">Color</h6>
+                    <div class="d-flex align-items-center flex-wrap color-filter ps-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1" value="#000000" aria-label="..." checked>
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2" value="#9BD1FF" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel3" value="#21B290" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel4" value="#FEC4C4" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel5" value="#FF7354" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel6" value="#51EDC8" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel7" value="#B77CF3" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel8" value="#FF4A76" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel9" value="#3E68FF" aria-label="...">
+                            <span></span>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabe20" value="#7BEF68" aria-label="...">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget">
+                    <h6 class="widget-title">Size</h6>
+                    <div class="btn-group product-size">
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio11" checked="">
+                        <label class="btn" for="btnradio11">4</label>
+
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio21">
+                        <label class="btn" for="btnradio21">6</label>
+
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio31">
+                        <label class="btn" for="btnradio31">8</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio41">
+                        <label class="btn" for="btnradio41">10</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio51">
+                        <label class="btn" for="btnradio51">12</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio61">
+                        <label class="btn" for="btnradio61">14</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio71">
+                        <label class="btn" for="btnradio71">16</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio81">
+                        <label class="btn" for="btnradio81">18</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio1" id="btnradio91">
+                        <label class="btn" for="btnradio91">20</label>
+                    </div>
+                </div>
+                <div class="widget widget_categories">
+                    <h6 class="widget-title">Category</h6>
+                    <ul>
+                        <li class="cat-item cat-item-26"><a href="#" {% comment %} {% url 'pixio:blog-category' %} {% endcomment %}>Dresses</a> (10)</li>
+                        {% comment %} <li class="cat-item cat-item-36"><a href="{% url 'pixio:blog-category' %}">Top &amp; Blouses</a> (5)</li>
+                        <li class="cat-item cat-item-43"><a href="{% url 'pixio:blog-category' %}">Boots</a> (17)</li>
+                        <li class="cat-item cat-item-27"><a href="{% url 'pixio:blog-category' %}">Jewelry</a> (13)</li>
+                        <li class="cat-item cat-item-40"><a href="{% url 'pixio:blog-category' %}">Makeup</a> (06)</li> 
+                        <li class="cat-item cat-item-40"><a href="{% url 'pixio:blog-category' %}">Fragrances</a> (17)</li> 
+                        <li class="cat-item cat-item-40"><a href="{% url 'pixio:blog-category' %}">Shaving &amp; Grooming</a> (13)</li> 
+                        <li class="cat-item cat-item-43"><a href="{% url 'pixio:blog-category' %}">Jacket</a> (06)</li> 
+                        <li class="cat-item cat-item-36"><a href="{% url 'pixio:blog-category' %}">Coat</a> (22)</li>  {% endcomment %}
+                    </ul>
+                </div>
+
+                <div class="widget widget_tag_cloud">
+                    <h6 class="widget-title">Tags</h6>
+                    <div class="tagcloud"> 
+                        <a href="#" {% comment %} {% url 'pixio:blog-tag' %} {% endcomment %}>Vintage </a>
+                        {% comment %} <a href="{% url 'pixio:blog-tag' %}">Wedding</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Cotton</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Linen</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Navy</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Urban</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Business Meeting</a>
+                        <a href="{% url 'pixio:blog-tag' %}">Formal</a> {% endcomment %}
+                    </div>
+                </div>
+                <a href="javascript:void(0);" class="btn btn-sm font-14 btn-secondary btn-sharp">RESET</a>
+            </div>
+        </div>
+    </div>
+    <!-- filter sidebar -->
+    
+</header>

@@ -1,9 +1,5 @@
 /**
-	Template Name 	 : Pixio
-	Author			 : DexignZone
-	Version			 : 1.2
-	File Name	     : custom.js
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
+	Template Name 	 : Nova
 	
 	Core script to handle the entire theme and core functions
 **/
@@ -838,7 +834,7 @@ var Pixio = function () {
 		var modalBox = `<div class="modal fade inquiry-modal style-1" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="inquiry-adv">
-					<img src="/static/pixio/images/adv-2.png" alt=""/>
+					<img src="/static/images/adv-2.png" alt=""/>
 				</div>
 				<div class="modal-content">
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
