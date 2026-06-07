@@ -28,6 +28,16 @@
         .content-info{
             padding: 80px 30px;
         }
+        #newsletterModal .modal-content {
+            border-radius: 20px;
+        }
+        #newsletterModal .btn-dark {
+            background: #7f7c71;
+            border: none;
+        }
+        #newsletterModal .btn-dark:hover {
+            background: #ffc105;
+            }
         </style>
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,4 +61,104 @@
         <script>new WOW().init();</script>
         {% block extra_js %}{% endblock %}
     </body>
+
+<!-- Subscribe pop-up-->
+<div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- close button -->
+            <button type="button" class="close p-3" aria-label="Close" style="position:absolute; top:0; right:10px; z-index:99999; font-size:30px; cursor:pointer;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="https://picsum.photos/780/1050" class="w-100 h-100">
+                </div>
+                <div class="col-md-6 p-5">
+                    <h3>Subscribe Now</h3>
+                    <p>Stay updated on all that's new and noteworthy</p>
+
+                    <form id="subscribeForm" action="/subscribe/" method="post">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter Email" required>
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="marketing" name="marketing" required>
+                            <label class="custom-control-label" for="marketing">
+                                I agree to receive marketing materials
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark btn-lg btn-block">SUBSCRIBE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    <!-- If already subscribed, no pop-up -->
+    if(localStorage.getItem('subscribed') === 'true'){
+        return;
+    }
+
+    <!-- Show pop-up window -->
+    setTimeout(function(){
+        $('#newsletterModal').modal('show');
+    }, 500);
+
+    <!-- Close button -->
+    $('.close').click(function(){
+        $('#newsletterModal').modal('hide');
+    });
+
+    <!-- Submit → Close pop-up + Mark subscribed -->
+    $('#subscribeForm').submit(function(){
+        $('#newsletterModal').modal('hide');
+        localStorage.setItem('subscribed', 'true');
+        return true;
+    });
+});
+</script>
+
+{% if messages %}
+<div id="messagePopup" style="
+    position: fixed; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 99999; 
+    padding: 14px 25px; 
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    {% for msg in messages %}
+        {% if msg.tags == 'error' %}
+            background: #ffebee; color: #d32f2f;
+        {% else %}
+            background: #fff9e3; color: #856404;
+        {% endif %}
+    {% endfor %}
+">
+    {% for msg in messages %}
+        {{ msg }}
+    {% endfor %}
+</div>
+
+<!-- Auto close messagePopup -->
+<script>
+    setTimeout(function() {
+        document.getElementById('messagePopup').style.display = 'none';
+    }, 2000);
+</script>
+{% endif %}
+
 </html>
