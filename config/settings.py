@@ -46,7 +46,8 @@ DJANGO_APPS = [
 APPLICATION_APPS = [
     'pages.apps.PagesConfig',
     'accounts.apps.AccountsConfig',
-    'products.apps.ProductsConfig'
+    'products.apps.ProductsConfig',
+    'users.apps.UsersConfig',
 ]
 
 THIRD_PARTY_APPS = [
