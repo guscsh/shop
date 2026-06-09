@@ -113,13 +113,11 @@
                 <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="shop">
-                        <a class="dropdown-item" href="{% url 'pages:shop_list' %}">All Products</a>
+                        <a class="dropdown-item" href="{% url 'products:list' %}">All Products</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Shirt</a>
-                        <a class="dropdown-item" href="#">T-shirt</a>
-                        <a class="dropdown-item" href="#">Short</a>
-                        <a class="dropdown-item" href="#">Jeans</a>
-                        <a class="dropdown-item" href="#">Jacket</a>
+                        {% for cat in categories %}
+                        <a class="dropdown-item" href="{% url 'products:list' %}?category={{ cat.slug }}">{{cat.name}}</a>
+                        {% endfor %}
                     </div>
                 </li>
 

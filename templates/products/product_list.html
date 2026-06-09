@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold">Shop List</h2>
+        <p class="text-muted">Showing {{ products |length }} Of {{ total_products }} Results</p>
+    </div>
+</section>
+
+<!-- Main Shop Content + Left Sidebar Filter -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Left Filter Sidebar -->
+            <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                <form action="{% url 'products:list' %}" method="get" id="filterForm">
+                    <!-- Category -->
+                    <div class="sidebar-widget mb-5">
+                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Category</h5>
+                        <ul class="list-unstyled footer-link-list">
+                            <li class="mb-2">
+                                <!--
+                                    href 邏輯：
+                                    1. 不加 category 參數，就能顯示全部分類。
+                                    2. 後面加上 selected_color 和 max_p，確保點「全部」時，不會清掉顏色和價格的篩選！
+                                -->
+                                <a href="?{% if max_p %}max={{ max_p }}{% endif %}" 
+                                class="text-dark text-decoration-none p-0 fw-bold 
+                                {% if not selected_category %}text-primary{% endif %}"> <!-- 🔥 如果沒選分類，就高亮這個 -->
+                                    All
+                                </a>
+                            </li>
+                            {% for cat in categories %}
+                                <li class="mb-2">
+                                    <!-- 主分類按鈕 (如：MEN) -->
+                                    <button type="submit" name="category" value="{{ cat.slug }}" 
+                                        class="bg-transparent border-0 text-dark text-decoration-none p-0 fw-bold
+                                        {% if selected_category == cat.slug %}text-primary{% endif %}">
+                                        {{ cat.name }} <span class="text-muted">({{ cat.total_product_count }})</span>
+                                    </button>
+                                    {% if cat.sub_categories %}
+                                        <ul class="list-unstyled ms-3 mt-1"> <!-- ms-3 產生縮排 -->
+                                            {% for sub in cat.sub_categories %}
+                                                <li class="mb-1">
+                                                    <button type="submit" name="category" value="{{ sub.slug }}" 
+                                                        class="bg-transparent border-0 text-dark text-decoration-none p-0
+                                                        {% if selected_category == sub.slug %}fw-bold text-primary{% endif %}">
+                                                        {{ sub.name }} <span class="text-muted">({{ sub.sub_product_count }})</span>
+                                                    </button>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- PRICE RANGE SLIDER FILTER -->
+                    <div class="sidebar-widget">
+                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Price Range</h5>
+                        <div class="mb-3">
+                            <input type="range" min="0" max="300" name="max" id="priceSlider" value="{{ max_p|default:300 }}" class="form-range">
+                            <input type="hidden" name="min" value="0">
+                            <p class="mt-2 text-dark">Price: $0 - $<span id="priceVal">{{ max_p|default:300 }}</span></p>
+                        </div>
+                        <button class="btn btn-sm btn-warning w-100">Apply Filter</button>
+
+                        <a href="{% url 'products:list' %}" class="mt-2 d-inline-block text-warning text-sm">Reset All</a>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- Right Product List Area -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row g-4">
+
+                    <!-- Product loop from data base-->
+                    {% for product in products %}
+                    <div class="col-xl-4 col-lg-6 col-sm-6">
+                        <div class="product-card border shadow-sm rounded overflow-hidden">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid w-100">
+                            <div class="p-3">
+                                <h6 class="fw-bold mb-1">{{ product.name }}</h6>
+                                <span class="text-muted small">{{ product.category }}</span>
+                                <p class="fw-bold mt-2 text-dark">${{ product.base_price }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">No products yet.</p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <!-- Pagination -->
+                {% if page_obj.has_other_pages %}               
+                <div class="mt-5 d-flex justify-content-center">
+                    <nav>
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo;</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&laquo;</a>
+                                </li>
+                            {% endif %}
+                            {% for page in page_obj.paginator.page_range %}
+                            {% if page_obj.number == page %}
+                            <li class="page-item active">
+                                <a class="page-link" href="#">{{page}}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page}}">{{page}}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class='page-link' href="#">&raquo;</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Sync price slider value
+    const slider = document.getElementById('priceSlider');
+    const valText = document.getElementById('priceVal');
+    if (slider && valText) {
+        slider.oninput = function() {
+            valText.innerText = this.value;
+        }
+    }
+</script>
+
+<style>
+.product-card:hover{
+    box-shadow: 0 4px 12px #ddd !important;
+    transition: all 0.25s ease;
+}
+.footer-link-list a:hover, .footer-link-list button:hover{
+    color:#f7c248 !important;
+    padding-left:4px;
+    transition: all 0.2s ease;
+}
+</style>
+{% endblock %}
