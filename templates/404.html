@@ -1,61 +1,115 @@
-{% extends "base.html" %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="DexignZone">
+	<meta name="robots" content="">
+	<meta name="keywords" content="{{ dz_array.public.keywords }}" />
+	<meta name="description" content="{{ dz_array.public.description }}" />
+	<meta property="og:title" content="{{ dz_array.public.og_title }}" />
+	<meta property="og:description" content="{{ dz_array.public.og_description }}" />
+	<meta property="og:image" content="{{ dz_array.public.og_image }}" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>{{ dz_array.public.title }}</title>
+    
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="{% static dz_array.public.favicon  %}" />
 
-<!-- page title -->
-{% block title %}404 Not Found | NOVA{% endblock %}
+    {% for cssurl in current_page_css %}
+    <link rel="stylesheet" href="{% static cssurl %}" >
+	{% endfor %}
+	
+	<!-- Custom Stylesheet -->
+    {% for cssurl in dz_array.global.css %}
+    <link rel="stylesheet" href="{% static cssurl %}">
+	{% endfor %}
 
-{% block content %}
-<style>
-html,body{overflow:hidden;}
-
-<!-- 404:black --> 
-.num-l{
-    position:absolute;
-    right:0;
-    top:50%;
-    transform:translate(170px,-50%);
-    font-size:340px;
-    font-weight:900;
-    color:#000;
-    clip-path:inset(0 50% 0 0);
-}
-
-<!-- 404:black -->
-.num-r{
-    position:absolute;
-    left:0;
-    top:50%;
-    transform:translate(-170px,-50%);
-    font-size:340px;
-    font-weight:900;
-    color:#fff;
-    clip-path:inset(0 0 0 50%);
-}
-
-.text-box{
-    position:relative;
-    z-index:9999;
-}
-</style>
-
-<div class="container-fluid px-0">
-    <div class="row no-gutters min-vh-100">
-        <!-- left side bg -->
-        <div class="col-md-6 col-12 position-relative d-flex flex-column justify-content-between py-5 px-5" style="background:#222;">
-            <div class="h1 font-weight-bold text-white mb-0">
-                <span class="text-warning">N</span>OVA
-            </div>
-            <div class="num-l">404</div>
-        </div>
-        <!-- right side bg -->
-        <div class="col-md-6 col-12 position-relative d-flex flex-column justify-content-center py-5 px-5" style="background:#f8f5ec;">
-            <div class="num-r">404</div>
-            <div class="text-box">
-                <h2 class="display-1 font-weight-bold mb-3">OOPS!</h2>
-                <p class="h3 text-secondary mb-5">Oh, no! This page does not exist.</p>
-                <a href="/" class="btn btn-dark btn-lg px-5 py-3 rounded-lg">GO TO MAIN PAGE</a>
+	<!-- GOOGLE FONTS-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+ <body>
+    <div class="page-wraper">
+    <div id="loading-area"  class="preloader-wrapper-1">
+        <div class="loader">
+            <div class="load-circle">
+                <div class="circle-2">
+                    <img src="{% static 'images/logo.png' %}" alt="/">
+                </div>
             </div>
         </div>
+    </div>	
+        <div class="page-content">
+            <section class="overflow-hidden">
+                <div class="row error-page style-2">
+                    <div class="col-lg-6 col-md-6 error-start-content">
+                        <div class="logo">
+                            <a href="{% url 'pages:index' %}"><img src="{% static 'images/logo-white.png' %}" alt=""></a>
+                        </div>
+                        <div class="dz_error">404</div>
+                        <div class="dz-social-icon style-2 white">
+                            <ul>
+                                <li>
+                                    <a href="https://www.facebook.com/dexignzone" target="_blank">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/dexignzones" target="_blank">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/showcase/3686700/admin/" target="_blank">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/dexignzone/" target="_blank">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <img src="{% static 'images/circle-lines3.png' %}" class="bg-img" alt="">
+                    </div>
+                    <div class="col-lg-6 col-md-6 error-end-content">
+                        <div class="error-inner">
+                            <h1 class="error-head">OOPS!</h1>
+                            <p class="error-para">Oh, no! This page does not exist.</p>
+                            <a href="{% url 'pages:index' %}" class="btn btn-secondary  text-uppercase">Go to Main Page</a>
+                        </div>
+                        <img src="{% static 'images/circle-lines4.png' %}" class="bg-img2" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+        
     </div>
-</div>
+<!-- JAVASCRIPT FILES ========================================= -->
+{% for jsurl in dz_array.global.js.top %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in current_page_js %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in dz_array.global.js.bottom %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% block additional_js %}
 {% endblock %}
+
+</body>
+</html>
