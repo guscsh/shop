@@ -1,0 +1,402 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "MEN",
+    "slug": "men",
+    "is_active": true,
+    "parent": null
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "T‑Shirts",
+    "slug": "tshirts",
+    "is_active": true,
+    "parent": 1
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "WOMEN",
+    "slug": "women",
+    "is_active": true,
+    "parent": null
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Cardigans",
+    "slug": "cardigans",
+    "is_active": true,
+    "parent": 3
+  }
+},
+{
+  "model": "products.category",
+  "pk": 6,
+  "fields": {
+    "name": "Sweaters",
+    "slug": "sweaters",
+    "is_active": true,
+    "parent": 3
+  }
+},
+{
+  "model": "products.category",
+  "pk": 7,
+  "fields": {
+    "name": "Hoodies",
+    "slug": "hoodies",
+    "is_active": true,
+    "parent": 1
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 2,
+    "name": "Crew Neck T-Shirt",
+    "slug": "crew-neck-t-shirt",
+    "description": "This unisex Crew Neck T-Shirt n is designed as a modern essential, balancing a clean silhouette with thoughtful fabric choice for everyday wear across seasons. Crafted from heavyweight cotton jersey made with thick yarn, it offers a smooth surface and a structured look that works well on its own in warm weather or as a reliable layering piece when temperatures drop, reflecting a refined, universal approach to a classic T-shirt.",
+    "base_price": "29.90",
+    "is_active": true,
+    "created_at": "2026-06-08T10:11:30.434Z",
+    "updated_at": "2026-06-08T11:12:06.251Z",
+    "image": "products/2026/06/08/黑色十六进制颜色码_ovtQA5f.png"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "V-Neck T-Shirt",
+    "slug": "v-neck-t-shirt",
+    "description": "Cotton V-Neck T-Shirt is a refined everyday essential designed for clean styling and versatile wear. Made from 100% SUPIMA® cotton, the fabric features longer cotton fibers for a fine, smooth texture with a subtle glossy sheen that adds a polished look while remaining easy to style. A classic V-neck and regular fit create balanced proportions that feel timeless, making this piece suitable for wearing on its own in warm weather or as a base layer under shirts, knits, or light jackets across transitional seasons.",
+    "base_price": "14.90",
+    "is_active": true,
+    "created_at": "2026-06-08T11:09:33.130Z",
+    "updated_at": "2026-06-08T11:12:20.536Z",
+    "image": "products/2026/06/08/usgoods_32_487302_3x4_IS3urJJ.avif"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 4,
+    "name": "Protection Cardigan",
+    "slug": "protection-cardigan",
+    "description": "Protection Cardigan in a color block style is designed as a lightweight, versatile layer that fits seamlessly into everyday wardrobes while maintaining clean, modern lines. The classic fit makes it easy to layer over sleeveless tops, T‑shirts, or lightweight dresses, supporting comfortable wear in mild to warm weather and during seasonal transitions. A smooth cotton‑rayon blend creates a soft surface feel with a refined drape, allowing the cardigan to move naturally without feeling heavy. Built‑in UV protection adds practical coverage for the outdoors, making this a functional alternative to heavier knit cardigans when simple, easy layering is preferred for daily activities, commuting, or travel.",
+    "base_price": "49.90",
+    "is_active": true,
+    "created_at": "2026-06-09T01:51:58.253Z",
+    "updated_at": "2026-06-09T01:52:31.974Z",
+    "image": "products/2026/06/09/usgoods_01_484505_3x4.avif"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 6,
+    "name": "Pointelle Sweater",
+    "slug": "pointelle-sweater",
+    "description": "Pointelle Sweater with short sleeves is designed for light layering and warm-weather styling, combining a delicate texture with a clean, everyday silhouette. The short length creates a balanced proportion that pairs easily with skirts, straight-leg pants, or wide silhouettes, making it ideal for casual outings and everyday wear in mild to warm conditions. Made from smooth 100% cotton, the knit feels light against the skin while the pointelle pattern adds subtle visual depth. Voluminous sleeves with gathered cuffs introduce gentle shape and movement, giving the sweater a soft presence that works well on its own or layered over a camisole. The regular fit keeps the look easy and versatile while maintaining a polished finish.",
+    "base_price": "29.90",
+    "is_active": true,
+    "created_at": "2026-06-09T03:37:24.872Z",
+    "updated_at": "2026-06-09T03:37:24.872Z",
+    "image": "products/2026/06/09/usgoods_32_485574_3x4.avif"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 6,
+    "name": "Polo Short Sleeve Sweater",
+    "slug": "polo-short-sleeve-sweater",
+    "description": "Our women's Polo Short Sleeve Sweater with a multi‑tone design is designed as a refined knit top that blends everyday ease with a modern look. The fitted silhouette delivers a streamlined look, making it easy to style with straight‑leg pants, skirts, or wide bottoms. A moderately thick knit adds structure without heaviness, supporting everyday wear in mild to warm weather and indoor settings. Smooth cotton‑rayon fabric gives the texture a smooth, polished look, while the short sleeves keep the overall feel light and versatile. Subtle contrast in the knit design adds visual interest while maintaining an effortless look perfect for everyday wear.",
+    "base_price": "39.90",
+    "is_active": true,
+    "created_at": "2026-06-09T03:40:01.497Z",
+    "updated_at": "2026-06-09T03:40:01.497Z",
+    "image": "products/2026/06/09/usgoods_69_485224_3x4.avif"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 6,
+    "name": "Smooth Cotton Sweater",
+    "slug": "smooth-cotton-sweater",
+    "description": "Elevate your everyday wardrobe with this refined, smooth cotton sweater. Crafted from premium, ultra-soft cotton, it delivers a luxuriously smooth hand feel against the skin, with just the right amount of drape for a polished, relaxed fit.\r\nThe classic crewneck silhouette features clean lines and subtle structural details, making it endlessly versatile—layer it over turtlenecks for cold days, or wear it solo for effortless, minimalist style. The lightweight yet durable fabric ensures all-day comfort, while the consistent, even knit maintains a sleek, premium look wash after wash.",
+    "base_price": "49.90",
+    "is_active": true,
+    "created_at": "2026-06-09T03:46:10.501Z",
+    "updated_at": "2026-06-09T03:46:10.501Z",
+    "image": "products/2026/06/09/Smooth_Cotton_Sweater.png"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 7,
+    "name": "Sweat Oversized Pullover Hoodie",
+    "slug": "sweat-oversized-pullover-hoodie",
+    "description": "The Sweat Oversized Pullover Hoodie blends elevated design with everyday comfort. Featuring a relaxed, oversized fit and dropped shoulders, this hoodie is crafted from thick, structured cotton for a premium feel. The minimalist silhouette is enhanced by a clean neckline and ribbed details, making it a versatile staple for layering or standalone wear.",
+    "base_price": "49.90",
+    "is_active": true,
+    "created_at": "2026-06-09T03:52:16.351Z",
+    "updated_at": "2026-06-09T03:52:16.351Z",
+    "image": "products/2026/06/09/Sweat_Oversized_Pullover_Hoodie.png"
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "name": "Black",
+    "hex_code": "#000000",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "name": "BEIGE",
+    "hex_code": "#D9CFC1",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "name": "WOMEN",
+    "hex_code": "#FFFFF0",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "name": "32 BEIGE",
+    "hex_code": "#E8DCC8",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 5,
+  "fields": {
+    "product": 5,
+    "name": "69 NAVY",
+    "hex_code": "#1A2A44",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 6,
+  "fields": {
+    "product": 6,
+    "name": "03 GRAY",
+    "hex_code": "#E5E5E5",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productcolor",
+  "pk": 7,
+  "fields": {
+    "product": 7,
+    "name": "69 NAVY",
+    "hex_code": "#23395D",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "color": 1,
+    "image": "products/2026/06/08/966644715_01-3416579916_RhYazXc.jpg",
+    "alt_text": "Crew Neck T-Shirt",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "color": 2,
+    "image": "products/2026/06/08/usgoods_32_487302_3x4_gAqifvI.avif",
+    "alt_text": "V-Neck T-Shirt",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "color": 1,
+    "image": "products/2026/06/09/usgoods_01_484505_3x4_XmxTmQo.avif",
+    "alt_text": "Protection Cardigan",
+    "display_order": 0
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "color": 1,
+    "size": "S",
+    "price": "29.90",
+    "stock": 0,
+    "sku": "crew-neck-t-shirt-BL-S"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "color": 1,
+    "size": "M",
+    "price": "29.90",
+    "stock": 0,
+    "sku": "crew-neck-t-shirt-BL-M"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "color": 1,
+    "size": "L",
+    "price": "29.90",
+    "stock": 0,
+    "sku": "crew-neck-t-shirt-BL-L"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "color": 1,
+    "size": "3XL",
+    "price": "29.90",
+    "stock": 0,
+    "sku": "crew-neck-t-shirt-BL-3XL"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "color": 2,
+    "size": "M",
+    "price": "14.90",
+    "stock": 0,
+    "sku": "v-neck-t-shirt-BE-M"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "color": 2,
+    "size": "L",
+    "price": "14.90",
+    "stock": 0,
+    "sku": "v-neck-t-shirt-BE-L"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "color": 2,
+    "size": "XL",
+    "price": "14.90",
+    "stock": 0,
+    "sku": "v-neck-t-shirt-BE-XL"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "color": 3,
+    "size": "XS",
+    "price": "49.90",
+    "stock": 0,
+    "sku": "protection-cardigan-WO-XS"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "color": 3,
+    "size": "S",
+    "price": "49.90",
+    "stock": 0,
+    "sku": "protection-cardigan-WO-S"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 10,
+  "fields": {
+    "product": 3,
+    "color": 1,
+    "size": "M",
+    "price": "49.90",
+    "stock": 0,
+    "sku": "protection-cardigan-BL-M"
+  }
+},
+{
+  "model": "products.productvariant",
+  "pk": 11,
+  "fields": {
+    "product": 3,
+    "color": 1,
+    "size": "L",
+    "price": "49.90",
+    "stock": 0,
+    "sku": "protection-cardigan-BL-L"
+  }
+}
+]
