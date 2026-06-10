@@ -72,24 +72,26 @@ class Product(models.Model):
         return self.name
 
 # 4. 顏色選項
-class ProductColor(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='colors')
-    name = models.CharField(max_length=50, verbose_name='Color Name (e.g. Classic Black)')
+class Color(models.Model):
+    name = models.CharField(max_length=50, unique=True, verbose_name='Color Name (e.g. Classic Black)')
+    slug = models.SlugField(unique=True,max_length=50)
     hex_code = models.CharField(max_length=7, verbose_name='HexCode (e.g.#000000)', help_text='Format: #RRGGBB')
-    display_order = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
-        unique_together = ('product', 'name') # 同商品不能有重複顏色名
-        ordering = ['display_order']
-        indexes = [models.Index(fields=['display_order'])]
+        ordering = ['name']
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug == slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.product.name} - {self.name}"
+        return self.name
 
 # 3. 商品圖片 - 技術亮點：支援多圖與綁定顏色
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    color = models.ForeignKey(ProductColor, on_delete=models.CASCADE,related_name='images')
+    color = models.ForeignKey(Color, on_delete=models.CASCADE,related_name='images')
     image = models.ImageField(upload_to='products/%Y/%m/%d/')
     alt_text = models.CharField(max_length=150, blank=True, verbose_name='SeoKeywords')#圖片替代文字 (SEO)
     display_order = models.PositiveSmallIntegerField(default=0)
@@ -101,7 +103,7 @@ class ProductImage(models.Model):
     def save(self, *args, **kwargs):
         # 如果營運人員沒有填寫 alt_text，就自動填入商品名稱
         if not self.alt_text and self.product:
-            self.alt_text = self.product.name
+            self.alt_text = f"{self.product.name}-{self.color}"
             
         super().save(*args, **kwargs)
 
@@ -118,7 +120,7 @@ class ProductVariant(models.Model):
         ('L', 'L'), ('XL', 'XL'), ('2XL', '2XL'),('3XL','3XL')
     ]
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    color = models.ForeignKey(ProductColor, on_delete=models.PROTECT, related_name='variants')
+    color = models.ForeignKey(Color, on_delete=models.PROTECT, related_name='variants')
     size = models.CharField(max_length=5, choices=SIZE_CHOICES)
     price = models.DecimalField(
         max_digits=10, 
@@ -159,12 +161,5 @@ class ProductVariant(models.Model):
     def __str__(self):
         return f"{self.product.name} - {self.color.name} / {self.size}"
 
-
-class ProductInventory(Product):
-    """商品庫存與圖片管理的 Proxy Model"""
-    class Meta:
-        proxy = True  # 重點：這是一個代理模型，不建新表
-        verbose_name = "ProductVariant"
-        verbose_name_plural = "ProductVariant"
 
         
