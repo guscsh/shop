@@ -55,6 +55,18 @@ def subscribe_newsletter(request):
             messages.success(request, "Subscribed successfully!")
     return redirect('/')
 
+def faqs(request):
+    return render(request, 'pages/faqs.html')
+
+def shipping_info(request):
+    return render(request, 'pages/shipping-info.html')
+
+def return_info(request):
+    return render(request, 'pages/return-info.html')
+
+def payment_info(request):
+    return render(request, 'pages/payment-info.html')
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)
 

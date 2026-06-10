@@ -11,6 +11,10 @@ urlpatterns = [
     path('blog/post/', views.blog_post, name='blog_post'),
     path('shop/', views.shop_list, name='shop_list'), 
     path('subscribe/', subscribe_newsletter, name='subscribe'),
+    path('faqs/', views.faqs, name='faqs'),
+    path('shipping_info/', views.shipping_info, name='shipping_info'),
+    path('return_info/', views.return_info, name='return_info'),
+    path('payment_info/', views.payment_info, name='payment_info'),
     path('test/', views.test, name='test'),
 ]
 
