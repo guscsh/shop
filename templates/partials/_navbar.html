@@ -104,7 +104,8 @@
                 <li class="nav-item {% if 'about' in request.path %}active{% endif %}">
                     <a class="nav-link" href="{% url 'pages:about' %}">About</a>
                 </li>
-
+                
+                <!-- about -->
                 <li class="nav-item">
                     <img class="star-divider" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCA2MSA2MCIgZmlsbD0iIzY2NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjkuMzAyIC0wLjAwNDk5MjY4TDM4LjUzMyAyMS4yMDA1TDYwLjMzMDcgMjguOTI5N0wzOS4xMjUzIDM4LjE2MDdMMzEuMzk2IDU5Ljk1ODVMMjIuMTY1IDM4Ljc1M0wwLjM2NzI5NyAzMS4wMjM3TDIxLjU3MjggMjEuNzkyOEwyOS4zMDIgLTAuMDA0OTkyNjhaIi8+PC9zdmc+">
                 </li>
@@ -115,7 +116,7 @@
                     <div class="dropdown-menu" aria-labelledby="shop">
                         <a class="dropdown-item" href="{% url 'products:list' %}">All Products</a>
                         <div class="dropdown-divider"></div>
-                        {% for cat in categories %}
+                        {% for cat in Category %}
                         <a class="dropdown-item" href="{% url 'products:list' %}?category={{ cat.slug }}">{{cat.name}}</a>
                         {% endfor %}
                     </div>
