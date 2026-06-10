@@ -116,7 +116,7 @@
                     <div class="dropdown-menu" aria-labelledby="shop">
                         <a class="dropdown-item" href="{% url 'products:list' %}">All Products</a>
                         <div class="dropdown-divider"></div>
-                        {% for cat in Category %}
+                        {% for cat in nav_categories %}
                         <a class="dropdown-item" href="{% url 'products:list' %}?category={{ cat.slug }}">{{cat.name}}</a>
                         {% endfor %}
                     </div>
