@@ -34,10 +34,10 @@
                             <div class="widget widget_services">
                                 <h5 class="footer-title mb-4">Useful Links</h5>
                                 <ul class="list-unstyled ps-0 footer-link-list">
-                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">FAQ</a></li>
-                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">Payment Policy</a></li>
-                                    <li class="mb-3"><a href="javascript:void(0);" class="text-dark text-decoration-none">Shipping Policy</a></li>
-                                    <li><a href="javascript:void(0);" class="text-dark text-decoration-none">Returns Policy</a></li>
+                                    <li class="mb-3"><a href="{% url "pages:faqs" %}" class="text-dark text-decoration-none">FAQ</a></li>
+                                    <li class="mb-3"><a href="{% url "pages:payment_info" %}" class="text-dark text-decoration-none">Payment Policy</a></li>
+                                    <li class="mb-3"><a href="{% url "pages:shipping_info" %}" class="text-dark text-decoration-none">Shipping Policy</a></li>
+                                    <li><a href="{% url "pages:return_info" %}" class="text-dark text-decoration-none">Returns Policy</a></li>
                                 </ul>
                             </div>
                         </div>
