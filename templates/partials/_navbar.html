@@ -111,7 +111,7 @@
                 </li>
 
                 <!-- Shop -->
-                <li class="nav-item dropdown {% if 'shop' in request.path %}active{% endif %}">
+                <li class="nav-item dropdown {% if 'products' in request.path %}active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="shop" data-toggle="dropdown">Shop</a>
                     <div class="dropdown-menu" aria-labelledby="shop">
                         <a class="dropdown-item" href="{% url 'products:list' %}">All Products</a>
