@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Favourites  | {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-3 mb-4 mb-lg-0">
+            {% include 'accounts/sidebar.html' %}
+        </div>
+
+        <div class="col-lg-9">
+            <div class="p-4 rounded shadow-sm" style="background: #fffaf3">
+                <h4 class="mb-4 font-weight-bold">Favourites</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in fav_list %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>
+                                    <span class="text-danger font-weight-bold">${{ item.product.base_price }}</span>
+                                </td>
+                                <td>
+                                    {% if item.product.variants.exists %}
+                                        {% with variant=item.product.variants.first %}
+                                            {% if variant.stock > 0 %}
+                                                In Stock
+                                            {% else %}
+                                                Out of Stock
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% else %}
+                                        No Variant
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ item.product.get_absolute_url }}" class="btn btn-sm btn-dark">Add To Cart</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center py-4 text-muted">You have no favourite items yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

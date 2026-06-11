@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order History | My Account{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-lg-3 mb-4 mb-lg-0">
+            {% include 'accounts/sidebar.html' %}
+        </div>
+
+        <!-- Right Order Table Content -->
+        <div class="col-lg-9">
+            <div class="p-4 rounded shadow-sm" style="background: #fffaf3">
+                <h4 class="mb-4 font-weight-bold">My Orders</h4>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date Purchased</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in order_list %}
+                            <tr>
+                                <td>{{ order.order_no }}</td>
+                                <td>{{ order.date|date:"F d, Y" }}</td>
+                                <td>${{ order.total }}</td>
+                                <td>{{ order.status }}</td>
+                                <td><a href="#" class="btn btn-sm btn-primary">View</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <!-- Show when user has no orders -->
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">You have no orders yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

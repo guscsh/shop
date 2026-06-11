@@ -150,10 +150,11 @@
     <li class="nav-item dropdown ml-2">
         <a class="nav-link dropdown-toggle" href="#" id="account" data-toggle="dropdown">My Account</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account">
-            <a class="dropdown-item" href="#">Dashboard</a>
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Orders History</a>
-            <a class="dropdown-item" href="#">Favourites</a>
+            <!-- Fixed url tag spacing -->
+            <a class="dropdown-item" href="{% url 'accounts:dashboard' %}">Dashboard</a>
+            <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'accounts:orders' %}">Orders History</a>
+            <a class="dropdown-item" href="{% url 'accounts:favourites' %}">Favourites</a>
         </div>
     </li>
     <li class="nav-item ml-2">
