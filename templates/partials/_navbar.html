@@ -153,8 +153,8 @@
             <!-- Fixed url tag spacing -->
             <a class="dropdown-item" href="{% url 'accounts:dashboard' %}">Dashboard</a>
             <a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a>
-            <a class="dropdown-item" href="#">Orders History</a>
-            <a class="dropdown-item" href="#">Favourites</a>
+            <a class="dropdown-item" href="{% url 'accounts:orders' %}">Orders History</a>
+            <a class="dropdown-item" href="{% url 'accounts:favourites' %}">Favourites</a>
         </div>
     </li>
     <li class="nav-item ml-2">

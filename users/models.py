@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(
@@ -9,6 +11,14 @@ class UserProfile(models.Model):
     )
     phone = models.CharField(max_length=20, blank=True)
     address = models.TextField(blank=True)
+
+    # Avatar crop & resize
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    crop_x = models.CharField(max_length=10, default="0")
+    crop_y = models.CharField(max_length=10, default="0")
+    crop_w = models.CharField(max_length=10, default="0")
+    crop_h = models.CharField(max_length=10, default="0")
+
     # --- 積分與 VIP 改動 ---
     points = models.PositiveIntegerField( #正整數欄位
         default=0, 
@@ -46,3 +56,13 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} User Profile"
+    
+# Auto create & save profile
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

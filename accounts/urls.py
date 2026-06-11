@@ -13,4 +13,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name="logout"),
     path('profile/', views.profile, name="profile"),
     path('dashboard/', views.AccountDashboard.as_view(), name="dashboard"),
+    path('orders/', views.order_history, name="orders"),
+    path('favourites/', views.Favourites, name="favourites"),
 ]

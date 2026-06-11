@@ -1,0 +1,49 @@
+{% load static %}
+<div class="shadow-sm rounded p-4" style="background: #fff9e3">
+    <!-- User Info -->
+    <div class="text-center mb-4 pb-4 border-bottom">
+        <div class="rounded-circle bg-secondary mx-auto" style="width:80px;height:80px;overflow:hidden;">
+        {% if user.acc_profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded-circle" alt="Sidebar Avatar">
+        {% else %}
+            <img src="{% static 'images/default-avatar.png' %}" class="img-fluid rounded-circle" alt="Default Avatar">
+        {% endif %}
+        </div>
+
+        <h4 class="font-weight-bold mb-1 mt-3">{{ user.first_name|default:user.username }} {{ user.last_name }}</h4>
+        <p class="mb-0" style="color: #91755d;">{{ user.email }}</p>
+        <h6 class="text-muted mb-4">{{ vip_level }}</h6>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="mb-4">
+        <h5 class="text-uppercase text-muted font-weight-bold mb-3">Dashboard</h5>
+        <ul class="list-unstyled">
+            <li class="mb-2">
+                <a href="{% url 'accounts:dashboard' %}" class="text-dark d-block py-2 px-3 rounded {% if request.resolver_match.url_name == 'dashboard' %}bg-light font-weight-bold{% endif %}">
+                    Dashboard
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'accounts:orders' %}" class="text-dark d-block py-2 px-3 rounded {% if request.resolver_match.url_name == 'orders' %}bg-light font-weight-bold{% endif %}">
+                    Orders
+                </a>
+            </li>
+            <li class="mb-2">
+                <a href="{% url 'accounts:favourites' %}" class="text-dark d-block py-2 px-3 rounded">Favourites</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Account Settings Section -->
+    <div>
+        <h5 class="text-uppercase text-muted font-weight-bold mb-3">Account Settings</h5>
+        <ul class="list-unstyled">
+            <li>
+                <a href="{% url 'accounts:profile' %}" class="text-dark d-block py-2 px-3 rounded {% if request.resolver_match.url_name == 'profile' %}bg-light font-weight-bold{% endif %}">
+                    Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

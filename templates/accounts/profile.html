@@ -1,59 +1,162 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ user.username }} | My Profile {% endblock %}
+{% block title %}My Profile | {{ user.username }}{% endblock %}
 
 {% block content %}
 <div class="container py-5">
     <div class="row">
-        <div class="col-lg-8 mx-auto">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-white">
-                    <h3 class="mb-0">My Account</h3>
-                    <p class="text-muted mt-2">
-                        Hello {{ user.first_name|default:user.username }}
-                        <span class="d-block">{{ user.email }}</span>
-                    </p>
-                </div>
-                <div class="card-body">
-                    <!-- Profile Info Form -->
-                    <form method="POST" class="mb-5">
-                        {% csrf_token %}
-                        <h5 class="border-bottom pb-2 mb-4">Personal Information</h5>
+        <!-- Left Sidebar -->
+        <div class="col-lg-3 mb-4 mb-lg-0">
+        {% include 'accounts/sidebar.html' %}
+        </div>
 
-                        <div class="form-group mb-3">
-                            <label>First Name</label>
+        <!-- Right Main Content -->
+        <div class="col-lg-9">
+            <div class="p-4 rounded shadow-sm">
+                <!-- Avatar Upload Area -->
+                <div class="d-flex align-items-center mb-5 pb-4 border-bottom">
+                    <div class="position-relative mr-4">
+                        <!-- Avatar Preview -->
+                        <div class="rounded-circle bg-secondary" style="width:120px;height:120px;overflow:hidden;">
+                            {% if profile.avatar %}
+                                <img id="avatar-preview" src="{{ profile.avatar.url }}" class="img-fluid rounded-circle" alt="Avatar">
+                            {% else %}
+                                <img id="avatar-preview" src="{% static 'images/default-avatar.png' %}" class="img-fluid rounded-circle" alt="Default Avatar">
+                            {% endif %}
+                        </div>
+                        <!-- Camera Button trigger file input -->
+                        <button type="button" class="btn btn-danger rounded-circle position-absolute" style="top:0;left:0;width:36px;height:36px;" onclick="document.getElementById('avatar-input').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <h4 class="font-weight-bold mb-1">{{ user.first_name|default:user.username }} {{ user.last_name }}</h4>
+                        <p class="text-danger mb-0">{{ user.email }}</p>
+                        <small class="text-muted">Click camera icon to change & adjust photo</small>
+                    </div>
+                </div>
+
+                <!-- Crop Popup Modal (Bootstrap 4) -->
+                <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adjust Photo (Drag / Zoom)</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img id="crop-image" style="max-width:100%;">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger" id="save-crop">Save Adjustment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    {{ profile_form.avatar }}
+                    <!-- Hidden crop fields -->
+                    {{ profile_form.crop_x }}
+                    {{ profile_form.crop_y }}
+                    {{ profile_form.crop_w }}
+                    {{ profile_form.crop_h }}
+
+                    <div class="row">
+                        <!-- First Name -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">First Name</label>
                             {{ profile_form.first_name }}
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Last Name</label>
+                        <!-- Last Name -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">Last Name</label>
                             {{ profile_form.last_name }}
                         </div>
-                        <div class="form-group mb-3">
-                            <label>Email address</label>
+                        <!-- Email -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">Email address</label>
                             {{ profile_form.email }}
                         </div>
-
-                        <button type="submit" name="profile_submit" class="btn btn-primary">Save Changes</button>
-                    </form>
-
-                    <!-- Password Form -->
-                    <form method="POST">
-                        {% csrf_token %}
-                        <h5 class="border-bottom pb-2 mb-4">Change Password</h5>
-
-                        <div class="form-group mb-3">
+                        <!-- Phone -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">Phone</label>
+                            {{ profile_form.phone }}
+                        </div>
+                        <!-- New Password -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">New password (leave blank to leave unchanged)</label>
                             {{ pwd_form.new_password1 }}
                         </div>
-                        <div class="form-group mb-3">
+                        <!-- Confirm Password -->
+                        <div class="col-md-6 mb-4">
+                            <label class="font-weight-bold d-block mb-2">Confirm new password</label>
                             {{ pwd_form.new_password2 }}
                         </div>
+                    </div>
 
-                        <button type="submit" name="pwd_submit" class="btn btn-dark">Update Password</button>
-                    </form>
-                </div>
+                    <!-- Submit Button -->
+                    <div class="d-flex align-items-center justify-content-between mt-4">
+                        <button type="submit" class="btn btn-danger px-5 py-2 font-weight-bold">Update Profile</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Cropper CSS + JS (for drag/zoom/position) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+<script>
+let cropper = null;
+const avatarInput = document.getElementById('avatar-input');
+const previewImg = document.getElementById('avatar-preview');
+const cropImage = document.getElementById('crop-image');
+const cropModal = $('#cropModal');
+
+// Select image → open crop modal
+avatarInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        cropImage.src = ev.target.result;
+        cropModal.modal('show');
+
+        // Destroy old instance
+        if (cropper) cropper.destroy();
+        // Initialize cropper: square crop, drag + zoom enabled
+        cropper = new Cropper(cropImage, {
+            aspectRatio: 1,
+            viewMode: 1,
+            autoCropArea: 0.8,
+            movable: true,
+            zoomable: true
+        });
+    };
+    reader.readAsDataURL(file);
+});
+
+// Save crop position & size to hidden fields
+document.getElementById('save-crop').addEventListener('click', function() {
+    const cropData = cropper.getCropBoxData();
+    document.getElementById('id_crop_x').value = cropData.left;
+    document.getElementById('id_crop_y').value = cropData.top;
+    document.getElementById('id_crop_w').value = cropData.width;
+    document.getElementById('id_crop_h').value = cropData.height;
+
+    // Update main avatar preview
+    previewImg.src = cropper.getCroppedCanvas({width: 300, height: 300}).toDataURL();
+    cropModal.modal('hide');
+});
+</script>
 {% endblock %}
