@@ -24,56 +24,43 @@
         <nav aria-label="breadcrumb" class="breadcrumb-row">
             <ul class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{% url 'pages:index' %}"> Home</a></li>
-                <li class="breadcrumb-item">Product Default</li>
+                <li class="breadcrumb-item"><a href="{% url 'products:list' %}"> Products</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'products:list' %}?category={{ product.category.slug }}">{{ product.category.name }}</a></li>
+                <li class="breadcrumb-item">{{ product.name }}</li>
             </ul>
         </nav>
     </div>
     
+    </section>
     <section class="content-inner py-0">
         <div class="container-fluid">
+            <div class="row p-5" style="height: 100px">
+            </div>
             <div class="row">
                 <div class="col-xl-4 col-md-4">
                     <div class="dz-product-detail sticky-top">
                         <div class="swiper-btn-center-lr">
                             <div class="swiper product-gallery-swiper2 rounded" >
                                 <div class="swiper-wrapper" id="lightgallery2">
+                                {% for img in product.images.all %}
                                     <div class="swiper-slide">
                                         <div class="dz-media DZoomImage">
-                                            <a class="mfp-link lg-item" href="{% static 'images/products/product-detail2/product1.png' %}" data-src="{% static 'images/products/product-detail2/product1.png' %}">
+                                            <a class="mfp-link lg-item" href="{{ img.image.url }}" data-src="{{ img.image.url }}">
                                                 <i class="feather icon-maximize dz-maximize top-left"></i>
                                             </a>
-                                            <img src="{% static 'images/products/product-detail2/product1.png' %}" alt="image">
+                                            <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="dz-media DZoomImage">
-                                            <a class="mfp-link lg-item" href="{% static 'images/products/product-detail2/product2.png' %}" data-src="{% static 'images/products/product-detail2/product2.png' %}">
-                                                <i class="feather icon-maximize dz-maximize top-left"></i>
-                                            </a>
-                                            <img src="{% static 'images/products/product-detail2/product2.png' %}" alt="image">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="dz-media DZoomImage">
-                                            <a class="mfp-link lg-item" href="{% static 'images/products/product-detail2/product3.png' %}" data-src="{% static 'images/products/product-detail2/product3.png' %}">
-                                                <i class="feather icon-maximize dz-maximize top-left"></i>
-                                            </a>
-                                            <img src="{% static 'images/products/product-detail2/product3.png' %}" alt="image">
-                                        </div>
-                                    </div>
+                                {% endfor %}
                                 </div>
                             </div>
                             <div class="swiper product-gallery-swiper thumb-swiper-lg">
                                 <div class="swiper-wrapper">
+                                {% for img in product.images.all %}
                                     <div class="swiper-slide">
-                                        <img src="{% static 'images/products/product-detail2/thumb-img/1.png' %}" alt="image">
+                                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
                                     </div>
-                                    <div class="swiper-slide">
-                                        <img src="{% static 'images/products/product-detail2/thumb-img/2.png' %}" alt="image">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="{% static 'images/products/product-detail2/thumb-img/3.png' %}" alt="image">
-                                    </div>
+                                {% endfor %}
                                 </div>
                             </div>
                         </div>							
@@ -776,7 +763,7 @@
 
 
     <!-- Start | Pixio Global Bottom JS -->
-        {% comment %} <script src="{% static 'vendor/bootstrap-touchspin/bootstrap-touchspin.js' %}"></script> {% endcomment %}
+        <script src="{% static 'vendor/bootstrap-touchspin/bootstrap-touchspin.js' %}"></script>
         <script src="{% static 'vendor/counter/waypoints-min.js' %}"></script>
         <script src="{% static 'vendor/counter/counterup.min.js' %}"></script>
         {% comment %} <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script> {% endcomment %}
