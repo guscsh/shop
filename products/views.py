@@ -59,7 +59,7 @@ def product_list(request):
 # ------------------------------------------------------------------
 # 2. 商品詳細頁
 # ------------------------------------------------------------------
-def product_detail(request, slug):
+def product(request, slug):
     """
     商品詳細頁：顯示單一商品資訊、顏色、尺寸、圖片
     技術亮點：同樣使用 active manager，確保下架商品無法被直接輸入網址觀看
@@ -72,4 +72,4 @@ def product_detail(request, slug):
     context = {
         'product': product,
     }
-    return render(request, 'products/product_detail.html', context)
+    return render(request, 'products/product.html', context)
