@@ -1,10 +1,59 @@
 {% extends "base.html" %}
 {% load static %}
-        
+
+{% block title %}{{ user.username }} | My Profile {% endblock %}
+
 {% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white">
+                    <h3 class="mb-0">My Account</h3>
+                    <p class="text-muted mt-2">
+                        Hello {{ user.first_name|default:user.username }}
+                        <span class="d-block">{{ user.email }}</span>
+                    </p>
+                </div>
+                <div class="card-body">
+                    <!-- Profile Info Form -->
+                    <form method="POST" class="mb-5">
+                        {% csrf_token %}
+                        <h5 class="border-bottom pb-2 mb-4">Personal Information</h5>
 
-<div class="display-4 text-center m-5">
-    暫時的 Profile Page<br/>只供 Testing 使用，需要入番內容
+                        <div class="form-group mb-3">
+                            <label>First Name</label>
+                            {{ profile_form.first_name }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Last Name</label>
+                            {{ profile_form.last_name }}
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Email address</label>
+                            {{ profile_form.email }}
+                        </div>
+
+                        <button type="submit" name="profile_submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+
+                    <!-- Password Form -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h5 class="border-bottom pb-2 mb-4">Change Password</h5>
+
+                        <div class="form-group mb-3">
+                            {{ pwd_form.new_password1 }}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ pwd_form.new_password2 }}
+                        </div>
+
+                        <button type="submit" name="pwd_submit" class="btn btn-dark">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}
