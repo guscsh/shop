@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
-        
+
 {% block additional_css %}
+    <!-- Pixio Global CSS -->
+    {% comment %} <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'vendor/nouislider/nouislider.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'vendor/lightgallery/dist/css/lightgallery.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/lightgallery/dist/css/lg-thumbnail.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/lightgallery/dist/css/lg-zoom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Pixio Skin CSS -->
+    <link class="skin" type="text/css" rel="stylesheet" href="{% static 'css/skin/skin-1.css' %}">
 {% endblock %}
 		
 {% block content %}
@@ -745,3 +756,30 @@
 </div>
 <!-- Quick Modal End -->
 {% endblock %}     
+    
+    {% block additional_js %}
+    <!-- Pixio Global JS -->
+    {% comment %} <script src="{% static 'js/jquery.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+    {% comment %} <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'vendor/bootstrap-touchspin/bootstrap-touchspin.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendor/counter/waypoints-min.js' %}"></script>
+    <script src="{% static 'vendor/counter/counterup.min.js' %}"></script>
+    {% comment %} <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendor/imagesloaded/imagesloaded.js' %}"></script>
+    <script src="{% static 'vendor/masonry/masonry-4.2.2.js' %}"></script>
+    <script src="{% static 'vendor/masonry/isotope.pkgd.min.js' %}"></script>
+    {% comment %} <script src="{% static 'vendor/countdown/jquery.countdown.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendor/wnumb/wNumb.js' %}"></script>
+    <script src="{% static 'vendor/nouislider/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/dz.carousel.js' %}"></script>
+    <script src="{% static 'js/dz.ajax.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <!-- Pixio Page Level JS -->
+    <script src="{% static 'vendor/lightgallery/dist/lightgallery.min.js' %}"></script>
+    <script src="{% static 'vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js' %}"></script>
+    <script src="{% static 'vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js' %}"></script>
+    <script src="{% static 'js/jquery.star-rating-svg.js' %}"></script>
+    {% endblock %}
