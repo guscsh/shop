@@ -15,15 +15,12 @@ class ProductImageInline(admin.TabularInline):
     fields = ('image', 'color', 'alt_text', 'display_order')
 
 class ProductVariantInline(admin.TabularInline):
-    """商品變體內嵌：在商品頁直接管理 SKU (顏色+尺寸+庫存)"""
+    """商品頁直接管理 SKU (顏色+尺寸+庫存)"""
     model = ProductVariant
-    extra = 3 # 預設 3 排，通常一件衣服至少 S/M/L
+    extra = 1
     max_num = 20 
     ordering = ['color', 'size']
-    # 技術亮點：readonly_fields。因為 SKU 通常有特定編碼規則，不讓人亂改
     readonly_fields = ('sku',) 
-    # fields = ('sku',) 
-
 
 @admin.register(Color)
 class Color(admin.ModelAdmin):

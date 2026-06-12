@@ -63,7 +63,15 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name, allow_unicode=True)
+
+        old_base_price = None 
+        if not self._state.adding:#Django 內部狀態屬性。True = 這是新物件,False = 這是已存在物件         
+            old_base_price = Product.objects.filter(pk=self.pk).values_list('base_price', flat=True).first()
+
         super().save(*args, **kwargs)
+        
+        if old_base_price != self.base_price:
+            self.variants.all().update(price=self.base_price)
 
     def get_absolute_url(self):
         return reverse('products:product', kwargs={'slug': self.slug})
@@ -82,7 +90,7 @@ class Color(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug == slugify(self.name)
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -157,6 +165,12 @@ class ProductVariant(models.Model):
         if self.price is None or self.price == 0:
             self.price = self.product.base_price
         super().save(*args, **kwargs)
+
+    @property
+    def final_price(self):
+        if self.price is not None:
+            return self.price
+        return self.product.base_price
 
     def __str__(self):
         return f"{self.product.name} - {self.color.name} / {self.size}"

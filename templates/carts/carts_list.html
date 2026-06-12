@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}		
+{% block content %}
+		<!-- contact area -->
+		<section class="content-inner shop-account">
+			<!-- Product -->
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="table-responsive">
+							<table class="table check-tbl">
+								<thead>
+									<tr>
+										<th>Product</th>
+										<th></th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th>Subtotal</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+                                    {% for item in carts %}
+									<tr>
+										<td class="product-item-img"><img src="{{ item.image.url }}" alt="/"></td>
+										<td class="product-item-name">
+											<div class="product-name">{{ item.variant.product.name }}</div>
+											<div class="product-spec">{{ item.variant.color}}</div>
+											<div class="product-spec">{{ item.variant.size}}</div>
+										</td>
+										</td>
+										<td class="product-item-price">{{ item.price }}</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 5px;">
+                                                {% if item.puantiy > 1%}
+                                                <form action="#" method="post" style="margin: 0; padding: 0;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="quantity" value="-1">
+                                                    <button type="submit" style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: pointer;">-</button>
+                                                </form>
+												{% else %}
+												<button type="submit" disabled style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: not-allowed;">-</button>
+												{% endif %}
+                                                <span style="width: 30px; text-align: center; font-weight: bold;">{{ item.quantiy }}</span>
+                                                <form action="#" method="post" style="margin: 0; padding: 0;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button type="submit" style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: pointer;">+</button>
+                                                </form>  
+                                            </div>
+                                        </td>
+										<td class="product-item-totle">{{ total_price }}</td>
+										<td class="product-item-close">
+                                            <form action="#" method="post" style="margin: 0; padding: 0; margin-left: 15px;">
+                                                {% csrf_token %}
+                                                <button type="submit" style="border: none; background: none; color: #dc3545; font-size: 1.2em; cursor: pointer; font-weight: bold;">&times;</button>
+                                            </form>
+                                        </td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+						<div class="row shop-form m-t30">
+							<div class="col-md-6">
+								<div class="form-group">
+									<div class="input-group mb-0">
+										<input name="dzEmail" required="required" type="text" class="form-control" placeholder="Coupon Code">
+										<div class="input-group-addon">
+											<button name="submit" value="Submit" type="submit" class="btn coupon">
+												Total:{{ carts.get_total_price }}
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 text-end">
+                                {% comment %} fix carts_add {% endcomment %}
+								<a href="#" class="btn btn-secondary">check</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Product END -->
+		</section>
+		<!-- contact area End--> 
+{% endblock %}    
