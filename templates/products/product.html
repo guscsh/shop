@@ -81,31 +81,27 @@
                                         </div>
                                     </div>
                                     <p class="para-text"> {{ product.description }} </p>
-                                    <div class="meta-content m-b20 d-flex align-items-end">
-                                        <div class="btn-quantity quantity-sm light d-xl-none d-blcok d-sm-block">
-                                            <label class="form-label">Quantity</label>
-                                            <input  type="text" value="1" name="demo_vertical2">
-                                        </div>
-                                    </div>
-                                    <div class="product-num">
-                                        <div class="btn-quantity light d-xl-block d-sm-none d-none">
-                                            <label class="form-label">Quantity</label>
-                                            <input  type="text" value="1" name="demo_vertical2">
-                                        </div>
 
-                                        <div class="product-num">
+                                    <div class="d-flex flex-column gap-4 mb-4">
+                                        <!-- Quantity Field -->
+                                            <div class="d-block btn-quantity light">
+                                                <label class="form-label">Quantity</label>
+                                                <input type="text" value="1" name="demo_vertical2">
+                                            </div>
+                                        <!-- Quantity Field End -->
                                         <!-- Size Picker -->
                                         {% if all_sizes %}
                                             <div class="d-block">
-                                                <label class="form-label">Size: <span id="selected-size">-</span></label>
-                                                <div class="btn-group product-size m-0">
+                                                <label class="form-label">Size: <span id="selected-size">{{ current_variant.size }}</span></label>
+                                                <div class="d-flex flex-wrap gap-2 product-size m-0">
                                                 {% for size in all_sizes %}
                                                     <input type="radio" 
                                                     class="btn-check size-radio" 
                                                     name="btnradio1" 
                                                     id="btnradio10{{ forloop.counter }}" 
                                                     value="{{ size }}"
-                                                    {% if size in available_sizes %}required{% else %}disabled{% endif %}>
+                                                    {% if size in available_sizes %}required{% else %}disabled{% endif %} 
+                                                    {% if size == current_variant.size %}checked{% endif %}>
                                                     <label class="btn" for="btnradio10{{ forloop.counter }}">{{ size }}</label>
                                                 {% endfor %}
                                                 </div>
@@ -114,20 +110,20 @@
                                         <!-- Size Picker End -->
                                         <!-- Color Picker -->
                                         {% if available_colors %}
-                                            <div class="meta-content">
+                                            <div class="d-block meta-content">
                                                 <label class="form-label">Color: {{ current_color.name }}</label>
                                                 <div class="d-flex align-items-center color-filter">
                                                 {% for color in available_colors %}
                                                     <div class="form-check">
                                                         <a href="?color={{ color.slug }}">
                                                             <input type="radio" 
-                                                            class="form-check-input" 
+                                                            class="form-check-input d-none" 
                                                             name="radioNoLabel" 
                                                             id="radioNoLabe12{{ forloop.counter }}" 
                                                             value="{{ color.hex_code }}" 
                                                             aria-label="..." 
                                                             {% if color.slug == current_color.slug %}checked{% endif %}>
-                                                            <span></span>
+                                                            <span style="pointer-events: none;"></span>
                                                         </a>
                                                     </div>
                                                 {% endfor %}
@@ -135,27 +131,11 @@
                                             </div>
                                         {% endif %}
                                         <!-- Color Picker End -->
-                                        </div>
                                     </div>
                                     <div class="dz-info">
                                         <ul>
                                             <li><strong>SKU:</strong></li>
-                                            <li>{{ current_variant.sku }}</li>
-                                        </ul>
-                                        <ul>
-                                            <li><strong>Category:</strong></li>
-                                            <li><a href="{% url 'products:list' %}">Dresses,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Jeans,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Swimwear,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Summer,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Clothing,</a></li>												
-                                        </ul>
-                                        <ul>
-                                            <li><strong>Tags:</strong></li>
-                                            <li><a href="{% url 'products:list' %}">Casual,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Athletic,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Workwear,</a></li>												
-                                            <li><a href="{% url 'products:list' %}">Accessories,</a></li>												
+                                            <li>{{ current_variant.sku | upper }}</li>
                                         </ul>
                                     </div>
                                 </div>

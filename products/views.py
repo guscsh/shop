@@ -65,10 +65,9 @@ def product(request, slug):
     SIZES_LIST = ('XS', 'S', 'M', 'L', 'XL', 'XXL')
 
     # 如果商品已下架（is_active=False），即使知道網址也會看到 404，防止已下架商品被直接訪問
-    product = get_object_or_404(Product.active, slug=slug)
-    
     # 由於我們在 ActiveProductManager 已經 prefetch_related('images', 'variants')
     # 這裡的 product.images.all() 和 product.variants.all() 不會再發出 SQL 查詢！
+    product = get_object_or_404(Product.active, slug=slug)
     all_variants = product.variants.select_related('color').all() 
     all_images = product.images.all()
 
@@ -82,25 +81,24 @@ def product(request, slug):
     # avoid KeyError if available_colors is empty
     # else, the color parameter is valid, get the first matching color object from available_colors
     # then break the Generator Expression
-    available_color_slugs = [color.slug for color in available_colors]
-    if current_color_slug not in available_color_slugs and available_colors:
+    is_valid_slug = any(color.slug == current_color_slug for color in available_colors)
+    if not is_valid_slug and available_colors:
         current_color = available_colors[0]
         current_color_slug = current_color.slug
-    elif available_colors:
-        current_color = next(color for color in available_colors if color.slug == current_color_slug)
     else:
-        current_color = None
-        current_color_slug = None
+        current_color = next((color for color in available_colors if color.slug == current_color_slug), None)
+        current_color_slug = current_color.slug if current_color else None
 
     context = {
         'product': product,
         'current_color': current_color,
         'available_colors': available_colors,
-        'available_sizes': list({variant.size for variant in all_variants if variant.color.slug == current_color_slug}),
+        'available_sizes': list({variant.size for variant in all_variants if variant.color.slug == current_color_slug}) if current_color_slug else [],
         'all_sizes': sorted(list({variant.size for variant in all_variants}),
                             key=lambda size: SIZES_LIST.index(size) if size in SIZES_LIST else 99),
         'available_images': sorted([image for image in all_images if image.color == current_color],
                                    key=lambda image: (image.display_order, image.id)),
+        'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None)
     }
 
     return render(request, 'products/product.html', context)
