@@ -60,27 +60,31 @@ def product_list(request):
 # 2. 商品詳細頁
 # ------------------------------------------------------------------
 def product(request, slug):
-    """
-    商品詳細頁：顯示單一商品資訊、顏色、尺寸、圖片
-    技術亮點：同樣使用 active manager，確保下架商品無法被直接輸入網址觀看
-    """
-    product = get_object_or_404(Product.active, slug=slug)#如果商品已下架（is_active=False），即使知道網址也會看到 404，防止已下架商品被直接訪問
+
+    # 如果商品已下架（is_active=False），即使知道網址也會看到 404，防止已下架商品被直接訪問
+    product = get_object_or_404(Product.active, slug=slug)
     
     # 由於我們在 ActiveProductManager 已經 prefetch_related('images', 'variants')
     # 這裡的 product.images.all() 和 product.variants.all() 不會再發出 SQL 查詢！
+    all_variants = product.variants.all() 
 
-    # Packup size & color combinations for frontend
-    variant_list = []
-    for variant in product.variants.all():
-        variant_list.append({
-            'id': variant.id,
-            'size': variant.size,
-            'color_id': str(variant.color.id), # 轉成字串，方便前端 JS 使用
-            'color_name': variant.color.name,
-        })
+    # Dedupe the list of available colors
+    available_colors = list({variant.color.name: variant.color for variant in all_variants}.values())    
+    
+    # Get the color parameter from URL
+    current_color = request.GET.get('color')
+    
+    # If there is invalid or no color parameter in URL, default to the first color
+    # Avoid KeyError if available_colors is empty
+    available_colors_name = [color.name for color in available_colors]
+    if current_color not in available_colors_name and available_colors: 
+        current_color = available_colors_name[0]
 
     context = {
         'product': product,
-        'variant_list': variant_list,
+        'available_colors': available_colors,
+        'current_color': current_color,
+        'available_sizes': list({variant.size for variant in all_variants if variant.color.name == current_color}),
     }
+
     return render(request, 'products/product.html', context)
