@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from trace import Trace
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] 
 
@@ -48,6 +49,7 @@ APPLICATION_APPS = [
     'accounts.apps.AccountsConfig',
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
+    'carts.apps.CartsConfig',
 ]
 
 THIRD_PARTY_APPS = [
