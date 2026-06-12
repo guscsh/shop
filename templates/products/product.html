@@ -95,6 +95,7 @@
 
                                         <div class="product-num">
                                         <!-- Size Picker -->
+                                        {% if all_sizes %}
                                             <div class="d-block">
                                                 <label class="form-label">Size: <span id="selected-size">-</span></label>
                                                 <div class="btn-group product-size m-0">
@@ -109,10 +110,12 @@
                                                 {% endfor %}
                                                 </div>
                                             </div>
+                                        {% endif %}
                                         <!-- Size Picker End -->
                                         <!-- Color Picker -->
+                                        {% if available_colors %}
                                             <div class="meta-content">
-                                                <label class="form-label">Color: {{ current_color }}</label>
+                                                <label class="form-label">Color: {{ current_color.name }}</label>
                                                 <div class="d-flex align-items-center color-filter">
                                                 {% for color in available_colors %}
                                                     <div class="form-check">
@@ -123,20 +126,21 @@
                                                             id="radioNoLabe12{{ forloop.counter }}" 
                                                             value="{{ color.hex_code }}" 
                                                             aria-label="..." 
-                                                            {% if color.slug == current_color %}checked{% endif %}>
+                                                            {% if color.slug == current_color.slug %}checked{% endif %}>
                                                             <span></span>
                                                         </a>
                                                     </div>
                                                 {% endfor %}
                                                 </div>
                                             </div>
+                                        {% endif %}
                                         <!-- Color Picker End -->
                                         </div>
                                     </div>
                                     <div class="dz-info">
                                         <ul>
                                             <li><strong>SKU:</strong></li>
-                                            <li>{{ product.variant.sku }}</li>
+                                            <li>{{ current_variant.sku }}</li>
                                         </ul>
                                         <ul>
                                             <li><strong>Category:</strong></li>
