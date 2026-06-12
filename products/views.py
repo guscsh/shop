@@ -68,8 +68,19 @@ def product(request, slug):
     
     # 由於我們在 ActiveProductManager 已經 prefetch_related('images', 'variants')
     # 這裡的 product.images.all() 和 product.variants.all() 不會再發出 SQL 查詢！
-    
+
+    # Packup size & color combinations for frontend
+    variant_list = []
+    for variant in product.variants.all():
+        variant_list.append({
+            'id': variant.id,
+            'size': variant.size,
+            'color_id': str(variant.color.id), # 轉成字串，方便前端 JS 使用
+            'color_name': variant.color.name,
+        })
+
     context = {
         'product': product,
+        'variant_list': variant_list,
     }
     return render(request, 'products/product.html', context)

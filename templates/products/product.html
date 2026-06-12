@@ -20,23 +20,25 @@
 {% block content %}
 <div class="page-content bg-light">
 		
+<!-- Breadcrumb -->
     <div class="d-sm-flex justify-content-between container-fluid py-3">
         <nav aria-label="breadcrumb" class="breadcrumb-row">
             <ul class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{% url 'pages:index' %}"> Home</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'products:list' %}"> Products</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'products:list' %}?category={{ product.category.parent.slug }}">{{ product.category.parent.name }}</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'products:list' %}?category={{ product.category.slug }}">{{ product.category.name }}</a></li>
                 <li class="breadcrumb-item">{{ product.name }}</li>
             </ul>
         </nav>
     </div>
+<!-- Breadcrumb End -->
     
-    </section>
+<!-- Product Details -->
     <section class="content-inner py-0">
         <div class="container-fluid">
-            <div class="row p-5" style="height: 100px">
-            </div>
             <div class="row">
+            <!-- Left Side Product Gallery -->
                 <div class="col-xl-4 col-md-4">
                     <div class="dz-product-detail sticky-top">
                         <div class="swiper-btn-center-lr">
@@ -66,6 +68,8 @@
                         </div>							
                     </div>	
                 </div>
+            <!-- Left Side Product Gallery End -->
+            <!-- Middle Side Product Info -->
                 <div class="col-xl-8 col-md-8">
                     <div class="row">
                         <div class="col-xl-7">
@@ -73,34 +77,10 @@
                                 <div class="dz-content">
                                     <div class="dz-content-footer">
                                         <div class="dz-content-start">
-                                            <span class="badge bg-secondary mb-2">SALE 20% Off</span>
-                                            <h4 class="title mb-1">Curly Girl Beautiful Dress</h4>
-                                            <div class="review-num">
-                                                <ul class="dz-rating me-2">
-                                                    <li class="star-fill">
-                                                        <i class="flaticon-star-1"></i>
-                                                    </li>										
-                                                    <li class="star-fill">
-                                                        <i class="flaticon-star-1"></i>
-                                                    </li>
-                                                    <li class="star-fill">
-                                                        <i class="flaticon-star-1"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="flaticon-star-1"></i>
-                                                    </li>
-                                                    <li>
-                                                        <i class="flaticon-star-1"></i>
-                                                    </li>
-                                                </ul>
-                                                <span class="text-secondary me-2">4.7 Rating</span>
-                                                <a href="javascript:void(0);">(5 customer reviews)</a>
-                                            </div>
+                                            <h4 class="title mb-1">{{ product.name }}</h4>
                                         </div>
                                     </div>
-                                    <p class="para-text">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    </p>
+                                    <p class="para-text"> {{ product.description }} </p>
                                     <div class="meta-content m-b20 d-flex align-items-end">
                                         <div class="btn-quantity quantity-sm light d-xl-none d-blcok d-sm-block">
                                             <label class="form-label">Quantity</label>
@@ -112,6 +92,32 @@
                                             <label class="form-label">Quantity</label>
                                             <input  type="text" value="1" name="demo_vertical2">
                                         </div>
+
+                                        <div class="product-num">
+                                            <div class="d-block mb-3">
+                                                <label class="form-label">Size</label>
+                                                <div class="btn-group product-size m-0" id="size-container">
+                                                    {% for variant in product.variants.all %}
+                                                        <input type="radio" class="btn-check size-input" name="size" id="size_{{ variant.id }}" value="{{ variant.size }}">
+                                                        <label class="btn" for="size_{{ variant.id }}" id="label_size_{{ variant.id }}">{{ variant.size }}</label>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+
+                                            <div class="meta-content">
+                                                <label class="form-label">Color</label>
+                                                <div class="d-flex align-items-center color-filter" id="color-container">
+                                                    {% for variant in product.variants.all %}
+                                                        <div class="form-check color-wrapper" id="wrapper_color_{{ variant.id }}">
+                                                            <input class="form-check-input color-input" type="radio" name="color" id="color_{{ variant.id }}" value="{{ variant.color.id }}">
+                                                            <span style="background-color: {{ variant.color.hex_code }};"></span>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--
                                         <div class="d-block">
                                             <label class="form-label">Size</label>
                                             <div class="btn-group product-size m-0">
@@ -147,6 +153,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
                                     <div class="dz-info">
                                         <ul>
@@ -208,6 +215,8 @@
                                 </div>
                             </div>
                         </div>
+            <!-- Middle Side Product Info End -->
+                    <!-- Right Side Checkout Bar -->
                         <div class="col-xl-5">
                             <div class="cart-detail">
                                 <a href="javascript:void(0);" class="btn btn-outline-secondary w-100 m-b20">Bank Offer 5% Cashback</a>
@@ -256,12 +265,15 @@
                                 <a href="#" class="btn btn-secondary w-100">ADD TO CART</a>
                             </div>	
                         </div>
+                    <!-- Right Side Checkout Bar End -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+<!-- Product Details End -->
     
+<!-- Product Description & Reviews -->
     <section class="content-inner-3 pb-0"> 
         <div class="container">
             <div class="product-description">
@@ -416,7 +428,9 @@
             </div>
         </div>
     </section>
+<!-- Product Description & Reviews End-->
     
+<!-- Related Products -->
     <section class="content-inner-1  overflow-hidden">
         <div class="container">
             <div class="section-head style-2 d-md-flex justify-content-between align-items-center">
@@ -583,8 +597,10 @@
             </div>
         </div>
     </section>
+<!-- Related Products End -->
     
 </div>
+
 <!-- Quick Modal Start -->
 <div class="modal quick-view-modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -744,6 +760,7 @@
     </div>
 </div>
 <!-- Quick Modal End -->
+
 {% endblock %}     
     
 {% block additional_js %}
