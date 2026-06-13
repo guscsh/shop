@@ -81,6 +81,7 @@
 
                     {% for product in products %}
                     <div class="col-xl-4 col-lg-6 col-sm-6">
+                    <a href="{{ product.slug }}">
                         <div class="product-card border shadow-sm rounded overflow-hidden h-100 d-flex flex-column">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid w-100">
                             <div class="p-3 d-flex flex-column flex-grow-1">
@@ -91,6 +92,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     </div>
                     {% empty %}
                     <div class="col-12">
