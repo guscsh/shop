@@ -4,9 +4,63 @@
 {% block additional_css %}
 {% endblock %}
 		
-{% block title %} | Shipping Info {% endblock %}
+{% block title %} NOVA | Shipping Information {% endblock %}
 {% block content %}
-<div class="display-4 text-center py-5">
-    Shipping Information
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-sm border-0 p-5">
+                <h2 class="fw-bold mb-4" style="color: #f7b938;">Shipping Information</h2>
+                <hr>
+
+                <h5 class="mt-4 fw-semibold">1. Shipping Destinations</h5>
+                <p class="text-muted">
+                    We currently ship to all regions within [Your Country/Region, e.g., United States, Canada, EU]. 
+                    For international shipping, please check the shipping fee and delivery time during checkout.
+                    Unfortunately, we do not ship to PO boxes or military addresses at this time.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">2. Shipping Fees</h5>
+                <p class="text-muted">
+                    Shipping fees are calculated based on your shipping address and order weight:
+                    <br>- Orders over [e.g., $50] qualify for FREE standard shipping.
+                    <br>- Standard shipping fee: [e.g., $5.99] for orders under [e.g., $50].
+                    <br>- Express shipping fee: [e.g., $12.99] (delivery in 1-2 business days).
+                </p>
+
+                <h5 class="mt-4 fw-semibold">3. Delivery Time</h5>
+                <p class="text-muted">
+                    - Standard Shipping: 3-5 business days (after order processing).
+                    <br>- Express Shipping: 1-2 business days (after order processing).
+                    <br>- Order processing time: 1-2 business days (excluding weekends and holidays).
+                    <br>Note: Delivery times may be delayed due to weather, customs, or peak seasons.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">4. Order Tracking</h5>
+                <p class="text-muted">
+                    Once your order is shipped, you will receive a confirmation email with a tracking number.
+                    You can track your order status by visiting the "Order History" page in your account,
+                    or by entering the tracking number on our website’s tracking page.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">5. Shipping Restrictions</h5>
+                <p class="text-muted">
+                    - Some products (e.g., liquids, fragile items) may have additional shipping restrictions.
+                    <br>- International orders may be subject to customs duties and taxes, which are the responsibility of the customer.
+                    <br>- We are not responsible for lost or stolen packages once they are marked as "delivered" by the shipping carrier.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">6. Shipping Issues</h5>
+                <p class="text-muted">
+                    If you experience any shipping delays, missing packages, or damaged items, please contact our customer service within 7 days of the expected delivery date.
+                    Provide your order number and details of the issue, and we will assist you promptly.
+                </p>
+
+                <div class="mt-5">
+                    <a href="{% url 'pages:index' %}" class="btn text-white" style="background-color: #f7b938;">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

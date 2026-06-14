@@ -1,12 +1,79 @@
 {% extends 'base.html' %}
 {% load static %}
-        
+
 {% block additional_css %}
 {% endblock %}
-		
-{% block title %} | Return Info {% endblock %}
+
+{% block title %} NOVA | Return & Refund Policy {% endblock %}
+
 {% block content %}
-<div class="display-4 text-center py-5">
-    Return Information
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-sm border-0 p-5 bg-light">
+                <h2 class="fw-bold mb-4" style="color: #f7b938;">Return & Refund Policy</h2>
+                <hr>
+
+                <!-- 1. Return Eligibility -->
+                <h5 class="mt-4 fw-semibold">1. Return Eligibility</h5>
+                <p class="text-muted mt-2">
+                    To be eligible for a return or refund, the following conditions must be met:
+                    <br>- Items must be unused, unwashed, and in their original packaging (with tags intact).
+                    <br>- Returns must be requested within <strong>7 calendar days</strong> of receiving your order.
+                    <br>- Custom-made or personalized items are non-returnable (unless defective).
+                    <br>- Defective items (e.g., damaged, wrong size/style) are eligible for return/exchange.
+                </p>
+
+                <!-- 2. Return Process -->
+                <h5 class="mt-6 fw-semibold">2. How to Request a Return</h5>
+                <p class="text-muted mt-2">
+                    Step 1: Log in to your account and go to "My Orders" to find the order you want to return.
+                    <br>Step 2: Click "Request Return" and fill in the return reason (e.g., wrong size, defective).
+                    <br>Step 3: We will review your request within 1-2 business days and send a return confirmation.
+                    <br>Step 4: Pack the item securely (with original packaging) and ship it back to our warehouse (address provided in return confirmation).
+                    <br>Step 5: Once we receive and inspect the item, we will process your refund or exchange.
+                </p>
+
+                <!-- 3. Refund Details -->
+                <h5 class="mt-6 fw-semibold">3. Refund Information</h5>
+                <p class="text-muted mt-2">
+                    - Refunds will be processed to your original payment method (credit card, digital wallet, etc.).
+                    <br>- Refund processing time: 3-5 business days after we receive and inspect your returned item.
+                    <br>- Shipping fees for returns are borne by the customer (unless the return is due to our error, e.g., wrong item).
+                    <br>- Partial refunds are available for items with minor defects (at our discretion).
+                </p>
+
+                <!-- 4. Exchange Policy -->
+                <h5 class="mt-6 fw-semibold">4. Exchange Policy</h5>
+                <p class="text-muted mt-2">
+                    If you want to exchange an item (e.g., wrong size, wrong color), follow the same return process and note "Exchange" in your request.
+                    <br>Exchanges are subject to stock availability. If the desired item is out of stock, we will offer a full refund instead.
+                </p>
+
+                <!-- 5. Non-Returnable Items -->
+                <h5 class="mt-6 fw-semibold">5. Non-Returnable Items</h5>
+                <p class="text-muted mt-2">
+                    The following items are non-returnable and non-refundable:
+                    <br>- Customized/personalized items (e.g., engraved products, made-to-order items).
+                    <br>- Perishable goods (if applicable).
+                    <br>- Items without original packaging or tags.
+                    <br>- Items that have been used, washed, or damaged by the customer.
+                </p>
+
+                <!-- 6. Contact for Issues -->
+                <h5 class="mt-6 fw-semibold">6. Need Help?</h5>
+                <p class="text-muted mt-2">
+                    If you have questions about returns, refunds, or exchanges, please contact our customer service:
+                    <br>Email: nova@info.com
+                    <br>Phone: (+852) 1234-5678
+                </p>
+
+                <!-- Back to Home Button -->
+                <div class="mt-8">
+                    <a href="{% url 'pages:index' %}" class="btn text-white" style="background-color: #f7b938;">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

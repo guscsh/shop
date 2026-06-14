@@ -4,19 +4,19 @@
 {% block additional_css %}
 {% endblock %}
 		
-{% block title %} | FAQ {% endblock %}
+{% block title %} NOVA | FAQ {% endblock %}
 {% block content %}
-<div class="page-content bg-light">
+<div class="page-content">
     <section class="content-inner main-faq-content">
         <div class="container">
             <div class="row faq-head">
                 <div class="col-12 text-center">
                     <h1 class="title wow fadeInUp" data-wow-delay="0.1s">Hi! How can we help you?</h1>
                     <nav aria-label="breadcrumb" class="breadcrumb-row wow fadeInUp" data-wow-delay="0.2s">
-                        <ul class="breadcrumb mb-lg-4 mb-3">
+                        {% comment %} <ul class="breadcrumb mb-lg-4 mb-3">
                             <li class="breadcrumb-item"><a href="{% url 'pages:index' %}"> Home</a></li>
                             <li class="breadcrumb-item">FAQ</li>
-                        </ul>
+                        </ul> {% endcomment %}
                     </nav>
                     {% comment %} <div class="search_widget wow fadeInUp" data-wow-delay="0.3s">
                         <form class="dzSearch">
@@ -109,6 +109,11 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="mt-8">
+            <a href="{% url 'pages:index' %}" class="btn text-white" style="background-color: #f7b938;">Back to Home</a>
             </div>
         </div>
     </section>
