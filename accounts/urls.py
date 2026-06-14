@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 
 app_name = 'accounts'
 
@@ -10,9 +10,10 @@ urlpatterns = [
         template_name="accounts/login.html",
         redirect_authenticated_user=True
     ), name="login"),
-    path('logout/', views.logout_view, name="logout"),
+    path('logout/', LogoutView.as_view(next_page='pages:index'), name="logout"),
     path('profile/', views.profile, name="profile"),
     path('dashboard/', views.AccountDashboard.as_view(), name="dashboard"),
     path('orders/', views.order_history, name="orders"),
-    path('favourites/', views.Favourites, name="favourites"),
+    path('favourites/', views.favourites, name="favourites"),
+    path('favourites/<int:product_id>/', views.toggle_favourite, name="toggle_favourite"),
 ]
