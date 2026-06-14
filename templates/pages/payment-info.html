@@ -4,9 +4,50 @@
 {% block additional_css %}
 {% endblock %}
 		
-{% block title %} | Payment Info {% endblock %}
+{% block title %} NOVA | Payment Policy {% endblock %}
 {% block content %}
-<div class="display-4 text-center py-5">
-    Payment Information
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card shadow-sm border-0 p-5">
+                <h2 class="fw-bold mb-4" style="color: #f7b938;">Payment Policy</h2>
+                <hr>
+
+                <h5 class="mt-4 fw-semibold">1. Accepted Payment Methods</h5>
+                <p class="text-muted">
+                    We support the following payment options: Credit Card, Debit Card, Online Bank Transfer and Digital Wallet.
+                    All transactions are secured and encrypted to protect your payment information.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">2. Payment Process</h5>
+                <p class="text-muted">
+                    After you complete your order, you will be redirected to the secure payment page.
+                    Please finish payment within 24 hours, otherwise your order will be automatically canceled.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">3. Payment Security</h5>
+                <p class="text-muted">
+                    We do not store your full card details on our server. All payment data is processed by certified payment providers.
+                    Your financial information is fully protected.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">4. Refund & Payment Rules</h5>
+                <p class="text-muted">
+                    Refunds will be returned to your original payment account within 3-7 working days after approval.
+                    Partial payment or installment is not supported for current orders.
+                </p>
+
+                <h5 class="mt-4 fw-semibold">5. Payment Failure</h5>
+                <p class="text-muted">
+                    If your payment fails, please check your account balance, network status or card limit.
+                    You can retry payment in your order history page.
+                </p>
+
+                <div class="mt-5">
+                    <a href="{% url 'pages:index' %}" class="btn text-white" style="background-color: #f7b938;">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
