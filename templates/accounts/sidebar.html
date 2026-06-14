@@ -3,7 +3,7 @@
     <!-- User Info -->
     <div class="text-center mb-4 pb-4 border-bottom">
         <div class="rounded-circle bg-secondary mx-auto" style="width:80px;height:80px;overflow:hidden;">
-        {% if user.acc_profile.avatar %}
+        {% if user.profile.avatar %}
             <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded-circle" alt="Sidebar Avatar">
         {% else %}
             <img src="{% static 'images/default-avatar.png' %}" class="img-fluid rounded-circle" alt="Default Avatar">
@@ -12,7 +12,7 @@
 
         <h4 class="font-weight-bold mb-1 mt-3">{{ user.first_name|default:user.username }} {{ user.last_name }}</h4>
         <p class="mb-0" style="color: #91755d;">{{ user.email }}</p>
-        <h6 class="text-muted mb-4">{{ vip_level }}</h6>
+        <h6 class="text-muted mb-4">{{ user.profile.vip_level_display }}</h6>
     </div>
 
     <!-- Dashboard Section -->

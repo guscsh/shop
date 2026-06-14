@@ -73,11 +73,13 @@
                         <div class="col-md-6 mb-4">
                             <label class="font-weight-bold d-block mb-2">First Name</label>
                             {{ profile_form.first_name }}
+                            {{ profile_form.first_name.errors }}
                         </div>
                         <!-- Last Name -->
                         <div class="col-md-6 mb-4">
                             <label class="font-weight-bold d-block mb-2">Last Name</label>
                             {{ profile_form.last_name }}
+                            {{ profile_form.last_name.errors }}
                         </div>
                         <!-- Email -->
                         <div class="col-md-6 mb-4">
@@ -88,16 +90,42 @@
                         <div class="col-md-6 mb-4">
                             <label class="font-weight-bold d-block mb-2">Phone</label>
                             {{ profile_form.phone }}
+                            {{ profile_form.phone.errors }}
+                        </div>
+
+                        <div class="col-12 my-4 border-top pt-4">
+                            <h5 class="font-weight-bold mb-0">Change Password</h5>
+                            <small class="text-muted">Leave blank if you don't want to change your password</small>
+                        </div>
+                        <!-- Current Password -->
+                        <div class="col-md-12 mb-4">
+                            <label class="font-weight-bold d-block mb-2">Current password</label>
+                            {{ pwd_form.old_password }}
+                            {% if pwd_form.old_password.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for err in pwd_form.old_password.errors %}{{ err }}{% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- New Password -->
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-12 mb-4">
                             <label class="font-weight-bold d-block mb-2">New password (leave blank to leave unchanged)</label>
                             {{ pwd_form.new_password1 }}
+                            {% if pwd_form.new_password1.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for err in pwd_form.new_password1.errors %}{{ err }}{% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- Confirm Password -->
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-12 mb-4">
                             <label class="font-weight-bold d-block mb-2">Confirm new password</label>
                             {{ pwd_form.new_password2 }}
+                            {% if pwd_form.new_password2.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {% for err in pwd_form.new_password2.errors %}{{ err }}{% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
 

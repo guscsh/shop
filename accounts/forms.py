@@ -1,8 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import PasswordChangeForm
-from .models import UserProfile
+from users.models import UserProfile
 
 # Register Form
 class RegisterForm(UserCreationForm):
@@ -57,7 +56,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['phone', 'newsletter_subscribed','avatar']
+        fields = ['phone', 'avatar', 'crop_x', 'crop_y', 'crop_w', 'crop_h']
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
@@ -68,6 +67,11 @@ class ProfileUpdateForm(forms.ModelForm):
             self.fields['email'].initial = user.email
 
 class CustomPasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Current password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        required=False
+    )
     new_password1 = forms.CharField(
         label="New password (leave blank to leave unchanged)",
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
