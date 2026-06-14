@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from trace import Trace
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -48,6 +49,7 @@ APPLICATION_APPS = [
     'accounts.apps.AccountsConfig',
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
+    'carts.apps.CartsConfig',
 ]
 
 THIRD_PARTY_APPS = [

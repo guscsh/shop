@@ -78,7 +78,7 @@
 <body>
 
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light py-3 shadow-sm sticky-top" style="background:#fff9e3">
+<nav class="navbar navbar-expand-lg navbar-light py-3 shadow-sm sticky-top" style="background:#fff9e3; z-index: 1030;">
     <div class="container">
 
         <!-- Logo -->
@@ -141,7 +141,7 @@
         <a class="nav-link text-dark" href="#"><i class="far fa-heart"></i></a>
     </li>
     <li class="nav-item mx-2 position-relative">
-        <a class="nav-link text-dark" href="#"><i class="fas fa-shopping-bag"></i></a>
+        <a class="nav-link text-dark" href="{% url 'carts:list' %}"><i class="fas fa-shopping-bag"></i></a>
         <span class="cart-badge">0</span>
     </li>
 
