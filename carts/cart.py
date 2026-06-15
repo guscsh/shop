@@ -1,4 +1,5 @@
 from products.models import ProductVariant
+from decimal import Decimal
 
 class Cart:
     """購物車類別：基於 Session 運作"""
@@ -52,7 +53,7 @@ class Cart:
             if not variant:
                 continue
 
-            price = float(variant.final_price) 
+            price = variant.final_price
             item['price'] = price
             item['total_price'] = item['price'] * item['quantity']
         

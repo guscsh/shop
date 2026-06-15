@@ -142,7 +142,7 @@
     </li>
     <li class="nav-item mx-2 position-relative">
         <a class="nav-link text-dark" href="{% url 'carts:list' %}"><i class="fas fa-shopping-bag"></i></a>
-        <span class="cart-badge">0</span>
+        <span class="cart-badge">{{ cart_count }}</span>
     </li>
 
     {% if user.is_authenticated %}
