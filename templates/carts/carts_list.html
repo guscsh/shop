@@ -24,16 +24,18 @@
 									<tr>
 										<td class="product-item-img"><img src="{{ item.image.url }}" alt="/"></td>
 										<td class="product-item-name">
-											<div class="product-name">{{ item.variant.product.name }}</div>
+											<div class="product-name">
+												<a href="{% url 'products:product' item.variant.product.slug %}">
+													{{ item.variant.product.name }}</a></div>
 											<div class="product-spec">{{ item.variant.color}}</div>
 											<div class="product-spec">{{ item.variant.size}}</div>
 										</td>
 										</td>
-										<td class="product-item-price">{{ item.price }}</td>
+										<td class="product-item-price">${{ item.price|floatformat:2 }}</td>
                                         <td>
                                             <div style="display: flex; align-items: center; gap: 5px;">
-                                                {% if item.puantiy > 1%}
-                                                <form action="#" method="post" style="margin: 0; padding: 0;">
+                                                {% if item.quantity > 1%}
+                                                <form action="{% url 'carts:add' item.variant.id %}" method="post" style="margin: 0; padding: 0;">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="quantity" value="-1">
                                                     <button type="submit" style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: pointer;">-</button>
@@ -41,17 +43,17 @@
 												{% else %}
 												<button type="submit" disabled style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: not-allowed;">-</button>
 												{% endif %}
-                                                <span style="width: 30px; text-align: center; font-weight: bold;">{{ item.quantiy }}</span>
-                                                <form action="#" method="post" style="margin: 0; padding: 0;">
+                                                <span style="width: 30px; text-align: center; font-weight: bold;">{{ item.quantity }}</span>
+                                                <form action="{% url 'carts:add' item.variant.id %}" method="post" style="margin: 0; padding: 0;">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="quantity" value="1">
                                                     <button type="submit" style="width: 30px; height: 30px; border: 1px solid #ccc; background: #f8f9fa; cursor: pointer;">+</button>
                                                 </form>  
                                             </div>
                                         </td>
-										<td class="product-item-totle">{{ total_price }}</td>
+										<td class="product-item-totle">${{ item.total_price|floatformat:2 }}</td>
 										<td class="product-item-close">
-                                            <form action="#" method="post" style="margin: 0; padding: 0; margin-left: 15px;">
+                                            <form action="{% url 'carts:remove' item.variant.id %}" method="post" style="margin: 0; padding: 0; margin-left: 15px;">
                                                 {% csrf_token %}
                                                 <button type="submit" style="border: none; background: none; color: #dc3545; font-size: 1.2em; cursor: pointer; font-weight: bold;">&times;</button>
                                             </form>
@@ -68,7 +70,7 @@
 										<input name="dzEmail" required="required" type="text" class="form-control" placeholder="Coupon Code">
 										<div class="input-group-addon">
 											<button name="submit" value="Submit" type="submit" class="btn coupon">
-												Total:{{ carts.get_total_price }}
+												Total:${{ carts.get_total_price|floatformat:2 }}
 											</button>
 										</div>
 									</div>

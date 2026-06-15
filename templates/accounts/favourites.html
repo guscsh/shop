@@ -27,13 +27,13 @@
                         <tbody>
                             {% for item in fav_list %}
                             <tr>
-                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.name }}</td>
                                 <td>
-                                    <span class="text-danger font-weight-bold">${{ item.product.base_price }}</span>
+                                    <span class="text-danger font-weight-bold">${{ item.base_price }}</span>
                                 </td>
                                 <td>
-                                    {% if item.product.variants.exists %}
-                                        {% with variant=item.product.variants.first %}
+                                    {% if item.variants.exists %}
+                                        {% with variant=item.variants.first %}
                                             {% if variant.stock > 0 %}
                                                 In Stock
                                             {% else %}
@@ -45,7 +45,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{{ item.product.get_absolute_url }}" class="btn btn-sm btn-dark">Add To Cart</a>
+                                    <a href="{% url "products:product" item.slug %}" class="btn btn-sm btn-dark">Watch Detail</a>
                                 </td>
                             </tr>
                             {% empty %}
