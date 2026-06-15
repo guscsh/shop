@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
 # from .models import Product
 from django.contrib.auth.decorators import login_required
-from .models import NewsletterSubscriber 
+from .models import NewsletterSubscriber
+from products.models import Product 
 from django.contrib import messages
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'pages/index.html')
+    # Random 3 products
+    top_sale_products = Product.objects.all().order_by('?')[:3]
+    context = {
+        'top_sale_products': top_sale_products
+    }
+    return render(request, 'pages/index.html', context)
 
 def about(request):
     return render(request, 'pages/about.html')
