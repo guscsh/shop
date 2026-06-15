@@ -27,7 +27,7 @@
                 <form action="{% url 'products:list' %}" method="get" id="filterForm">
                     <!-- Category -->
                     <div class="sidebar-widget mb-5">
-                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Category</h5>
+                        <h5 class="footer-title mb-4 ps-3" style="border-left:3px solid #e3c593;">Category</h5>
                         <ul class="list-unstyled footer-link-list">
                             <li class="mb-2">
                                 <!--
@@ -68,15 +68,30 @@
                     </div>
 
                     <!-- PRICE RANGE SLIDER FILTER -->
+                    <!-- Color of Track and Thumb -->
+                    <style>
+                        .form-range::-webkit-slider-runnable-track {
+                            background: #9f9292 !important;
+                        }
+                        .form-range::-webkit-slider-thumb {
+                            background: #e3c593 !important;
+                        }
+                        .form-range::-moz-range-track {
+                            background: #9f9292 !important;
+                        }
+                        .form-range::-moz-range-thumb {
+                            background: #e3c593 !important;
+                        }
+                    </style>
                     <div class="sidebar-widget">
-                        <h5 class="footer-title mb-4 border-start border-3 border-primary ps-3">Price Range</h5>
+                        <h5 class="footer-title mb-4 ps-3" style="border-left:3px solid #e3c593;">Price Range</h5>
                         <div class="mb-3">
                             <input type="range" min="0" max="300" name="max" id="priceSlider" value="{{ max_p|default:300 }}" class="form-range">
                             <input type="hidden" name="min" value="0">
                             <p class="mt-2 text-dark">Price: $0 - $<span id="priceVal">{{ max_p|default:300 }}</span></p>
                         </div>
-                        <button class="btn btn-sm btn-warning w-100">Apply Filter</button>
-                        <a href="{% url 'products:list' %}" class="mt-2 d-inline-block text-warning text-sm">Reset All</a>
+                        <button class="btn btn-sm w-100" style="background-color:#e3c593 !important; border-color:#e3c593 !important; color:#000;">Apply Filter</button>
+                        <a href="{% url 'products:list' %}" class="mt-2 d-inline-block text-sm" style="color:#e3c593;">Reset All</a>
                     </div>
                     {% if query %}
                         <input type="hidden" name="q" value="{{ query }}">
@@ -87,10 +102,9 @@
             <!-- Right Product List Area -->
             <div class="col-lg-9 col-md-8">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4">
-
                     {% for product in products %}
                     <div class="col-xl-4 col-lg-6 col-sm-6">
-                    <a href="{{ product.slug }}">
+                    <a href="{{ product.slug }}" style="text-decoration:none;">
                         <div class="product-card border shadow-sm rounded overflow-hidden h-100 d-flex flex-column">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid w-100">
                             <div class="p-3 d-flex flex-column flex-grow-1">
@@ -122,27 +136,27 @@
                                 </li>
                             {% else %}
                                 <li class="page-item disabled">
-                                    <a class="page-link" href="#">&laquo;</a>
+                                    <a class="page-link" href="#" style="color:#888 !important;">&laquo;</a>
                                 </li>
                             {% endif %}
                             {% for page in page_obj.paginator.page_range %}
                             {% if page_obj.number == page %}
                             <li class="page-item active">
-                                <a class="page-link" href="#">{{page}}</a>
+                                <a class="page-link" href="#" style="background:#ffc105;border-color:#ffc105;color:#000;">{{page}}</a>
                             </li>
                             {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{page}}">{{page}}</a>
+                                <a class="page-link" href="?page={{page}}" style="color:#222 !important; border-color:#ddd; background:#fff;">{{page}}</a>
                             </li>
                             {% endif %}
                             {% endfor %}
                             {% if page_obj.has_next %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a>
+                                <a class="page-link" href="?page={{page_obj.next_page_number}}" style="color:#222 !important; border-color:#ddd; background:#fff;">&raquo;</a>
                             </li>
                             {% else %}
                             <li class="page-item disabled">
-                                <a class='page-link' href="#">&raquo;</a>
+                                <a class='page-link' href="#" style="color:#888 !important;">&raquo;</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -167,13 +181,18 @@
 
 <style>
 .product-card:hover{
-    box-shadow: 0 4px 12px #ddd !important;
+    box-shadow: 0 4px 12px #9f9292 !important;
     transition: all 0.25s ease;
 }
 .footer-link-list a:hover, .footer-link-list button:hover{
-    color:#f7c248 !important;
+    color:#ffc105 !important;
     padding-left:4px;
     transition: all 0.2s ease;
+}
+.page-link:hover {
+    background-color:#fff9e3 !important;
+    border-color:#fff9e3 !important;
+    color:#000 !important;
 }
 </style>
 {% endblock %}

@@ -109,6 +109,7 @@
                                 <!-- Quantity Field -->
                                     <div class="d-block btn-quantity light">
                                         <label class="form-label">Quantity</label>
+                                        
                                         <input type="text" value="1" name="demo_vertical2">
                                     </div>
                                 <!-- Quantity Field End -->
@@ -129,7 +130,11 @@
                                                         value="{{ variant.sku }}"
                                                         required
                                                         {% if size == current_variant.size %}checked{% endif %}>
-                                                        <label class="btn" for="size-id-{{ variant.id }}">{{ size }}</label>
+                                                        <label class="btn" for="size-id-{{ variant.id }}"
+                                                            {% if size == current_variant.size %}
+                                                                style="background-color:#ffc105 !important; border-color:#ffc105 !important; color:#000 !important;"
+                                                            {% endif %}
+                                                        >{{ size }}</label>
                                                     {% endif %}
                                                 {% endfor %}
                                             {% else %}
@@ -153,18 +158,51 @@
                                         <label class="form-label">Color: {{ current_color.name }}</label>
                                         <div class="d-flex align-items-center color-filter">
                                         {% for color in available_colors %}
-                                            <div class="form-check">
-                                                <a href="?color={{ color.slug }}">
+                                                <a 
+                                                href="?color={{ color.slug }}"
+                                                style="display:inline-flex;
+                                                        align-items:center;
+                                                        justify-content:center;
+                                                        width:44px;
+                                                        height:44px;
+                                                        border-radius:50%;
+                                                        box-sizing:border-box;
+                                                        text-decoration:none;
+                                                        {% if color.slug == current_color.slug %}
+                                                            border:3px solid #ffc105;
+                                                        {% else %}
+                                                            border:1px solid #dddddd;
+                                                        {% endif %}
+                                                        "
+                                                        onmouseover="
+                                                            if(!this.style.border.includes('#ffc105')){
+                                                                this.style.border='2px solid #ffc105';
+                                                            }
+                                                        "
+                                                        onmouseout="
+                                                            if(!this.style.border.includes('#ffc105')){
+                                                                this.style.border='1px solid #dddddd';
+                                                            }
+                                                        "
+                                                    >
+                                                        <span 
+                                                            style="
+                                                                width:32px;
+                                                                height:32px;
+                                                                border-radius:50%;
+                                                                background:{{ color.hex_code }};
+                                                                display:block;
+                                                                pointer-events:none;
+                                                                flex-shrink:0;
+                                                            "
+                                                        ></span>
                                                     <input type="radio" 
                                                     class="form-check-input d-none" 
                                                     name="radioNoLabel" 
-                                                    id="radioNoLabe12{{ forloop.counter }}" 
+                                                    id="color-{{ forloop.counter }}" 
                                                     value="{{ color.hex_code }}" 
-                                                    aria-label="..." 
                                                     {% if color.slug == current_color.slug %}checked{% endif %}>
-                                                    <span style="pointer-events: none;"></span>
                                                 </a>
-                                            </div>
                                         {% endfor %}
                                         </div>
                                     </div>
@@ -202,27 +240,34 @@
                                 </ul>
                                 <ul>
                                     <li><strong>Category:</strong></li>
-                                    <li><a href="{% url 'products:list' %}?category={{ product.category.slug }}">{{ product.category.name }}</a></li>								
+                                    <li><a href="{% url 'products:list' %}?category={{ product.category.slug }}" style="color:#222 !important; text-decoration:none;" 
+                                        onmouseover="this.style.color='#ffc105'"
+                                        onmouseout="this.style.color='#222'"
+                                        >{{ product.category.name }}</a><li>							
                                 </ul>
                                 <ul class="social-icon">
                                     <li><strong>Share:</strong></li>
                                     <li>
-                                        <a href="#" target="_blank">
+                                        <a href="https://www.facebook.com/" target="_blank" style="color:#222 !important; text-decoration:none;" onmouseover="this.style.color='#ffc105'"
+                                        onmouseout="this.style.color='#222'">
                                             <i class="fa-brands fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank">
+                                        <a href="https://linkedin.com/in/" target="_blank" style="color:#222 !important; text-decoration:none;" onmouseover="this.style.color='#ffc105'"
+                                        onmouseout="this.style.color='#222'">
                                             <i class="fa-brands fa-linkedin-in"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank">
+                                        <a href="https://instagram.com/" target="_blank" style="color:#222 !important; text-decoration:none;" onmouseover="this.style.color='#ffc105'"
+                                        onmouseout="this.style.color='#222'">
                                             <i class="fa-brands fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank">
+                                        <a href="https://x.com/" target="_blank" style="color:#222 !important; text-decoration:none;" onmouseover="this.style.color='#ffc105'"
+                                        onmouseout="this.style.color='#222'">
                                             <i class="fa-brands fa-twitter"></i>
                                         </a>
                                     </li>
@@ -232,13 +277,22 @@
                         <div class="banner-social-media">
                             <ul>
                                 <li>
-                                    <a href="#">Instagram</a>
+                                    <a href="https://instagram.com/" style="color:#222 !important; text-decoration:none;"
+                                    onmouseover="this.style.color='#ffc105'"
+                                    onmouseout="this.style.color='#222'"
+                                    >Instagram</a>
                                 </li>
                                 <li>
-                                    <a href="#">Facebook</a>
+                                    <a href="https://www.facebook.com/" style="color:#222 !important; text-decoration:none;"
+                                    onmouseover="this.style.color='#ffc105'"
+                                    onmouseout="this.style.color='#222'"
+                                    >Facebook</a>
                                 </li>
                                 <li>
-                                    <a href="#">twitter</a>
+                                    <a href="https://x.com/" style="color:#222 !important; text-decoration:none;"
+                                    onmouseover="this.style.color='#ffc105'"
+                                    onmouseout="this.style.color='#222'"
+                                    >twitter</a>
                                 </li>
                             </ul>
                         </div>
@@ -439,7 +493,15 @@
                                         {% if user.is_authenticated %}
                                         <form method="post" action="{% url 'accounts:toggle_favourite' item.id %}" class="d-inline">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-primary meta-icon dz-wishicon {% if item.is_favorited %}active{% endif %}">
+                                            <button type="submit" class="btn btn-primary meta-icon dz-wishicon {% if item.is_favorited %}active{% endif %}"
+                                                {% if item.is_favorited %}style="background-color:#ffc105 !important;border-color:#ffc105 !important;color:#000 !important;"
+                                                onmouseover=""
+                                                onmouseout=""
+                                                {% else %}
+                                                onmouseover="this.style.backgroundColor='#ffc105';this.style.borderColor='#ffc105';this.style.color='#000'"
+                                                onmouseout="this.style.backgroundColor='';this.style.borderColor='';this.style.color=''"
+                                                {% endif %}
+                                                >
                                                 <i class="icon feather icon-heart dz-heart"></i>
                                                 <i class="icon feather icon-heart-on dz-heart-fill"></i>
                                             </button>
@@ -452,7 +514,11 @@
                                         {% endif %}
 
                                         <!-- Add To Cart -->
-                                        <a href="{% url 'carts:add' item.id %}" class="btn btn-primary meta-icon dz-carticon">
+                                        <a href="{% url 'carts:add' item.id %}" 
+                                        class="btn btn-warning meta-icon dz-carticon"
+                                        onmouseover="this.style.backgroundColor='#ffc105';this.style.borderColor='#ffc105';this.style.color='#000'"
+                                        onmouseout="this.style.backgroundColor='';this.style.borderColor='';this.style.color=''"
+                                        >
                                             <i class="flaticon flaticon-basket"></i>
                                             <i class="flaticon flaticon-basket-on dz-heart-fill"></i>
                                         </a>
