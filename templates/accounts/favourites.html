@@ -45,7 +45,7 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{{ item.get_absolute_url }}" class="btn btn-sm btn-dark">Add To Cart</a>
+                                    <a href="{% url "products:product" item.slug %}" class="btn btn-sm btn-dark">Watch Detail</a>
                                 </td>
                             </tr>
                             {% empty %}

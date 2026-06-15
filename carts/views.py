@@ -9,17 +9,14 @@ def carts_list(request):
 
 def carts_add(request, variant_id):
     cart = Cart(request)
-    vartant = get_object_or_404(ProductVariant ,variant_id)
-
-    quantity=int(request.POST.get('quantity', 1))
-    
-
-    cart.add(vartant=vartant, quantity=quantity)
+    variant = get_object_or_404(ProductVariant ,id=variant_id)
+    quantity=int(request.GET.get('quantity', request.POST.get('quantity', 1)))
+    cart.add(variant=variant, quantity=quantity)
     return redirect('carts:list')
 
 def carts_remove(request, variant_id):
     cart = Cart(request)
-    vartant = get_object_or_404(ProductVariant, variant_id)
+    vartant = get_object_or_404(ProductVariant, id=variant_id)
 
     cart.remove(vartant)
     return redirect('carts:list')

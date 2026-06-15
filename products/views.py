@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Category, Product
+from users.models import UserProfile
 
 def product_list(request):
     """商品列表頁：支援分類、價格篩選 + 分頁"""
@@ -89,6 +90,13 @@ def product(request, slug):
         current_color = next((color for color in available_colors if color.slug == current_color_slug), None)
         current_color_slug = current_color.slug if current_color else None
 
+    is_favorited = False
+
+    if request.user.is_authenticated:
+        profile, _ = UserProfile.objects.get_or_create(user=request.user)
+        is_favorited = profile.favorites.filter(pk=product.pk).exists()
+
+    
     context = {
         'product': product,
         'current_color': current_color,
@@ -98,7 +106,8 @@ def product(request, slug):
                             key=lambda size: SIZES_LIST.index(size) if size in SIZES_LIST else 99),
         'available_images': sorted([image for image in all_images if image.color == current_color],
                                    key=lambda image: (image.display_order, image.id)),
-        'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None)
+        'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
+        'is_favorited': is_favorited,
     }
 
     return render(request, 'products/product.html', context)
