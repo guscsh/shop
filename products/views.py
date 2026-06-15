@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Category, Product
 from users.models import UserProfile
+from django.db.models import Q
 
 def product_list(request):
     """商品列表頁：支援分類、價格篩選 + 分頁"""
     selected_category = request.GET.get('category', '')#取出 category 參數，如果沒有則預設為空字串。
     max_p = request.GET.get('max', '')
-    
+    query = request.GET.get('q', '').strip()
     categories = Category.objects.filter(is_active=True, parent=None)#取出頂層分類（沒有 parent 的主分類），且必須是上架狀態。
 
     # 計算主分類總數 (本身 + 子分類)
@@ -24,6 +25,13 @@ def product_list(request):
     # === 3. 商品查詢 ===
     products = Product.active.all()
     
+    if query:
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(variants__sku__icontains=query) |
+            Q(category__name__icontains=query)
+        )
+
     # 分類篩選 (這裡也要包含子分類)
     if selected_category:
         category = get_object_or_404(Category, slug=selected_category)
@@ -54,6 +62,7 @@ def product_list(request):
         'max_p': max_p,
         'page_obj': page_obj,
         'is_paginated': page_obj.has_other_pages(),
+        'query': query,
     }
     return render(request, 'products/product_list.html', context)
 
@@ -95,7 +104,6 @@ def product(request, slug):
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         is_favorited = profile.favorites.filter(pk=product.pk).exists()
-
     # Related Products: Same Category + All Sub Categories
     # Get current category + its child categories
     current_cat = product.category
@@ -119,8 +127,9 @@ def product(request, slug):
         'all_sizes': sorted(list({variant.size for variant in all_variants}),
                             key=lambda size: SIZES_LIST.index(size) if size in SIZES_LIST else 99),
         'available_images': sorted([image for image in all_images if image.color == current_color],
-                                   key=lambda image: (image.display_order, image.id)),
+                                key=lambda image: (image.display_order, image.id)),
         'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
+        'current_color_variants': [variant for variant in all_variants if variant.color_id == current_color.id],
         'is_favorited': is_favorited,
         'related_products': related_products,
     }

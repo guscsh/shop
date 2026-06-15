@@ -88,7 +88,9 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="dz-product-detail style-2 p-t50 bg-transparent">
-                        <div class="dz-content">
+                        <form action="{% url 'carts:add_to_cart' %}" method="POST" class="dz-content">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_slug" value="{{ product.slug }}">
                         <!-- Product Base Info -->
                             <div class="dz-content-footer">
                                 <div class="dz-content-start">
@@ -116,20 +118,30 @@
                                         <label class="form-label">Size: <span id="selected-size">{{ current_variant.size }}</span></label>
                                         <div class="d-flex flex-wrap gap-2 product-size m-0">
                                         {% for size in all_sizes %}
-                                            <input type="radio" 
-                                            class="btn-check size-radio" 
-                                            name="btnradio1" 
-                                            id="btnradio10{{ forloop.counter }}" 
-                                            value="{{ size }}"
-                                            {% if size in available_sizes %}required{% else %}disabled{% endif %} 
-                                            {% if size == current_variant.size %}checked{% endif %}>
-                                            <label class="btn" for="btnradio10{{ forloop.counter }}"
-                                            {% if size == current_variant.size %}
-                                            style="border: 2px solid #ffc105 !important; background-color:#ffc105 !important; color:#000 !important;"
+                                            {% if size in available_sizes %}
+                                                {% for variant in current_color_variants %}
+                                                    {% if variant.size == size %}
+                                                        <input name="sku" 
+                                                        type="radio" 
+                                                        class="btn-check size-radio" 
+                                                        id="size-id-{{ variant.id }}" 
+                                                        data-size="{{ variant.size }}"
+                                                        value="{{ variant.sku }}"
+                                                        required
+                                                        {% if size == current_variant.size %}checked{% endif %}>
+                                                        <label class="btn" for="size-id-{{ variant.id }}">{{ size }}</label>
+                                                    {% endif %}
+                                                {% endfor %}
                                             {% else %}
-                                            style="border: 1px solid #ddd; background: transparent;"
+                                                <input name="size" 
+                                                type="radio" 
+                                                class="btn-check size-radio" 
+                                                id="size-disabled-{{ size }}" 
+                                                data-size="{{ size }}"
+                                                value="Out-of-stock"
+                                                disabled>
+                                                <label class="btn disabled" for="size-disabled-{{ size }}">{{ size }}</label>
                                             {% endif %}
-                                            >{{ size }}</label>
                                         {% endfor %}
                                         </div>
                                     </div>
@@ -161,7 +173,7 @@
                             </div>
                             <div class="btn-group cart-btn">
                                 {% comment %} {% url 'pixio:shop-cart' %} {% endcomment %}
-                                <a href="{% url 'carts:add' current_variant.id %}?size={{ current_variant.size }}&color={{ current_color.slug }}" class="btn btn-secondary text-uppercase">Add To Cart</a>
+                                <button type="submit" class="btn btn-secondary text-uppercase">Add To Cart</button>
                                 {% comment %} {% url 'pixio:shop-wishlist' %} {% endcomment %}
                                 {% comment %} <a href="#" class="btn btn-outline-secondary btn-icon"> {% endcomment %}
                                 {% if user.is_authenticated %}
@@ -186,7 +198,7 @@
                             <div class="dz-info">
                                 <ul>
                                     <li><strong>SKU:</strong></li>
-                                    <li>{{ current_variant.sku | upper }}</li>
+                                    <li id="display-sku">{{ current_variant.sku | upper }}</li>
                                 </ul>
                                 <ul>
                                     <li><strong>Category:</strong></li>
@@ -216,7 +228,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </form>
                         <div class="banner-social-media">
                             <ul>
                                 <li>
@@ -675,10 +687,20 @@
             document.addEventListener('change', function(event) {
                 // 檢查被點擊的東西，是不是我們加上了 .size-radio 的尺寸按鈕
                 if (event.target && event.target.classList.contains('size-radio')) {
-                    // 獲取被選中的那個 Radio 的 value（例如 "S"、"M"）
-                    const selectedSize = event.target.value;
-                    // 把這個數值立刻寫進上面那個 <span> 標籤裡面！
+                    
+                    // 獲取 data-size 屬性（如 "S", "M"），用來更新 Size 尺寸文字
+                    const selectedSize = event.target.dataset.size;
                     document.getElementById('selected-size').textContent = selectedSize;
+                    
+                    // 獲取 value
+                    const selectedSku = event.target.value;
+                    
+                    // 3. Safety Measure：如果點到沒貨的按鈕（value 是 "Out-of-stock"），Display SKU 就顯示 OOS，否則轉大寫顯示
+                    if (selectedSku === 'Out-of-stock') {
+                        document.getElementById('display-sku').textContent = 'OUT OF STOCK';
+                    } else {
+                        document.getElementById('display-sku').textContent = selectedSku.toUpperCase();
+                    }
                 }
             });
         </script>
