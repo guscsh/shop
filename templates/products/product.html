@@ -88,7 +88,11 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="dz-product-detail style-2 p-t50 bg-transparent">
-                        <div class="dz-content">
+                        <form action="{% url 'carts:add_to_cart' %}" method="POST" class="dz-content">
+                            {% csrf_token %}
+                            <input type="hidden" name="variant_id" value="{{ current_variant.id }}">
+                            <input type="hidden" name="variant_sku" value="{{ current_variant.sku }}">
+                            <input type="hidden" name="product_slug" value="{{ product.slug }}">
                         <!-- Product Base Info -->
                             <div class="dz-content-footer">
                                 <div class="dz-content-start">
@@ -116,9 +120,9 @@
                                         <label class="form-label">Size: <span id="selected-size">{{ current_variant.size }}</span></label>
                                         <div class="d-flex flex-wrap gap-2 product-size m-0">
                                         {% for size in all_sizes %}
-                                            <input type="radio" 
+                                            <input name="size" 
+                                            type="radio" 
                                             class="btn-check size-radio" 
-                                            name="btnradio1" 
                                             id="btnradio10{{ forloop.counter }}" 
                                             value="{{ size }}"
                                             {% if size in available_sizes %}required{% else %}disabled{% endif %} 
@@ -197,7 +201,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </form>
                         <div class="banner-social-media">
                             <ul>
                                 <li>
