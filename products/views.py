@@ -95,7 +95,6 @@ def product(request, slug):
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         is_favorited = profile.favorites.filter(pk=product.pk).exists()
-
     
     context = {
         'product': product,
@@ -107,6 +106,7 @@ def product(request, slug):
         'available_images': sorted([image for image in all_images if image.color == current_color],
                                    key=lambda image: (image.display_order, image.id)),
         'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
+        'current_color_variants': [variant for variant in all_variants if variant.color_id == current_color.id],
         'is_favorited': is_favorited,
     }
 
