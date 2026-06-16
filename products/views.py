@@ -113,7 +113,7 @@ def product(request, slug):
         'all_sizes': sorted(list({variant.size for variant in all_variants}),
                             key=lambda size: SIZES_LIST.index(size) if size in SIZES_LIST else 99),
         'available_images': sorted([image for image in all_images if image.color == current_color],
-                                key=lambda image: (image.display_order, image.id)),
+                                    key=lambda image: (image.display_order, image.id)),
         'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
         'current_color_variants': [variant for variant in all_variants if variant.color_id == current_color.id],
         'is_favorited': is_favorited,
