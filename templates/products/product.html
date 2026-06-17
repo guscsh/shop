@@ -17,9 +17,9 @@
         <link class="skin" type="text/css" rel="stylesheet" href="{% static 'css/skin/skin-1.css' %}">
     <!-- End | Pixio Skin CSS -->
 {% endblock %}
-		
+{% block title %} | {{ product.name }} {% endblock %}		
 {% block content %}
-{% block title %} | {{ product.name }} {% endblock %}
+
 <div class="page-content">
 <!-- Breadcrumb -->
     <div class="d-flex justify-content-between container-fluid py-3">
@@ -210,27 +210,32 @@
                                 {% endif %}
                                 <!-- Color Picker End -->
                             </div>
-                            <div class="btn-group cart-btn">
-                                {% comment %} {% url 'pixio:shop-cart' %} {% endcomment %}
+                            <!-- Add Cart & Wishlist -->
+                            <div class="btn-group cart-btn mt-4">
+                                <!-- Add Cart button -->
                                 <button type="submit" class="btn btn-secondary text-uppercase">Add To Cart</button>
-                                {% comment %} {% url 'pixio:shop-wishlist' %} {% endcomment %}
-                                {% comment %} <a href="#" class="btn btn-outline-secondary btn-icon"> {% endcomment %}
+
                                 {% if user.is_authenticated %}
-                                    <form method="post" action="{% url 'accounts:toggle_favourite' product.id %}" class="d-inline">
+                                    <!-- Wishlist -->
                                         {% csrf_token %}
                                         <button type="submit"
-                                                class="btn btn-outline-warning  meta-icon dz-wishicon{% if is_favorited %} active" style="background-color:#ffc105 !important; {% endif %}"
+                                                form="wishlist"
+                                                class="btn btn-outline-warning meta-icon dz-wishicon {% if is_favorited %}active{% endif %}"
+                                                {% if is_favorited %}style="background-color: #ffc105 !important; color: #000 !important;"{% endif %}
                                                 aria-label="{% if is_favorited %}Remove from wishlist{% else %}Add to wishlist{% endif %}">
-                                            <i class="icon feather icon-heart dz-heart"></i>
-                                            <i class="icon feather icon-heart-on dz-heart-fill"></i>
+
+                                            {% if is_favorited %}
+                                                <i class="icon feather icon-heart-on dz-heart-fill"></i>
+                                            {% else %}
+                                                <i class="icon feather icon-heart dz-heart"></i>
+                                            {% endif %}
                                         </button>
-                                    </form>
                                 {% else %}
+                                    <!-- 未登入狀態：直接導向登入頁面，且只顯示空心愛心 -->
                                     <a href="{% url 'accounts:login' %}?next={{ request.path }}"
-                                        class="btn btn-outline-secondary  meta-icon dz-wishicon"
-                                        aria-label="Login to save to wishlist">
+                                       class="btn btn-outline-secondary meta-icon dz-wishicon"
+                                       aria-label="Login to save to wishlist">
                                         <i class="icon feather icon-heart dz-heart"></i>
-                                        <i class="icon feather icon-heart-on dz-heart-fill"></i>
                                     </a>
                                 {% endif %}
                             </div>
@@ -302,6 +307,12 @@
             </div>
         </div>
     </section>
+
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'accounts:toggle_favourite' product.id %}" id="wishlist" style="display: none;">
+        {% csrf_token %}
+    </form>
+    {% endif %}
     
     {% comment %} <section class="content-inner-3 pb-0"> 
         <div class="container">
@@ -538,8 +549,8 @@
                         </div>
                         {% endfor %}
                     {% else %}
-                        <div class="swiper-slide">
-                            <p>No related products available</p>
+                        <div class="swiper-slide mx-auto">
+                            <p class="text-center"> No related products available</p>
                         </div>
                     {% endif %}
                 </div>
