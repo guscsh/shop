@@ -100,10 +100,24 @@ def product(request, slug):
         current_color_slug = current_color.slug if current_color else None
 
     is_favorited = False
-
+    profile = None
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         is_favorited = profile.favorites.filter(pk=product.pk).exists()
+    # Related Products: Same Category + All Sub Categories
+    # Get current category + its child categories
+    current_cat = product.category
+    cat_ids = [current_cat.id] + list(current_cat.children.values_list('id', flat=True))
+    # Query related products
+    related_products = Product.active.filter(category_id__in=cat_ids).exclude(pk=product.pk)[:6]
+
+    # Handle favorite status
+    fav_ids = set()
+    if profile:
+        fav_ids = set(profile.favorites.values_list('id', flat=True))
+
+    for item in related_products:
+        item.is_favorited = item.id in fav_ids
     
     context = {
         'product': product,
@@ -117,6 +131,7 @@ def product(request, slug):
         'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
         'current_color_variants': [variant for variant in all_variants if variant.color_id == current_color.id],
         'is_favorited': is_favorited,
+        'related_products': related_products,
     }
 
     return render(request, 'products/product.html', context)

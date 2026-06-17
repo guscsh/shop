@@ -45,11 +45,14 @@
                         <div class="col-xl-7 col-lg-7 mt-4 mt-xl-0">
                             <div class="subscribe_widget">
                                 <h6 class="title fw-medium mb-3">Subscribe To Our Newsletter</h6>
-                                <form class="dzSubscribe style-1" action="#" method="">
+                                <!-- Submit to the same backend route as popup -->
+                                <form class="dzSubscribe style-1" action="/subscribe/" method="post">
+                                    {% csrf_token %}
                                     <div class="dzSubscribeMsg"></div>
                                     <div class="form-group mb-0">
                                         <div class="input-group rounded overflow-hidden">
-                                            <input name="dzEmail" required="required" type="email" class="form-control border-0 bg-warning-subtle py-3" placeholder="Your Email Address">
+                                            <!-- Match input name="email" same as popup -->
+                                            <input name="email" required="required" type="email" class="form-control border-0 bg-warning-subtle py-3" placeholder="Your Email Address">
                                             <div class="input-group-addon">
                                                 <button type="submit" class="btn bg-warning border-0 px-4">
                                                     <i class="fas fa-arrow-right text-dark"></i>
@@ -57,6 +60,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Hidden checkbox to pass marketing consent (required by your view logic) -->
+                                    <input type="hidden" name="marketing" value="on">
                                 </form>
                             </div>
                         </div>
