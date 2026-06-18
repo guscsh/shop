@@ -79,7 +79,7 @@ def place_order(request):
     cart.clear()
     return redirect('orders:success', order_no=order.order_no)
 
-# def send_order_confirmation_email(order):
+#  def send_order_confirmation_email(order):
 #     subject = f'Order Confirmation - {order.order_no}'
 
 #     # 組裝信件本文（純文字）

@@ -2,8 +2,10 @@ import uuid
 from decimal import Decimal          
 from django.db import transaction    
 from django.utils import timezone   
-from products.models import ProductVariant   
+from products.models import ProductVariant  
+from users.models import UserProfile 
 from .models import Order, OrderItem, Payment  
+
 
 
 class InsufficientStockError(Exception):
@@ -109,7 +111,11 @@ def place_order(user, cart, shipping_data, payment_data):
         transaction_id=f"TXN-{uuid.uuid4().hex[:10].upper()}",    
         paid_at=timezone.now(),                                   
     )
+    profile, _ = UserProfile.objects.get_or_create(user=user)
 
+    earned_points = int(total)
+    profile.points += earned_points
+    profile.save(update_fields=['points'])
     order.total = total          
     order.status = 'paid'        
     order.save(update_fields=['status', 'total'])  
