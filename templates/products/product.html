@@ -43,11 +43,6 @@
                         <div class="swiper-btn-center-lr">
                             <div class="swiper product-gallery-swiper2" >
                                 <div class="swiper-wrapper" style="max-height: 100dvh;">
-                                {% if product.image.url %}
-                                    <div class="swiper-slide">
-                                        <img src="{{ product.image.url }}" alt="{{ product.slug }}" class="w-100">
-                                    </div>
-                                {% endif %}
                                 {% if available_images %}
                                     {% for img in available_images %}
                                     <div class="swiper-slide">
@@ -108,11 +103,10 @@
                         <!-- Product Base Info End -->
                             <div class="d-flex flex-column gap-4 mb-4">
                                 <!-- Quantity Field -->
-                                    <div class="d-block btn-quantity light">
+                                    <div class="d-block btn-quantity">
                                         <label class="form-label">Quantity</label>
-                                        
                                         <input type="text" value="1" name="demo_vertical2">
-                                    </div>
+                                    </div> 
                                 <!-- Quantity Field End -->
                                 <!-- Size Picker -->
                                 {% if all_sizes %}
@@ -131,10 +125,7 @@
                                                         value="{{ variant.sku }}"
                                                         required
                                                         {% if size == current_variant.size %}checked{% endif %}>
-                                                        <label class="btn" for="size-id-{{ variant.id }}"
-                                                            {% if size == current_variant.size %}
-                                                                style="background-color:#ffc105 !important; border-color:#ffc105 !important; color:#000 !important;"
-                                                            {% endif %}
+                                                        <label class="btn size-label" style="background:#fff; border:1px solid #ccc; color:#333; display:flex;" for="size-id-{{ variant.id }}"
                                                         >{{ size }}</label>
                                                     {% endif %}
                                                 {% endfor %}
@@ -146,7 +137,9 @@
                                                 data-size="{{ size }}"
                                                 value="Out-of-stock"
                                                 disabled>
-                                                <label class="btn disabled" for="size-disabled-{{ size }}">{{ size }}</label>
+                                                <label class="btn disabled" 
+                                                style="background:#eeeeee; border:1px solid #dddddd; color:#999999; cursor:not-allowed; pointer-events:none;" 
+                                                for="size-disabled-{{ size }}">{{ size }}</label>
                                             {% endif %}
                                         {% endfor %}
                                         </div>
