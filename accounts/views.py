@@ -9,6 +9,7 @@ from products.models import Product
 from django.http import JsonResponse
 from django.contrib import messages
 from PIL import Image
+from orders.models import Order
 
 # ---------------------------------------------------------------------------
 # Resigner View
@@ -129,20 +130,38 @@ class AccountDashboard(LoginRequiredMixin, TemplateView):
 
         profile, _ = UserProfile.objects.get_or_create(user=user)
 
-        # Retrieve the points and number of favorite items from the backend and pass them to the HTML for display.
-        context["point_balance"] = profile.points 
-        context["order_history"] = 0
+        context["point_balance"] = profile.points
+        context["order_history"] = Order.objects.filter(user=user).count()
         context["total_favourites"] = profile.favorites.count()
         return context
 
 
 @login_required
 def order_history(request):
-    """Order list placeholder page before orders app integration."""
-    orders = []
-    return render(request, "accounts/orders.html", {
-        "order_list": orders,
-        "user": request.user
+    """會員訂單列表：只顯示當前登入使用者的訂單。"""
+    orders = (
+        Order.objects.filter(user=request.user)
+        .prefetch_related('items')
+        .select_related('payment')
+        .order_by('-created_at')
+    )
+    return render(request, 'accounts/orders.html', {
+        'order_list': orders,
+        'user': request.user,
+    })
+
+
+@login_required
+def order_detail(request, order_no):
+    """訂單詳情：僅允許訂單擁有者查看。"""
+    order = get_object_or_404(
+        Order.objects.select_related('payment').prefetch_related('items'),
+        order_no=order_no,
+        user=request.user,
+    )
+    return render(request, 'accounts/order_detail.html', {
+        'order': order,
+        'user': request.user,
     })
 
 

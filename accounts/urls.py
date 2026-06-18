@@ -19,6 +19,7 @@ urlpatterns = [
     path('profile/', views.profile, name="profile"),
     path('dashboard/', views.AccountDashboard.as_view(), name="dashboard"),
     path('orders/', views.order_history, name="orders"),
+    path('orders/<str:order_no>/', views.order_detail, name="order_detail"),
     path('favourites/', views.favourites, name="favourites"),
 
     # Wishlist toggle endpoint (used by product page button/form)
