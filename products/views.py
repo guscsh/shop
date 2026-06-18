@@ -29,7 +29,9 @@ def product_list(request):
         products = products.filter(
             Q(name__icontains=query) |
             Q(variants__sku__icontains=query) |
-            Q(category__name__icontains=query)
+            Q(category__name__icontains=query) |
+            Q(variants__color__name__icontains=query) |
+            Q(variants__size__icontains=query) 
         )
 
     # 分類篩選 (這裡也要包含子分類)
