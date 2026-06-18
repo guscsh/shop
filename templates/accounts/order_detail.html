@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order {{ order.order_no }} | My Account{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-3 mb-4 mb-lg-0">
+            {% include 'accounts/sidebar.html' %}
+        </div>
+
+        <div class="col-lg-9">
+            <div class="p-4 rounded shadow-sm" style="background: #fffaf3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0 font-weight-bold">Order Details</h4>
+                    <a href="{% url 'accounts:orders' %}" class="btn btn-sm btn-outline-secondary">Back to Orders</a>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header fw-bold">Order Information</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="text-muted small">Order Number</div>
+                                <div>{{ order.order_no }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Date</div>
+                                <div>{{ order.created_at|date:"Y-m-d H:i" }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Status</div>
+                                <div>{{ order.get_status_display }}</div>
+                            </div>
+                            {% if order.payment %}
+                            <div class="col-md-6">
+                                <div class="text-muted small">Payment Method</div>
+                                <div>{{ order.payment.get_method_display }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Transaction ID</div>
+                                <div>{{ order.payment.transaction_id|default:"—" }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Card</div>
+                                <div>**** **** **** {{ order.payment.card_last_four|default:"----" }}</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header fw-bold">Shipping Information</div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="text-muted small">Recipient</div>
+                                <div>{{ order.full_name }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Phone</div>
+                                <div>{{ order.phone }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-muted small">Email</div>
+                                <div>{{ order.email }}</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="text-muted small">Address</div>
+                                <div>{{ order.address|linebreaksbr }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header fw-bold">Items</div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in order.items.all %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            {% if item.image_path %}
+                                            <img src="{{ item.image_url }}" alt="{{ item.image_alt }}" class="rounded me-3" style="width:56px;height:56px;object-fit:cover;">
+                                            {% endif %}
+                                            <div>
+                                                <div>{{ item.product_name }}</div>
+                                                <div class="small text-muted">{{ item.color_name }} / {{ item.size }}</div>
+                                                {% if item.sku %}<div class="small text-muted">SKU: {{ item.sku }}</div>{% endif %}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>${{ item.price }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td class="text-end">${{ item.subtotal }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end fw-bold">Order Total</td>
+                                    <td class="text-end fw-bold text-danger">${{ order.total }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

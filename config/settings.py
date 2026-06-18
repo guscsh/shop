@@ -50,6 +50,7 @@ APPLICATION_APPS = [
     'products.apps.ProductsConfig',
     'users.apps.UsersConfig',
     'carts.apps.CartsConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 THIRD_PARTY_APPS = [

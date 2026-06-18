@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="mb-2">
-                <a href="{% url 'accounts:orders' %}" class="text-dark d-block py-2 px-3 rounded {% if request.resolver_match.url_name == 'orders' %}bg-light font-weight-bold{% endif %}">
+                <a href="{% url 'accounts:orders' %}" class="text-dark d-block py-2 px-3 rounded {% if request.resolver_match.url_name == 'orders' or request.resolver_match.url_name == 'order_detail' %}bg-light font-weight-bold{% endif %}">
                     Orders
                 </a>
             </li>
