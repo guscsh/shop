@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block content %}
+<section class="content-inner shop-account">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-5 text-center">
+                        <div class="display-4 text-danger mb-3">&#10007;</div>
+                        <h3 class="mb-2">Payment Failed</h3>
+
+                        {% if reason == 'stock' %}
+                        <p class="text-muted mb-4">Some items in your cart are out of stock. Please adjust quantities and try again.</p>
+
+                        <div class="text-start bg-light rounded p-4 mb-4">
+                            <h5 class="mb-3">Insufficient Stock</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Requested</th>
+                                            <th>Available</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in failed_items %}
+                                        <tr>
+                                            <td>{{ item.product }}</td>
+                                            <td>{{ item.requested }}</td>
+                                            <td>{{ item.available }}</td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="3" class="text-muted">No details available.</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {% else %}
+                        <p class="text-muted mb-4">We could not complete your order. Please check your payment details and try again.</p>
+                        {% endif %}
+
+                        <div class="d-flex flex-wrap gap-2 justify-content-center">
+                            <a href="{% url 'carts:list' %}" class="btn btn-secondary">Back to Cart</a>
+                            <a href="{% url 'orders:checkout' %}" class="btn btn-outline-secondary">Try Checkout Again</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
