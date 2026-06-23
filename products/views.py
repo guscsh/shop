@@ -29,7 +29,9 @@ def product_list(request):
         products = products.filter(
             Q(name__icontains=query) |
             Q(variants__sku__icontains=query) |
-            Q(category__name__icontains=query)
+            Q(category__name__icontains=query) |
+            Q(variants__color__name__icontains=query) |
+            Q(variants__size__icontains=query)
         )
 
     # 分類篩選 (這裡也要包含子分類)
@@ -100,10 +102,24 @@ def product(request, slug):
         current_color_slug = current_color.slug if current_color else None
 
     is_favorited = False
-
+    profile = None
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         is_favorited = profile.favorites.filter(pk=product.pk).exists()
+    # Related Products: Same Category + All Sub Categories
+    # Get current category + its child categories
+    current_cat = product.category
+    cat_ids = [current_cat.id] + list(current_cat.children.values_list('id', flat=True))
+    # Query related products
+    related_products = Product.active.filter(category_id__in=cat_ids).exclude(pk=product.pk)[:6]
+
+    # Handle favorite status
+    fav_ids = set()
+    if profile:
+        fav_ids = set(profile.favorites.values_list('id', flat=True))
+
+    for item in related_products:
+        item.is_favorited = item.id in fav_ids
     
     context = {
         'product': product,
@@ -113,10 +129,11 @@ def product(request, slug):
         'all_sizes': sorted(list({variant.size for variant in all_variants}),
                             key=lambda size: SIZES_LIST.index(size) if size in SIZES_LIST else 99),
         'available_images': sorted([image for image in all_images if image.color == current_color],
-                                key=lambda image: (image.display_order, image.id)),
+                                    key=lambda image: (image.display_order, image.id)),
         'current_variant': next((variant for variant in all_variants if variant.color.id == current_color.id), None),
         'current_color_variants': [variant for variant in all_variants if variant.color_id == current_color.id],
         'is_favorited': is_favorited,
+        'related_products': related_products,
     }
 
     return render(request, 'products/product.html', context)

@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<section class="content-inner shop-account">
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="mb-0">Checkout</h3>
+            <a href="{% url 'carts:list' %}" class="btn btn-sm btn-outline-secondary">Back to Cart</a>
+        </div>
+
+        <form method="post" action="{% url 'orders:place_order' %}" id="checkout-form">
+            {% csrf_token %}
+
+            <div class="row g-4">
+                <!-- Left: shipping + payment -->
+                <div class="col-lg-7">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-white fw-bold">Shipping Information</div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ form.full_name.label }}</label>
+                                    {{ form.full_name }}
+                                    {% if form.full_name.errors %}
+                                    <div class="text-danger small">{{ form.full_name.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ form.email.label }}</label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                    <div class="text-danger small">{{ form.email.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ form.phone.label }}</label>
+                                    {{ form.phone }}
+                                    {% if form.phone.errors %}
+                                    <div class="text-danger small">{{ form.phone.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">{{ form.address.label }}</label>
+                                    {{ form.address }}
+                                    {% if form.address.errors %}
+                                    <div class="text-danger small">{{ form.address.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white fw-bold">Payment</div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">{{ form.card_number.label }}</label>
+                                    {{ form.card_number }}
+                                    {% if form.card_number.errors %}
+                                    <div class="text-danger small">{{ form.card_number.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ form.card_expiry.label }}</label>
+                                    {{ form.card_expiry }}
+                                    {% if form.card_expiry.errors %}
+                                    <div class="text-danger small">{{ form.card_expiry.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ form.card_cvc.label }}</label>
+                                    {{ form.card_cvc }}
+                                    {% if form.card_cvc.errors %}
+                                    <div class="text-danger small">{{ form.card_cvc.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p class="text-muted small mt-3 mb-0">
+                                Demo only — card details are validated but not stored in full.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: cart summary -->
+                <div class="col-lg-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white fw-bold">Order Summary</div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th class="text-end">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in cart %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    {% if item.image %}
+                                                    <img src="{{ item.image.url }}" alt="{{ item.image_text }}" class="rounded me-2" style="width:48px;height:48px;object-fit:cover;">
+                                                    {% endif %}
+                                                    <div>
+                                                        <div class="small fw-semibold">{{ item.variant.product.name }}</div>
+                                                        <div class="text-muted small">{{ item.variant.color }} / {{ item.variant.size }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td class="text-end">${{ item.total_price|floatformat:2 }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2" class="text-end fw-bold">Total</td>
+                                            <td class="text-end fw-bold">${{ cart_total|floatformat:2 }}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                Place Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Confirm modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirm Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-2">Please confirm your order details:</p>
+                <p class="fw-bold mb-1">Total: ${{ cart_total|floatformat:2 }}</p>
+                <p class="text-muted small mb-0">After confirmation, stock will be checked and your order will be processed.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="checkout-form" class="btn btn-secondary">Confirm &amp; Pay</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
